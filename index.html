@@ -1,52 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yo Bar & Restaurant</title>
+  <title>Bar & Restaurant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap"
     rel="stylesheet" />
   <style>
+    /* ═══════════════════════════════════════════════════════════════
+       ██████╗ ███████╗███████╗████████╗ █████╗ ██╗   ██╗██████╗  █████╗ ███╗   ██╗████████╗
+       ██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔══██╗██╔══██╗████╗  ██║╚══██╔══╝
+       ██████╔╝█████╗  ███████╗   ██║   ███████║██║   ██║██████╔╝███████║██╔██╗ ██║   ██║
+       ██╔══██╗██╔══╝  ╚════██║   ██║   ██╔══██║██║   ██║██╔══██╗██╔══██║██║╚██╗██║   ██║
+       ██║  ██║███████╗███████║   ██║   ██║  ██║╚██████╔╝██║  ██║██║  ██║██║ ╚████║   ██║
+       ╚═╝  ╚═╝╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝
+
+       ┌─────────────────────────────────────────────────────────────────┐
+       │  🍴 RESTAURANT WEBSITE - EASY EDIT GUIDE                       │
+       │  Search for "EASY EDIT" below to find all customisable areas.  │
+       │  You do NOT need to understand code — just change the values.  │
+       └─────────────────────────────────────────────────────────────────┘
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* ═══ THEME VARIABLES ═══ */
     :root {
-      --fire: #FF6D29;
-      --brown: #453027;
-      --void: #161316;
-      --smoke: #BABABA;
-      --white: #FFFFFF;
-      --orange-dim: rgba(255, 109, 41, 0.15);
-      --orange-glow: rgba(255, 109, 41, 0.35);
-      --card-bg: #1c1519;
-      --border: rgba(255, 109, 41, 0.18);
+      --platinum: #D3D0D5;
+      --french-gray: #A4A2AB;
+      --gunmetal: #292B39;
+
+      /* Light theme */
+      --bg: #E8E6EA;
+      --surface: #D3D0D5;
+      --card-bg: #DCDADD;
+      /* BUG FIX: was "#DCDAD E" (had a space) */
+      --text: #292B39;
+      --text-muted: #4A4858;
+      /* BUG FIX: darkened from #5A5865 for readability */
+      --text-dim: rgba(41, 43, 57, 0.55);
+      /* BUG FIX: raised opacity from 0.4 */
+      --border: rgba(41, 43, 57, 0.12);
+      --accent: #292B39;
+      --accent-soft: rgba(41, 43, 57, 0.08);
+      --accent-mid: rgba(41, 43, 57, 0.15);
+      --smoke: #A4A2AB;
       --nav-w: 72px;
       --nav-h: 0px;
       --ff-display: 'Cormorant Garamond', Georgia, serif;
       --ff-body: 'Outfit', system-ui, sans-serif;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-      --bg: #161316;
-      --surface: #1c1519;
-      --text: #ffffff;
-      --text-muted: #BABABA;
-      --text-dim: rgba(186, 186, 186, 0.45);
+      --fire: #7B6FA0;
+      --fire-dim: rgba(123, 111, 160, 0.12);
+      --fire-glow: rgba(123, 111, 160, 0.3);
     }
 
-    [data-theme="light"] {
-      --bg: #f5f0eb;
-      --void: #f5f0eb;
-      --surface: #fff9f5;
-      --card-bg: #fff9f5;
-      --text: #1a0f08;
-      --text-muted: #5a3a28;
-      --text-dim: rgba(90, 58, 40, 0.5);
-      --border: rgba(255, 109, 41, 0.25);
-      --white: #1a0f08;
-      --smoke: #5a3a28;
+    [data-theme="dark"] {
+      --bg: #1E1F28;
+      --surface: #292B39;
+      --card-bg: #31333F;
+      --text: #D3D0D5;
+      --text-muted: #C4C2CB;
+      /* BUG FIX: lightened for dark mode readability */
+      --text-dim: rgba(211, 208, 213, 0.6);
+      /* BUG FIX: raised opacity for dark mode */
+      --border: rgba(211, 208, 213, 0.1);
+      --accent: #D3D0D5;
+      --accent-soft: rgba(211, 208, 213, 0.07);
+      --accent-mid: rgba(211, 208, 213, 0.13);
+      --fire: #9B8EC4;
+      --fire-dim: rgba(155, 142, 196, 0.12);
+      --fire-glow: rgba(155, 142, 196, 0.28);
     }
 
+    /* ═══ RESET ═══ */
     *,
     *::before,
     *::after {
@@ -66,17 +96,18 @@
       line-height: 1.6;
       overflow-x: hidden;
       display: flex;
-      transition: background .3s, color .3s;
+      flex-direction: column;
+      transition: background 0.5s, color 0.5s;
     }
 
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: .4;
+      opacity: .5;
     }
 
     ::-webkit-scrollbar {
@@ -88,8 +119,183 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--fire);
+      background: var(--french-gray);
       border-radius: 2px
+    }
+
+    /* ═══ THEME RIPPLE ═══ */
+    #theme-ripple {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    #theme-ripple .ripple-circle {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      opacity: 0;
+      transition: none;
+    }
+
+    /* ═══ TOP HEADER ═══ */
+    #top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      z-index: 950;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px 0 calc(var(--nav-w) + 20px);
+      background: rgba(211, 208, 213, 0.8);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.5s, border-color 0.5s;
+    }
+
+    [data-theme="dark"] #top-header {
+      background: rgba(41, 43, 57, 0.85);
+    }
+
+    .header-brand {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .header-brand span {
+      color: var(--fire);
+      font-style: italic;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Theme toggle */
+    .theme-toggle-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-toggle-btn {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      overflow: hidden;
+      transition: background 0.4s, border-color 0.4s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gunmetal);
+      transition: transform 0.4s var(--ease-spring), background 0.4s;
+    }
+
+    [data-theme="dark"] .theme-toggle-btn::before {
+      transform: translateX(24px);
+      background: var(--platinum);
+    }
+
+    .theme-toggle-btn .t-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .t-icon-sun {
+      right: 6px;
+      opacity: 1;
+    }
+
+    .t-icon-moon {
+      left: 6px;
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .t-icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .t-icon-moon {
+      opacity: 1;
+    }
+
+    .toggle-label {
+      font-size: .58rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.3s;
+      min-width: 28px;
+    }
+
+    /* Lang pill */
+    .lang-pill {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .lang-pill-btn {
+      font-size: .58rem;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .lang-pill-btn.active {
+      background: var(--gunmetal);
+      color: var(--platinum);
+    }
+
+    [data-theme="dark"] .lang-pill-btn.active {
+      background: var(--platinum);
+      color: var(--gunmetal);
+    }
+
+    .header-sep {
+      width: 1px;
+      height: 22px;
+      background: var(--border);
+      flex-shrink: 0;
     }
 
     /* ═══ SIDEBAR NAV ═══ */
@@ -103,44 +309,55 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 12px 0 12px;
-      background: rgba(22, 19, 22, 0.6);
-      backdrop-filter: blur(28px) saturate(180%);
-      border-right: 1px solid rgba(255, 109, 41, 0.12);
-      transition: background .3s;
+      padding: 16px 0 16px;
+      background: var(--gunmetal);
+      border-right: 1px solid rgba(211, 208, 213, 0.08);
+      transition: background 0.5s;
     }
 
-    [data-theme="light"] #sidebar {
-      background: rgba(245, 240, 235, 0.75)
+    [data-theme="dark"] #sidebar {
+      background: #1A1B24;
+      border-right-color: rgba(211, 208, 213, 0.06);
     }
 
     .nav-logo {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
       overflow: hidden;
-      border: 1.5px solid rgba(255, 109, 41, 0.35);
+      border: 1.5px solid rgba(211, 208, 213, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--brown);
-      margin-bottom: 8px;
+      background: rgba(211, 208, 213, 0.1);
+      margin-bottom: 12px;
       flex-shrink: 0;
       cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
     }
 
-    .nav-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover
+    .nav-logo:hover {
+      border-color: rgba(211, 208, 213, 0.5);
+      background: rgba(211, 208, 213, 0.18);
     }
 
     .nav-logo-fallback {
       font-family: var(--ff-display);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--fire);
+      color: var(--platinum);
       line-height: 1;
+    }
+
+    .nav-section-label {
+      font-size: .42rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(164, 162, 171, 0.4);
+      margin: 6px 0 4px;
+      padding: 4px 0;
+      border-top: 1px solid rgba(211, 208, 213, 0.07);
+      width: 32px;
       text-align: center;
     }
 
@@ -149,84 +366,100 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      padding: 8px 0;
+      gap: 2px;
+      padding: 4px 0;
       overflow: hidden;
-    }
-
-    .nav-bottom {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 0;
-      border-top: 1px solid rgba(255, 109, 41, 0.1);
+      width: 100%;
     }
 
     .nav-btn {
       position: relative;
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 3px;
       cursor: pointer;
-      transition: background .2s, transform .2s;
       background: transparent;
       border: none;
-      color: var(--text-muted);
+      color: rgba(164, 162, 171, 0.6);
+      transition: color 0.2s, background 0.2s, transform 0.2s;
     }
 
     .nav-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       stroke: currentColor;
-      stroke-width: 1.7;
+      stroke-width: 1.6;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
-      transition: stroke .2s
+      transition: stroke 0.2s;
+    }
+
+    .nav-btn .nav-label-tiny {
+      font-size: .42rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: currentColor;
+      transition: color 0.2s;
+      font-family: var(--ff-body);
+      font-weight: 300;
     }
 
     .nav-btn:hover {
-      background: var(--orange-dim);
-      color: var(--fire);
-      transform: scale(1.08)
+      background: rgba(211, 208, 213, 0.1);
+      color: var(--platinum);
+      transform: scale(1.05);
     }
 
     .nav-btn.active {
-      background: var(--orange-dim);
-      color: var(--fire);
+      background: rgba(211, 208, 213, 0.15);
+      color: var(--platinum);
     }
 
-    .nav-btn.active svg {
-      stroke: var(--fire)
+    .nav-btn.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 26px;
+      background: var(--platinum);
+      border-radius: 0 3px 3px 0;
     }
 
     .nav-tooltip {
       position: absolute;
-      left: calc(100% + 12px);
+      left: calc(100% + 14px);
       top: 50%;
       transform: translateY(-50%);
-      background: var(--surface);
-      border: 1px solid rgba(255, 109, 41, 0.3);
-      color: var(--text);
-      font-size: .65rem;
+      background: var(--gunmetal);
+      border: 1px solid rgba(211, 208, 213, 0.15);
+      color: var(--platinum);
+      font-size: .62rem;
       font-weight: 300;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
       white-space: nowrap;
       pointer-events: none;
       opacity: 0;
-      transition: opacity .2s;
+      transition: opacity 0.2s;
       z-index: 999;
     }
 
+    [data-theme="dark"] .nav-tooltip {
+      background: #0E0F16;
+    }
+
     .nav-btn:hover .nav-tooltip {
-      opacity: 1
+      opacity: 1;
     }
 
     /* ═══ MAIN CONTENT ═══ */
@@ -236,6 +469,7 @@
       min-height: 100vh;
       position: relative;
       z-index: 1;
+      padding-top: 56px;
     }
 
     /* ═══ SECTIONS ═══ */
@@ -249,7 +483,7 @@
 
     /* ═══ HERO ═══ */
     .hero {
-      min-height: 100vh;
+      min-height: calc(100vh - 56px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -263,13 +497,17 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 100% 80% at 50% 60%, rgba(69, 48, 39, 0.85) 0%, var(--bg) 70%),
+      background:
+        radial-gradient(ellipse 100% 80% at 50% 60%, rgba(41, 43, 57, 0.82) 0%, var(--bg) 70%),
         url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80&auto=format') center/cover no-repeat;
       z-index: 0;
+      transition: background 0.5s;
     }
 
-    [data-theme="light"] .hero-bg {
-      background: radial-gradient(ellipse 100% 80% at 50% 60%, rgba(255, 200, 160, 0.7) 0%, var(--bg) 70%), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80&auto=format') center/cover no-repeat
+    [data-theme="dark"] .hero-bg {
+      background:
+        radial-gradient(ellipse 100% 80% at 50% 60%, rgba(14, 15, 22, 0.9) 0%, var(--bg) 70%),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80&auto=format') center/cover no-repeat;
     }
 
     .hero-content {
@@ -282,8 +520,8 @@
       font-weight: 300;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--fire);
-      border: 1px solid rgba(255, 109, 41, 0.3);
+      color: var(--platinum);
+      border: 1px solid rgba(211, 208, 213, 0.35);
       padding: 7px 24px;
       border-radius: 40px;
       display: inline-block;
@@ -297,14 +535,14 @@
       font-weight: 300;
       line-height: 1;
       letter-spacing: -1px;
-      color: var(--text);
+      color: var(--platinum);
       animation: fadeUp .9s .4s var(--ease-out) both;
     }
 
     .hero-title em {
       display: block;
       font-style: italic;
-      color: var(--fire)
+      color: var(--french-gray)
     }
 
     .hero-sub {
@@ -313,14 +551,15 @@
       font-weight: 200;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(164, 162, 171, 0.85);
+      /* FIX: was 0.7 */
       animation: fadeUp .9s .6s var(--ease-out) both;
     }
 
     .hero-divider {
       width: 1px;
       height: 50px;
-      background: linear-gradient(to bottom, transparent, var(--fire), transparent);
+      background: linear-gradient(to bottom, transparent, var(--french-gray), transparent);
       margin: 28px auto;
       animation: fadeUp .9s .8s var(--ease-out) both;
     }
@@ -341,22 +580,22 @@
       font-family: var(--ff-display);
       font-size: 2rem;
       font-weight: 300;
-      color: var(--fire)
+      color: var(--platinum);
     }
 
     .stat-label {
       font-size: .55rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--text-muted)
+      color: rgba(164, 162, 171, 0.8);
     }
 
     .hero-cta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--fire);
-      color: #161316;
+      background: var(--platinum);
+      color: var(--gunmetal);
       padding: 13px 40px;
       font-size: .7rem;
       font-weight: 500;
@@ -367,12 +606,13 @@
       border-radius: 2px;
       margin-top: 28px;
       animation: fadeUp .9s 1.1s var(--ease-out) both;
-      transition: transform .3s, box-shadow .3s;
+      transition: transform .3s, box-shadow .3s, background 0.3s;
     }
 
     .hero-cta:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(255, 109, 41, 0.35)
+      box-shadow: 0 16px 40px rgba(211, 208, 213, 0.25);
+      background: #fff;
     }
 
     /* ═══ SECTION COMMON ═══ */
@@ -386,8 +626,8 @@
       font-size: .55rem;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 8px
+      color: var(--french-gray);
+      margin-bottom: 8px;
     }
 
     .sec-title {
@@ -395,7 +635,7 @@
       font-size: clamp(2rem, 5vw, 4rem);
       font-weight: 300;
       color: var(--text);
-      line-height: 1
+      line-height: 1;
     }
 
     .sec-title em {
@@ -408,14 +648,14 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-top: 6px
+      margin-top: 6px;
     }
 
     .sec-divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--fire), transparent);
+      background: linear-gradient(90deg, transparent, var(--french-gray), transparent);
       margin: 24px 0;
-      opacity: .25
+      opacity: .3;
     }
 
     /* ═══ ABOUT GRID ═══ */
@@ -434,153 +674,298 @@
       gap: 10px;
     }
 
-    /* ═══ MENU SECTION ═══ */
+    /* ═══════════════════════════════════════════════════════════
+       NEW IMPROVED MENU SECTION
+       ═══════════════════════════════════════════════════════════ */
+
     .menu-page {
       padding-bottom: 80px
     }
 
-    .menu-tabs {
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-      padding: 20px 5%;
-      max-width: 1200px;
-      margin: 0 auto;
+    /* Category scroll nav — horizontal pill strip */
+    .menu-cat-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      transition: background 0.5s, border-color 0.5s;
     }
 
-    .menu-tab {
-      font-size: .6rem;
+    [data-theme="dark"] .menu-cat-nav {
+      background: var(--bg);
+    }
+
+    .menu-cat-scroll {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .menu-cat-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .menu-cat-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      padding: 14px 18px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--ff-body);
+      font-size: .68rem;
       font-weight: 300;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .menu-cat-pill:hover {
+      color: var(--text);
+      border-bottom-color: var(--border);
+    }
+
+    .menu-cat-pill.active {
+      color: var(--fire);
+      border-bottom-color: var(--fire);
+      font-weight: 400;
+    }
+
+    .menu-cat-pill .cat-emoji {
+      font-size: 1rem;
+    }
+
+    /* Menu content area */
+    .menu-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 5% 0;
+    }
+
+    /* Category header */
+    .menu-cat-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .menu-cat-emoji-large {
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .menu-cat-title-block {}
+
+    .menu-cat-eyebrow {
+      font-size: .52rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--text-muted);
-      padding: 7px 16px;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: .2s;
-      background: transparent;
+      margin-bottom: 2px;
     }
 
-    .menu-tab:hover {
-      color: var(--fire);
-      border-color: rgba(255, 109, 41, 0.2)
-    }
-
-    .menu-tab.active {
-      color: var(--fire);
-      border-color: rgba(255, 109, 41, 0.35);
-      background: var(--orange-dim)
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      padding: 0 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    @media(max-width:760px) {
-      .menu-grid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    .menu-cat {
-      padding: 20px 0
-    }
-
-    .cat-label {
-      font-size: .55rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 4px
-    }
-
-    .cat-name {
+    .menu-cat-title {
       font-family: var(--ff-display);
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 16px
+      line-height: 1;
     }
 
-    .menu-card {
+    .menu-cat-count {
+      font-size: .62rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-left: auto;
+      align-self: center;
+      flex-shrink: 0;
+    }
+
+    /* Menu item grid — improved 2-col card layout */
+    .menu-items-grid {
       display: grid;
-      grid-template-columns: 64px 1fr auto;
-      gap: 0 12px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding-bottom: 40px;
+    }
+
+    .menu-item-card {
+      display: flex;
       align-items: center;
-      padding: 12px 10px;
-      border-radius: 8px;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
       cursor: pointer;
-      border: 1px solid transparent;
-      transition: background .2s, border-color .2s, transform .2s;
+      transition: all 0.22s var(--ease-out);
+      position: relative;
+      overflow: hidden;
     }
 
-    .menu-card:hover {
-      background: rgba(69, 48, 39, 0.25);
-      border-color: rgba(255, 109, 41, 0.18);
-      transform: translateX(3px)
+    .menu-item-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--fire);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s var(--ease-out);
     }
 
-    .card-img {
-      width: 64px;
-      height: 50px;
-      border-radius: 6px;
+    .menu-item-card:hover {
+      border-color: var(--fire-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    [data-theme="dark"] .menu-item-card:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .item-img-wrap {
+      width: 76px;
+      height: 64px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--french-gray);
+    }
+
+    .item-img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      background: var(--brown);
+      transition: transform 0.35s var(--ease-out);
       display: block;
-      transition: transform .3s
     }
 
-    .menu-card:hover .card-img {
-      transform: scale(1.05)
+    .menu-item-card:hover .item-img-wrap img {
+      transform: scale(1.08);
     }
 
-    .card-name {
-      font-size: .85rem;
+    .item-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name {
+      font-size: .9rem;
       font-weight: 400;
       color: var(--text);
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
+      transition: color 0.2s;
     }
 
-    .menu-card:hover .card-name {
-      color: var(--fire)
+    .menu-item-card:hover .item-name {
+      color: var(--fire);
     }
 
-    .card-hint {
-      font-size: .6rem;
-      color: var(--text-dim);
-      margin-top: 2px;
+    .item-hint {
+      font-size: .64rem;
+      color: var(--text-muted);
+      /* FIX: was text-dim */
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis
+      text-overflow: ellipsis;
+      margin-bottom: 6px;
     }
 
-    .card-price {
-      font-family: var(--ff-display);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--fire);
-      white-space: nowrap
+    .item-tags-row {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
     }
 
-    .card-arrow {
-      font-size: .5rem;
+    .item-badge {
+      font-size: .48rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: rgba(255, 109, 41, 0.35);
-      opacity: 0;
-      transition: .2s
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 2px 7px;
+      border-radius: 20px;
     }
 
-    .menu-card:hover .card-arrow {
-      opacity: 1
+    .item-price-col {
+      text-align: right;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .item-price {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      /* FIX: was --gunmetal which is unreadable in dark mode */
+      white-space: nowrap;
+    }
+
+    [data-theme="dark"] .item-price {
+      color: var(--platinum);
+    }
+
+    .item-price-unit {
+      font-size: .5rem;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .item-arrow {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--fire-dim);
+      border: 1px solid var(--fire-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .item-arrow svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--fire);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .menu-item-card:hover .item-arrow {
+      opacity: 1;
     }
 
     /* ═══ GALLERY ═══ */
@@ -597,12 +982,6 @@
       margin: 0 auto;
     }
 
-    @media(max-width:760px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr)
-      }
-    }
-
     .gallery-item {
       position: relative;
       border-radius: 10px;
@@ -616,18 +995,18 @@
       height: 100%;
       object-fit: cover;
       transition: transform .4s, filter .4s;
-      filter: brightness(.8) saturate(1.1)
+      filter: brightness(.85) saturate(.9) sepia(.1);
     }
 
     .gallery-item:hover img {
       transform: scale(1.07);
-      filter: brightness(.95) saturate(1.2)
+      filter: brightness(.95) saturate(1.1)
     }
 
     .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(22, 19, 22, 0.7), transparent 50%);
+      background: linear-gradient(to top, rgba(41, 43, 57, 0.7), transparent 50%);
       display: flex;
       align-items: flex-end;
       padding: 14px;
@@ -643,7 +1022,7 @@
       font-size: .65rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--fire)
+      color: var(--platinum);
     }
 
     .gallery-featured {
@@ -655,14 +1034,14 @@
     .payment-page {
       padding: 0 5% 80px;
       max-width: 800px;
-      margin: 0 auto
+      margin: 0 auto;
     }
 
     .payment-intro {
       font-size: .85rem;
       color: var(--text-muted);
       margin-bottom: 32px;
-      line-height: 1.8
+      line-height: 1.8;
     }
 
     .payment-card {
@@ -675,15 +1054,15 @@
     }
 
     .payment-card:hover {
-      border-color: rgba(255, 109, 41, 0.35)
+      border-color: var(--french-gray)
     }
 
     .payment-type {
       font-size: .55rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 4px
+      color: var(--french-gray);
+      margin-bottom: 4px;
     }
 
     .payment-name {
@@ -691,15 +1070,15 @@
       font-size: 1.6rem;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 16px
+      margin-bottom: 16px;
     }
 
     .account-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 109, 41, 0.07);
-      border: 1px solid rgba(255, 109, 41, 0.15);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 14px 18px;
       margin-bottom: 10px;
@@ -710,20 +1089,20 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 2px
+      margin-bottom: 2px;
     }
 
     .account-number {
       font-size: 1.05rem;
       font-weight: 400;
       color: var(--text);
-      letter-spacing: 1.5px
+      letter-spacing: 1.5px;
     }
 
     .copy-btn {
       background: transparent;
-      border: 1px solid rgba(255, 109, 41, 0.3);
-      color: var(--fire);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
       padding: 7px 16px;
       border-radius: 6px;
       font-size: .6rem;
@@ -738,28 +1117,31 @@
     }
 
     .copy-btn:hover {
-      background: var(--orange-dim);
-      border-color: var(--fire)
+      background: var(--accent-mid);
+      color: var(--text);
+      border-color: var(--french-gray)
     }
 
     .copy-btn.copied {
-      background: rgba(40, 180, 100, 0.15);
-      border-color: rgba(40, 180, 100, 0.5);
-      color: #40c878
+      background: rgba(40, 180, 100, 0.12);
+      border-color: rgba(40, 180, 100, 0.4);
+      color: #40c878;
     }
 
     .payment-note {
-      font-size: .72rem;
-      color: var(--text-dim);
+      font-size: .76rem;
+      color: var(--text-muted);
       margin-top: 8px;
-      line-height: 1.6
+      line-height: 1.6;
     }
+
+    /* FIX: was text-dim */
 
     /* ═══ DEVELOPER ═══ */
     .dev-page {
       padding: 0 5% 80px;
       max-width: 700px;
-      margin: 0 auto
+      margin: 0 auto;
     }
 
     .dev-card {
@@ -775,15 +1157,15 @@
       width: 90px;
       height: 90px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--brown), rgba(255, 109, 41, 0.4));
+      background: linear-gradient(135deg, var(--french-gray), var(--gunmetal));
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 16px;
-      border: 2px solid rgba(255, 109, 41, 0.3);
+      border: 2px solid var(--border);
       font-family: var(--ff-display);
       font-size: 2rem;
-      color: var(--fire);
+      color: var(--platinum);
     }
 
     .dev-name {
@@ -791,7 +1173,7 @@
       font-size: 2rem;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 4px
+      margin-bottom: 4px;
     }
 
     .dev-role {
@@ -799,14 +1181,14 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 20px
+      margin-bottom: 20px;
     }
 
     .dev-bio {
       font-size: .82rem;
       color: var(--text-muted);
       line-height: 1.8;
-      margin-bottom: 24px
+      margin-bottom: 24px;
     }
 
     .dev-links {
@@ -821,8 +1203,8 @@
       align-items: center;
       gap: 8px;
       background: transparent;
-      border: 1px solid rgba(255, 109, 41, 0.25);
-      color: var(--fire);
+      border: 1px solid var(--border);
+      color: var(--text);
       padding: 8px 20px;
       border-radius: 8px;
       font-size: .65rem;
@@ -834,16 +1216,16 @@
     }
 
     .dev-link:hover {
-      background: var(--orange-dim);
-      border-color: rgba(255, 109, 41, 0.5)
+      background: var(--accent-mid);
+      border-color: var(--french-gray)
     }
 
     .dev-tech-label {
       font-size: .55rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 12px
+      color: var(--french-gray);
+      margin-bottom: 12px;
     }
 
     .dev-tags {
@@ -857,7 +1239,7 @@
       font-size: .65rem;
       padding: 5px 14px;
       border-radius: 40px;
-      border: 1px solid rgba(255, 109, 41, 0.2);
+      border: 1px solid var(--border);
       color: var(--text-muted);
     }
 
@@ -866,7 +1248,7 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(41, 43, 57, 0.6);
       backdrop-filter: blur(16px);
       display: flex;
       align-items: center;
@@ -888,12 +1270,16 @@
       max-height: 90vh;
       overflow-y: auto;
       background: var(--surface);
-      border: 1px solid rgba(255, 109, 41, 0.25);
+      border: 1px solid var(--border);
       border-radius: 18px;
       position: relative;
       transform: translateY(24px) scale(.97);
       transition: transform .45s var(--ease-spring);
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 32px 80px rgba(41, 43, 57, 0.3);
+    }
+
+    [data-theme="dark"] .modal {
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6)
     }
 
     .backdrop.open .modal {
@@ -905,20 +1291,20 @@
       height: 220px;
       position: relative;
       overflow: hidden;
-      border-radius: 18px 18px 0 0
+      border-radius: 18px 18px 0 0;
     }
 
     .modal-hero img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(.75) saturate(1.2)
+      filter: brightness(.8) saturate(.9) sepia(.1);
     }
 
     .modal-hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, var(--surface), transparent 55%)
+      background: linear-gradient(to top, var(--surface), transparent 55%);
     }
 
     .modal-hero-tag {
@@ -928,12 +1314,12 @@
       font-size: .52rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      background: rgba(22, 19, 22, 0.7);
-      border: 1px solid rgba(255, 109, 41, 0.3);
-      color: var(--fire);
+      background: rgba(41, 43, 57, 0.75);
+      border: 1px solid rgba(211, 208, 213, 0.2);
+      color: var(--platinum);
       padding: 5px 14px;
       border-radius: 30px;
-      backdrop-filter: blur(8px)
+      backdrop-filter: blur(8px);
     }
 
     .modal-close {
@@ -943,21 +1329,20 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: rgba(22, 19, 22, 0.8);
-      border: 1px solid rgba(255, 109, 41, 0.3);
-      color: var(--smoke);
+      background: rgba(41, 43, 57, 0.8);
+      border: 1px solid rgba(211, 208, 213, 0.2);
+      color: var(--platinum);
       font-size: 1.1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 10;
-      transition: .2s
+      transition: .2s;
     }
 
     .modal-close:hover {
-      color: var(--fire);
-      border-color: var(--fire);
+      border-color: var(--platinum);
       transform: rotate(90deg)
     }
 
@@ -971,62 +1356,69 @@
       font-weight: 300;
       color: var(--text);
       margin-bottom: 10px;
-      line-height: 1.1
+      line-height: 1.1;
     }
 
     .modal-price {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 109, 41, 0.1);
-      border: 1px solid rgba(255, 109, 41, 0.22);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
       padding: 6px 18px;
       border-radius: 40px;
-      margin-bottom: 18px
+      margin-bottom: 18px;
     }
 
     .p-num {
       font-family: var(--ff-display);
       font-size: 1.4rem;
-      color: var(--fire)
+      color: var(--text);
+    }
+
+    /* FIX: was --gunmetal */
+    [data-theme="dark"] .p-num {
+      color: var(--platinum)
     }
 
     .p-unit {
       font-size: .6rem;
-      color: var(--text-dim);
+      color: var(--text-muted);
       letter-spacing: 1px
     }
 
+    /* FIX: was text-dim */
     .modal-line {
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 109, 41, 0.2), transparent);
-      margin: 14px 0
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 14px 0;
     }
 
     .modal-label {
       font-size: .52rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255, 109, 41, 0.5);
-      margin-bottom: 6px
+      color: var(--french-gray);
+      margin-bottom: 6px;
     }
 
     .modal-desc {
       font-size: .85rem;
-      font-weight: 200;
+      font-weight: 300;
       color: var(--text-muted);
       font-style: italic;
       line-height: 1.75;
-      margin-bottom: 14px
+      margin-bottom: 14px;
     }
 
     .modal-details {
       font-size: .8rem;
-      font-weight: 200;
-      color: var(--text-dim);
-      line-height: 1.8
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
     }
 
+    /* FIX: was text-dim & weight 200 */
     .modal-tags {
       display: flex;
       flex-wrap: wrap;
@@ -1038,8 +1430,8 @@
       font-size: .58rem;
       padding: 4px 12px;
       border-radius: 40px;
-      border: 1px solid rgba(255, 109, 41, 0.22);
-      color: rgba(255, 109, 41, 0.7)
+      border: 1px solid var(--border);
+      color: var(--text-muted);
     }
 
     /* ═══ TOAST ═══ */
@@ -1048,8 +1440,8 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: rgba(40, 180, 100, 0.15);
-      border: 1px solid rgba(40, 180, 100, 0.4);
+      background: rgba(40, 180, 100, 0.12);
+      border: 1px solid rgba(40, 180, 100, 0.35);
       color: #40c878;
       padding: 10px 24px;
       border-radius: 30px;
@@ -1084,7 +1476,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity .7s var(--ease-out), transform .7s var(--ease-out)
+      transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
     }
 
     .reveal.visible {
@@ -1092,25 +1484,76 @@
       transform: translateY(0)
     }
 
-    /* ═══ LANG LABEL ═══ */
-    .lang-label {
-      font-size: .5rem;
-      letter-spacing: 1.5px;
+    /* ═══ ABOUT STRIP ═══ */
+    .about-strip {
+      background: var(--surface);
+      padding: 48px 5%;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.5s, border-color 0.5s;
+    }
+
+    /* ═══ FEAT CARD ═══ */
+    .feat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .feat-card:hover {
+      border-color: var(--french-gray)
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 50px 5% 30px;
+      text-align: center;
+      transition: border-color 0.5s;
+    }
+
+    /* ═══ FEAT CARD TEXT FIX ═══ */
+    .feat-card-label {
+      font-size: .6rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--fire);
-      margin-top: 2px;
-      font-family: var(--ff-body)
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ═══ FOOTER TEXT FIX ═══ */
+    .footer-address {
+      font-size: .75rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-copy {
+      font-size: .55rem;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
     }
 
     /* ═══ TABLET ═══ */
     @media(max-width:860px) {
       .about-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 28px
       }
     }
 
-    /* ═══ MOBILE — bottom nav ═══ */
+    @media(max-width:760px) {
+      .menu-items-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ═══ MOBILE ═══ */
     @media(max-width:600px) {
       :root {
         --nav-w: 0px;
@@ -1118,7 +1561,6 @@
       }
 
       #sidebar {
-        /* Switch from left sidebar to bottom bar */
         top: auto;
         bottom: 0;
         left: 0;
@@ -1128,12 +1570,16 @@
         flex-direction: row;
         padding: 0 8px;
         border-right: none;
-        border-top: 1px solid rgba(255, 109, 41, 0.14);
+        border-top: 1px solid rgba(211, 208, 213, 0.1);
         gap: 0;
       }
 
       .nav-logo {
-        display: none;
+        display: none
+      }
+
+      .nav-section-label {
+        display: none
       }
 
       .nav-main {
@@ -1145,89 +1591,110 @@
         overflow: visible;
       }
 
-      .nav-bottom {
-        flex-direction: row;
-        border-top: none;
-        border-left: 1px solid rgba(255, 109, 41, 0.1);
-        padding: 0 4px;
-        gap: 0;
-      }
-
       .nav-btn {
         width: 46px;
         height: 46px;
-        border-radius: 10px;
+        border-radius: 10px
       }
 
-      /* Hide tooltips on mobile — no hover on touch */
+      .nav-btn.active::before {
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 26px;
+        height: 3px;
+        border-radius: 0 0 3px 3px;
+      }
+
+      .nav-label-tiny {
+        display: none
+      }
+
       .nav-tooltip {
-        display: none;
-      }
-
-      .lang-label {
-        display: none;
+        display: none
       }
 
       #app {
         margin-left: 0;
         padding-bottom: var(--nav-h);
+        padding-top: 56px
       }
 
-      /* Push toast above bottom nav */
       .toast {
-        bottom: calc(var(--nav-h) + 12px);
+        bottom: calc(var(--nav-h) + 12px)
       }
 
       .hero {
-        min-height: calc(100vh - var(--nav-h));
-        padding: 60px 16px;
+        min-height: calc(100vh - 56px - var(--nav-h));
+        padding: 60px 16px
       }
 
       .hero-stats {
-        gap: 24px;
+        gap: 24px
       }
 
-      .menu-grid {
+      .menu-cat-scroll {
         padding: 0 3%;
+      }
+
+      .menu-cat-pill {
+        padding: 12px 14px;
+        font-size: .62rem;
+      }
+
+      .menu-content {
+        padding: 24px 4% 0;
+      }
+
+      .menu-items-grid {
+        gap: 10px
       }
 
       .gallery-grid {
         padding: 0 3%;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr)
       }
 
       .gallery-featured {
-        grid-column: span 2;
+        grid-column: span 2
       }
 
       .modal-body {
-        padding: 18px 18px 24px;
+        padding: 18px 18px 24px
       }
 
       .modal-name {
-        font-size: 1.7rem;
+        font-size: 1.7rem
       }
 
       .sec-header {
-        padding: 40px 5% 0;
+        padding: 40px 5% 0
       }
 
       .about-feat-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr
       }
 
       .payment-page {
-        padding: 0 4% 80px;
+        padding: 0 4% 80px
       }
 
       .account-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 10px
       }
 
       .copy-btn {
-        align-self: flex-end;
+        align-self: flex-end
+      }
+
+      #top-header {
+        padding: 0 12px 0 12px
+      }
+
+      .header-brand {
+        font-size: .9rem
       }
     }
   </style>
@@ -1235,30 +1702,54 @@
 
 <body>
 
-  <!-- ═══ SIDEBAR ═══ -->
-  <nav id="sidebar">
-    <div class="nav-logo" onclick="navigate('home')">
-      <div class="nav-logo-fallback">
-        <div style="font-size:.9rem;line-height:1;color:var(--fire)">YB</div>
+  <!-- ═══ THEME RIPPLE ═══ -->
+  <div id="theme-ripple"></div>
+
+  <!-- ═══ TOP HEADER ═══ -->
+  <header id="top-header">
+    <div class="header-brand" onclick="navigate('home')">
+      <span>Sample</span> Bar &amp; Restaurant
+    </div>
+    <div class="header-controls">
+      <div class="lang-pill" id="langPill">
+        <button class="lang-pill-btn active" data-lang="en" onclick="setLang('en', this)">EN</button>
+        <button class="lang-pill-btn" data-lang="am" onclick="setLang('am', this)">አማ</button>
+        <button class="lang-pill-btn" data-lang="oo" onclick="setLang('oo', this)">OO</button>
+      </div>
+      <div class="header-sep"></div>
+      <div class="theme-toggle-wrap" title="Toggle theme">
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="t-icon t-icon-sun">☀</span>
+          <span class="t-icon t-icon-moon">☽</span>
+        </button>
+        <span class="toggle-label" id="themeLabel">Light</span>
       </div>
     </div>
+  </header>
 
+  <!-- ═══ SIDEBAR NAV ═══ -->
+  <nav id="sidebar">
+    <div class="nav-logo" onclick="navigate('home')" title="Home">
+      <div class="nav-logo-fallback">YB</div>
+    </div>
+    <div class="nav-section-label">Menu</div>
     <div class="nav-main">
       <button class="nav-btn active" id="nav-home" onclick="navigate('home')">
         <svg viewBox="0 0 24 24">
           <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
           <polyline points="9 22 9 12 15 12 15 22" />
         </svg>
+        <span class="nav-label-tiny">Home</span>
         <span class="nav-tooltip" data-i18n-tip="nav_home">Home</span>
       </button>
-      <!-- FIX: was a location-pin icon — now an open book / menu icon -->
       <button class="nav-btn" id="nav-menu" onclick="navigate('menu')">
         <svg viewBox="0 0 24 24">
-          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
-          <line x1="7" y1="2" x2="7" y2="22"/>
-          <line x1="21" y1="15" x2="21" y2="22"/>
-          <path d="M21 2a3 3 0 00-3 3v4a3 3 0 003 3"/>
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2" />
+          <line x1="7" y1="2" x2="7" y2="22" />
+          <line x1="21" y1="15" x2="21" y2="22" />
+          <path d="M21 2a3 3 0 00-3 3v4a3 3 0 003 3" />
         </svg>
+        <span class="nav-label-tiny">Menu</span>
         <span class="nav-tooltip" data-i18n-tip="nav_menu">Menu</span>
       </button>
       <button class="nav-btn" id="nav-gallery" onclick="navigate('gallery')">
@@ -1267,6 +1758,7 @@
           <circle cx="8.5" cy="8.5" r="1.5" />
           <polyline points="21 15 16 10 5 21" />
         </svg>
+        <span class="nav-label-tiny">Gallery</span>
         <span class="nav-tooltip" data-i18n-tip="nav_gallery">Gallery</span>
       </button>
       <button class="nav-btn" id="nav-payment" onclick="navigate('payment')">
@@ -1274,6 +1766,7 @@
           <rect x="1" y="4" width="22" height="16" rx="2" />
           <line x1="1" y1="10" x2="23" y2="10" />
         </svg>
+        <span class="nav-label-tiny">Pay</span>
         <span class="nav-tooltip" data-i18n-tip="nav_payment">Payment</span>
       </button>
       <button class="nav-btn" id="nav-dev" onclick="navigate('dev')">
@@ -1281,25 +1774,8 @@
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
+        <span class="nav-label-tiny">Dev</span>
         <span class="nav-tooltip" data-i18n-tip="nav_dev">Developer</span>
-      </button>
-    </div>
-
-    <div class="nav-bottom">
-      <button class="nav-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">
-        <svg id="themeIcon" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-        </svg>
-        <span class="nav-tooltip">Theme</span>
-      </button>
-      <button class="nav-btn" id="langBtn" onclick="cycleLang()">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-        </svg>
-        <div class="lang-label" id="langLabel">EN</div>
-        <span class="nav-tooltip" id="langTip">Language</span>
       </button>
     </div>
   </nav>
@@ -1334,57 +1810,40 @@
         </div>
       </div>
 
-      <!-- About strip -->
-      <div
-        style="background:var(--surface);padding:48px 5%;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-        <!-- FIX: replaced inline grid style with .about-grid class for responsive control -->
+      <div class="about-strip">
         <div class="about-grid">
           <div>
             <div class="sec-eyebrow" data-i18n="about_eyebrow">About Us</div>
-            <!-- FIX: data-i18n now uses innerHTML so <em> and <br> are preserved -->
             <div class="sec-title" style="margin-bottom:14px" data-i18n="about_title">A Taste of<br><em>Ethiopia</em>
             </div>
-            <p style="font-size:.82rem;color:var(--text-muted);line-height:1.85" data-i18n="about_body">Sample Bar &amp;
-              Restaurant has been Adama's favourite gathering spot since 2020. We blend authentic Ethiopian flavours
-              with international cuisine, offering a full menu from morning breakfast to late-night drinks in a warm,
-              modern setting.</p>
+            <p style="font-size:.84rem;color:var(--text-muted);line-height:1.85" data-i18n="about_body">Sample Bar &amp;
+              Restaurant has been Adama's favourite gathering spot since 2020.</p>
           </div>
           <div class="about-feat-grid">
-            <div
-              style="background:var(--orange-dim);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center">
-              <div style="font-family:var(--ff-display);font-size:2rem;color:var(--fire)">🌅</div>
-              <div
-                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px"
-                data-i18n="feat_breakfast">Breakfast</div>
+            <div class="feat-card">
+              <div style="font-size:2rem">🌅</div>
+              <div class="feat-card-label" data-i18n="feat_breakfast">Breakfast</div>
             </div>
-            <div
-              style="background:var(--orange-dim);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center">
-              <div style="font-family:var(--ff-display);font-size:2rem;color:var(--fire)">🍕</div>
-              <div
-                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px"
-                data-i18n="feat_pizza">Pizza</div>
+            <div class="feat-card">
+              <div style="font-size:2rem">🍕</div>
+              <div class="feat-card-label" data-i18n="feat_pizza">Pizza</div>
             </div>
-            <div
-              style="background:var(--orange-dim);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center">
-              <div style="font-family:var(--ff-display);font-size:2rem;color:var(--fire)">☕</div>
-              <div
-                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px"
-                data-i18n="feat_coffee">Coffee</div>
+            <div class="feat-card">
+              <div style="font-size:2rem">☕</div>
+              <div class="feat-card-label" data-i18n="feat_coffee">Coffee</div>
             </div>
-            <div
-              style="background:var(--orange-dim);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center">
-              <div style="font-family:var(--ff-display);font-size:2rem;color:var(--fire)">🥢</div>
-              <div
-                style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px"
-                data-i18n="feat_international">International</div>
+            <div class="feat-card">
+              <div style="font-size:2rem">🥢</div>
+              <div class="feat-card-label" data-i18n="feat_international">International</div>
             </div>
           </div>
         </div>
       </div>
 
-      <footer style="border-top:1px solid rgba(255,109,41,0.1);padding:50px 5% 30px;text-align:center">
-        <div style="font-family:var(--ff-display);font-size:2rem;font-weight:300;color:var(--text)"><span
-            style="color:var(--fire)">Sample</span> Bar &amp; Restaurant</div>
+      <footer>
+        <div style="font-family:var(--ff-display);font-size:2rem;font-weight:300;color:var(--text)">
+          <span style="color:var(--fire)">Sample</span> Bar &amp; Restaurant
+        </div>
         <div
           style="font-size:.55rem;letter-spacing:5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px"
           data-i18n="hero_sub">Taste Every Thing</div>
@@ -1392,18 +1851,15 @@
           <div>
             <div style="font-family:var(--ff-display);font-size:.9rem;color:var(--fire);margin-bottom:6px"
               data-i18n="foot_visit">Visit Us</div>
-            <p style="font-size:.72rem;color:var(--text-muted)">Nazreth (Adama)<br>Oromia, Ethiopia</p>
+            <p class="footer-address">Nazreth (Adama)<br>Oromia, Ethiopia</p>
           </div>
           <div>
             <div style="font-family:var(--ff-display);font-size:.9rem;color:var(--fire);margin-bottom:6px"
               data-i18n="foot_hours">Hours</div>
-            <p style="font-size:.72rem;color:var(--text-muted)" data-i18n="foot_hours_val">Every Day · Morning to Late
-              Night</p>
+            <p class="footer-address" data-i18n="foot_hours_val">Every Day · Morning to Late Night</p>
           </div>
         </div>
-        <div
-          style="font-size:.55rem;letter-spacing:2px;color:rgba(255,255,255,0.1);border-top:1px solid rgba(255,109,41,0.06);padding-top:16px">
-          &copy; 2026 Bar &amp; Restaurant</div>
+        <div class="footer-copy">&copy; 2026 Bar &amp; Restaurant</div>
       </footer>
     </section>
 
@@ -1411,12 +1867,15 @@
     <section class="page-section" id="sec-menu">
       <div class="sec-header reveal">
         <div class="sec-eyebrow" data-i18n="menu_eyebrow">Full Menu</div>
-        <!-- FIX: innerHTML used in applyTranslations so <em> is preserved after lang switch -->
         <div class="sec-title" data-i18n="menu_title">Our <em>Selections</em></div>
         <div class="sec-divider"></div>
       </div>
-      <div class="menu-tabs" id="menuTabs"></div>
-      <div class="menu-grid" id="menuGrid"></div>
+      <!-- Category nav bar -->
+      <div class="menu-cat-nav">
+        <div class="menu-cat-scroll" id="menuCatScroll"></div>
+      </div>
+      <!-- Menu items -->
+      <div class="menu-content" id="menuContent"></div>
     </section>
 
     <!-- GALLERY -->
@@ -1424,8 +1883,8 @@
       <div class="sec-header reveal">
         <div class="sec-eyebrow" data-i18n="gallery_eyebrow">Our Space</div>
         <div class="sec-title" data-i18n="gallery_title">Restaurant <em>Interior</em></div>
-        <p style="font-size:.8rem;color:var(--text-muted);margin-top:10px;margin-bottom:0" data-i18n="gallery_sub">Step
-          inside Bar &amp; Restaurant — where warmth meets style.</p>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-top:10px;margin-bottom:0" data-i18n="gallery_sub">Step
+          inside — where warmth meets style.</p>
         <div class="sec-divider"></div>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
@@ -1464,7 +1923,10 @@
       </div>
       <div class="modal-body">
         <div class="modal-name" id="mName"></div>
-        <div class="modal-price"><span class="p-num" id="mPrice"></span><span class="p-unit">Ethiopian Birr</span></div>
+        <div class="modal-price">
+          <span class="p-num" id="mPrice"></span>
+          <span class="p-unit">Ethiopian Birr</span>
+        </div>
         <div class="modal-label" data-i18n="modal_desc">Description</div>
         <p class="modal-desc" id="mDesc"></p>
         <div class="modal-line"></div>
@@ -1481,28 +1943,83 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    /* ═══════════════════════════════════════════════════════════════
+       ╔═══════════════════════════════════════════════════════════╗
+       ║   🎨 EASY EDIT ZONE — Change your restaurant details here  ║
+       ║   No coding knowledge needed. Just edit the text values.  ║
+       ╚═══════════════════════════════════════════════════════════╝
+    ═══════════════════════════════════════════════════════════════ */
+
+    /* ─────────────────────────────────────────────────────────────
+       EASY EDIT 1: RESTAURANT INFO
+       Change the name, location, year, and phone number here.
+    ───────────────────────────────────────────────────────────── */
+    const RESTAURANT_INFO = {
+      name: "Sample Bar & Restaurant",    // ← Change restaurant name
+      tagline: "Taste Every Thing",        // ← Change tagline
+      location: "Nazreth (Adama)",         // ← Change location
+      region: "Oromia, Ethiopia",          // ← Change region/country
+      established: "2020",                 // ← Change founding year
+      totalDishes: "50+",                  // ← Change dish count
+      rating: "5★",                        // ← Change rating display
+      copyright: "2026",                   // ← Change copyright year
+    };
+
+    /* ─────────────────────────────────────────────────────────────
+       EASY EDIT 2: PAYMENT ACCOUNT NUMBERS
+       Replace the numbers below with your real account details.
+    ───────────────────────────────────────────────────────────── */
+    const PAYMENT_ACCOUNTS = {
+      cbe: {
+        accountNumber: "1000 5588 7531 4439",   // ← Your CBE account number
+        accountName: "Sample Bar & Restaurant",  // ← Your CBE account name
+      },
+      boa: {
+        accountNumber: "0032 4471 8899 0012",    // ← Your BOA account number
+        accountName: "Sample Bar & Restaurant",  // ← Your BOA account name
+      },
+      telebirr: {
+        phoneNumber: "+251 933 000 0000",        // ← Your Telebirr phone number
+      }
+    };
+
+    /* ─────────────────────────────────────────────────────────────
+       EASY EDIT 3: DEVELOPER / CONTACT INFO
+       Change the developer name, role, and contact links.
+    ───────────────────────────────────────────────────────────── */
+    const DEV_INFO = {
+      initials: "AK",                             // ← Initials for avatar
+      name: "AK Digital Marketing",               // ← Developer / agency name
+      contactEmail: "info@yobar.et",              // ← Contact email
+      websiteUrl: "#",                            // ← Website URL (or "#" to hide)
+    };
+
+    /* ─────────────────────────────────────────────────────────────
+       EASY EDIT 4: THEME COLOUR ACCENT
+       Change --fire in :root above to change the accent colour.
+       Current: #7B6FA0 (purple). Try: #C47A3A (amber), #3A7A6B (teal)
+    ───────────────────────────────────────────────────────────── */
+
+
+    /* ═══════════════════════════════════════════════════════════════
+       ⚠️  BELOW THIS LINE: DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING
+    ═══════════════════════════════════════════════════════════════ */
+
+
     /* ═══════════════ TRANSLATIONS ═══════════════ */
     const T = {
       en: {
         nav_home: "Home", nav_menu: "Menu", nav_gallery: "Gallery", nav_payment: "Payment", nav_dev: "Developer",
-        hero_eyebrow: "◆ Adama's Finest · Est. 2020 ◆",
-        hero_sub: "Taste Every Thing — Full Menu",
+        hero_eyebrow: `◆ Adama's Finest · Est. ${RESTAURANT_INFO.established} ◆`,
+        hero_sub: `${RESTAURANT_INFO.tagline} — Full Menu`,
         hero_cta: "Explore Full Menu",
         stat_dishes: "Dishes", stat_rated: "Rated", stat_est: "Established",
-        about_eyebrow: "About Us",
-        // FIX: HTML markup included so innerHTML renders correctly after language switch
-        about_title: "A Taste of<br><em>Ethiopia</em>",
-        about_body: "Sample Bar & Restaurant has been Adama's favourite gathering spot since 2020. We blend authentic Ethiopian flavours with international cuisine, offering a full menu from morning breakfast to late-night drinks in a warm, modern setting.",
+        about_eyebrow: "About Us", about_title: "A Taste of<br><em>Ethiopia</em>",
+        about_body: `${RESTAURANT_INFO.name} has been Adama's favourite gathering spot since ${RESTAURANT_INFO.established}. We blend authentic Ethiopian flavours with international cuisine, offering a full menu from morning breakfast to late-night drinks in a warm, modern setting.`,
         feat_breakfast: "Breakfast", feat_pizza: "Pizza", feat_coffee: "Coffee", feat_international: "International",
-        menu_eyebrow: "Full Menu",
-        menu_title: "Our <em>Selections</em>",
-        gallery_eyebrow: "Our Space",
-        gallery_title: "Restaurant <em>Interior</em>",
-        gallery_sub: "Step inside Yo Bar & Restaurant — where warmth meets style.",
-        pay_eyebrow: "Payment",
-        pay_title: "How to <em>Pay</em>",
-        dev_eyebrow: "Developer",
-        dev_title: "Built <em>With</em>",
+        menu_eyebrow: "Full Menu", menu_title: "Our <em>Selections</em>",
+        gallery_eyebrow: "Our Space", gallery_title: "Restaurant <em>Interior</em>", gallery_sub: "Step inside Bar & Restaurant — where warmth meets style.",
+        pay_eyebrow: "Payment", pay_title: "How to <em>Pay</em>", dev_eyebrow: "Developer", dev_title: "Built <em>With</em>",
         foot_visit: "Visit Us", foot_hours: "Hours", foot_hours_val: "Every Day · Morning to Late Night",
         modal_desc: "Description", modal_notes: "Chef's Notes", modal_diet: "Dietary Info",
         pay_intro: "We accept several convenient payment methods. Use the copy button to quickly copy account numbers.",
@@ -1511,7 +2028,7 @@
         pay_note_boa: "Bank of Abyssinia — transfer to this account and mention your table number.",
         pay_note_cash: "Cash is always accepted at the counter or with your server.",
         pay_note_telebirr: "Send via Telebirr to this number and show confirmation to staff.",
-        dev_bio: "This application was designed and built as a modern digital menu experience for Yo Bar & Restaurant in Adama, Ethiopia. Built with pure HTML, CSS, and JavaScript — no frameworks, just craft.",
+        dev_bio: `This application was designed and built as a modern digital menu experience for ${RESTAURANT_INFO.name} in ${RESTAURANT_INFO.location}, Ethiopia. Built with pure HTML, CSS, and JavaScript — no frameworks, just craft.`,
         dev_tech: "Technologies Used",
         gallery_items: [
           { label: "Main Dining Area", src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" },
@@ -1525,33 +2042,23 @@
       },
       am: {
         nav_home: "መነሻ", nav_menu: "ምናሌ", nav_gallery: "ፎቶዎች", nav_payment: "ክፍያ", nav_dev: "ገንቢ",
-        hero_eyebrow: "◆ የአዳማ ምርጥ · ከ2020 ጀምሮ ◆",
-        hero_sub: "ሁሉንም ቅምሱ — ሙሉ ምናሌ",
-        hero_cta: "ሙሉ ምናሌ ይመልከቱ",
+        hero_eyebrow: `◆ የአዳማ ምርጥ · ከ${RESTAURANT_INFO.established} ጀምሮ ◆`,
+        hero_sub: "ሁሉንም ቅምሱ — ሙሉ ምናሌ", hero_cta: "ሙሉ ምናሌ ይመልከቱ",
         stat_dishes: "ምግቦች", stat_rated: "ደረጃ", stat_est: "ተቋቋሙ",
-        about_eyebrow: "ስለ እኛ",
-        about_title: "የኢትዮጵያ <em>ጣዕም</em>",
+        about_eyebrow: "ስለ እኛ", about_title: "የኢትዮጵያ <em>ጣዕም</em>",
         about_body: "ዮ ባር እና ሬስቶራንት ከ2020 ጀምሮ በአዳማ ዋነኛ የስብሰባ ቦታ ሆኗል። ከጠዋት ቁርስ እስከ ምሽት መጠጦች ድረስ የሚዘልቅ ሙሉ ምናሌ ያቀርባል።",
         feat_breakfast: "ቁርስ", feat_pizza: "ፒዛ", feat_coffee: "ቡና", feat_international: "ዓለም አቀፍ",
-        menu_eyebrow: "ሙሉ ምናሌ",
-        menu_title: "<em>ምርጫዎቻችን</em>",
-        gallery_eyebrow: "ቦታችን",
-        gallery_title: "ሬስቶራንቱ <em>ውስጥ</em>",
-        gallery_sub: "ወደ ዮ ባር እና ሬስቶራንት ይግቡ — ሙቀት ከዘይቤ ጋር ይገናኛል።",
-        pay_eyebrow: "ክፍያ",
-        pay_title: "እንዴት <em>ይከፍሉ</em>",
-        dev_eyebrow: "ገንቢ",
-        dev_title: "በፍቅር <em>ተሰርቷል ♥</em>",
+        menu_eyebrow: "ሙሉ ምናሌ", menu_title: "<em>ምርጫዎቻችን</em>",
+        gallery_eyebrow: "ቦታችን", gallery_title: "ሬስቶራንቱ <em>ውስጥ</em>", gallery_sub: "ወደ ዮ ባር እና ሬስቶራንት ይግቡ — ሙቀት ከዘይቤ ጋር ይገናኛል።",
+        pay_eyebrow: "ክፍያ", pay_title: "እንዴት <em>ይከፍሉ</em>", dev_eyebrow: "ገንቢ", dev_title: "በፍቅር <em>ተሰርቷል ♥</em>",
         foot_visit: "ይጎብኙን", foot_hours: "ሰዓቶች", foot_hours_val: "ሁልቀን · ከጠዋት እስከ ምሽት",
         modal_desc: "መግለጫ", modal_notes: "የሼፍ ማስታወሻ", modal_diet: "የአመጋገብ መረጃ",
-        pay_intro: "ብዙ አመቺ የክፍያ ዘዴዎችን እንቀበላለን። የሂሳብ ቁጥሮችን ለማሰናዳት ቅዳ ቁልፉን ይጠቀሙ።",
-        copy_btn: "ቅዳ", copied_btn: "ተቀድቷል!",
+        pay_intro: "ብዙ አመቺ የክፍያ ዘዴዎችን እንቀበላለን።", copy_btn: "ቅዳ", copied_btn: "ተቀድቷል!",
         pay_note_cbe: "የኢትዮጵያ ኮሜርሻል ባንክ — ወደዚህ አካውንት ዙዋዝ አስተላልፉ፤ የጠረጴዛ ቁጥርዎን ይጥቀሱ።",
         pay_note_boa: "የአቢሲኒያ ባንክ — ወደዚህ አካውንት ዙዋዝ አስተላልፉ፤ የጠረጴዛ ቁጥርዎን ይጥቀሱ።",
         pay_note_cash: "ጥሬ ገንዘብ ሁልጊዜ ተቀባይነት አለው።",
         pay_note_telebirr: "ወደዚህ ቁጥር ቴሌብር ይላኩ እና ለሰራተኛ ማረጋገጫ ያሳዩ።",
-        dev_bio: "ይህ መተግበሪያ ለዮ ባር እና ሬስቶራንት ዘመናዊ ዲጂታል ምናሌ ተሞክሮ ሆኖ ተዘጋጅቷል።",
-        dev_tech: "ጥቅም ላይ የዋሉ ቴክኖሎጂዎች",
+        dev_bio: "ይህ መተግበሪያ ለዮ ባር እና ሬስቶራንት ዘመናዊ ዲጂታል ምናሌ ተሞክሮ ሆኖ ተዘጋጅቷል።", dev_tech: "ጥቅም ላይ የዋሉ ቴክኖሎጂዎች",
         gallery_items: [
           { label: "ዋና የምግብ ቤት", src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" },
           { label: "የቡና ክፍል", src: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80" },
@@ -1564,33 +2071,21 @@
       },
       oo: {
         nav_home: "Mana", nav_menu: "Sarara", nav_gallery: "Suuraa", nav_payment: "Kaffalti", nav_dev: "Misoomaa",
-        hero_eyebrow: "◆ Adaamaa Filannoo · 2020 irraa ◆",
-        hero_sub: "Hundumaa Dhaadhessi — Sarara Guutuu",
-        hero_cta: "Sarara Guutuu Ilaaladhu",
+        hero_eyebrow: `◆ Adaamaa Filannoo · ${RESTAURANT_INFO.established} irraa ◆`,
+        hero_sub: "Hundumaa Dhaadhessi — Sarara Guutuu", hero_cta: "Sarara Guutuu Ilaaladhu",
         stat_dishes: "Nyaata", stat_rated: "Sadarkaa", stat_est: "Hundaa'e",
-        about_eyebrow: "Waa'ee Keenya",
-        about_title: "Dhaamsa <em>Itoophiyaa</em>",
-        about_body: "Sample Bar fi Mana Nyaataa 2020 irraa kaasee bakka walga'ii jaalatamaa ta'ee jira. Nyaata Itoophiyaa fi idil-addunyaa walitti fiduun tajaajila guutuu kenna.",
+        about_eyebrow: "Waa'ee Keenya", about_title: "Dhaamsa <em>Itoophiyaa</em>",
+        about_body: "Sample Bar fi Mana Nyaataa 2020 irraa kaasee bakka walga'ii jaalatamaa ta'ee jira.",
         feat_breakfast: "Quraanso", feat_pizza: "Pizza", feat_coffee: "Bunaa", feat_international: "Idil-addunyaa",
-        menu_eyebrow: "Sarara Guutuu",
-        menu_title: "Filannoo <em>Keenya</em>",
-        gallery_eyebrow: "Bakki Keenya",
-        gallery_title: "Keessoo <em>Mana Nyaataa</em>",
-        gallery_sub: "Sample Bar fi Mana Nyaataa keessa seeni — ho'inni fi barruu wal argitu.",
-        pay_eyebrow: "Kaffalti",
-        pay_title: "Akkamitti <em>Kaffaluu</em>",
-        dev_eyebrow: "Misoomaa",
-        dev_title: "Jaalala Waliin <em>Ijaarame ♥</em>",
+        menu_eyebrow: "Sarara Guutuu", menu_title: "Filannoo <em>Keenya</em>",
+        gallery_eyebrow: "Bakki Keenya", gallery_title: "Keessoo <em>Mana Nyaataa</em>", gallery_sub: "Sample Bar fi Mana Nyaataa keessa seeni.",
+        pay_eyebrow: "Kaffalti", pay_title: "Akkamitti <em>Kaffaluu</em>", dev_eyebrow: "Misoomaa", dev_title: "Jaalala Waliin <em>Ijaarame ♥</em>",
         foot_visit: "Nu Daawwadhu", foot_hours: "Sa'aatii", foot_hours_val: "Guyyaa Guutuu · Barii irraa hanga Halkan",
         modal_desc: "Ibsa", modal_notes: "Yaada Shoofii", modal_diet: "Odeeffannoo Nyaata",
-        pay_intro: "Maloota kaffalti hedduu qabna. Lakkoofsa herrega kopii gochuf buttona kopii fayyadami.",
-        copy_btn: "Kopii", copied_btn: "Kopii ta'e!",
-        pay_note_cbe: "Baankii Daldalaa Itoophiyaa — herrega kanaatti ergii maqaa adda kee himi.",
-        pay_note_boa: "Baankii Abissiiniyaa — herrega kanaatti ergii maqaa adda kee himi.",
-        pay_note_cash: "Maallaqni yeroo hundaa fudhatama.",
-        pay_note_telebirr: "Lakkoofsa kanaatti Telebirr ergii ragaa mirkaneessaa hojjattoota agarsiisi.",
-        dev_bio: "App kun tajaajila sarara dijitaalaa ammayyaa Sample Bar fi Mana Nyaataa Adaamaaf qophaa'e.",
-        dev_tech: "Teknoloojiiwwan Fayyadaman",
+        pay_intro: "Maloota kaffalti hedduu qabna.", copy_btn: "Kopii", copied_btn: "Kopii ta'e!",
+        pay_note_cbe: "Baankii Daldalaa Itoophiyaa — herrega kanaatti ergii.", pay_note_boa: "Baankii Abissiiniyaa — herrega kanaatti ergii.",
+        pay_note_cash: "Maallaqni yeroo hundaa fudhatama.", pay_note_telebirr: "Lakkoofsa kanaatti Telebirr ergii.",
+        dev_bio: `App kun tajaajila sarara dijitaalaa ammayyaa ${RESTAURANT_INFO.name} Adaamaaf qophaa'e.`, dev_tech: "Teknoloojiiwwan Fayyadaman",
         gallery_items: [
           { label: "Bakka Nyaataa", src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" },
           { label: "Fagoo Bunaa", src: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80" },
@@ -1603,21 +2098,36 @@
       }
     };
 
-    /* ═══════════════ MENU DATA ═══════════════ */
+    /* ═══════════════════════════════════════════════════════════════
+       EASY EDIT 5: MENU ITEMS
+       Each item follows this format — just copy/paste and edit:
+
+       { name: { en: "English Name", am: "Amharic Name", oo: "Afaan Oromoo Name" },
+         price: 450,                ← Price in Birr (number only, no "birr")
+         hint: { en: "Short description under name", am: "...", oo: "..." },
+         desc: { en: "One sentence description for the card", am: "...", oo: "..." },
+         details: { en: "Longer description shown in the popup", am: "...", oo: "..." },
+         tags: "Meat · Spicy",      ← Dietary tags separated by " · "
+         img: "https://..."         ← Image URL
+       }
+
+       To add a new CATEGORY, copy one whole block like "breakfast: { ... }"
+       and change the key name, icon, label, title, and items array.
+    ═══════════════════════════════════════════════════════════════ */
     const menuData = {
       breakfast: {
         icon: "🌅",
         label: { en: "01 — Morning", am: "01 — ጠዋት", oo: "01 — Barii" },
         title: { en: "Breakfast", am: "ቁርስ", oo: "Quraanso" },
         items: [
-          { name: { en: "Dulet", am: "ዱለት", oo: "Dulet" }, price: 450, hint: { en: "Berbere · Niter Kibbeh", am: "በርበሬ · ቅቤ", oo: "Berbere · Kibbeh" }, desc: { en: "Minced tripe, liver, and lean meat sautéed with berbere and niter kibbeh.", am: "ጥቅሻ፣ ጉበት እና ሥጋ ከበርበሬ እና ቅቤ ጋር ተጠብሷል።", oo: "Ganda fincaan, tiruu fi foon xixiqqaatti berbere fi kibbeh waliin qasse." }, details: { en: "A beloved Ethiopian breakfast specialty — finely minced tripe, liver, and lean beef pan-fried with berbere spice, onions, and clarified spiced butter.", am: "የሚወደድ የኢትዮጵያ ቁርስ — ጥቅሻ፣ ጉበት እና ሥጋ ከበርበሬ ጋር ተጠብሷል።", oo: "Quraanso Itoophiyaa jaalatamaa — ganda, tiruu fi foon berbere, qullubbii fi kibbeh waliin qasse." }, tags: "Meat · Spicy", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBclghxyA-cN_spqauYwKk0DM65guj-h5uiA&s" },
-          { name: { en: "Firfir", am: "ፍርፍር", oo: "Firfir" }, price: 280, hint: { en: "Injera · Berbere Sauce", am: "እንጀራ · የበርበሬ ሾርባ", oo: "Injera · Salsaa Berbere" }, desc: { en: "Torn injera stir-fried with berbere sauce and spiced butter.", am: "ቀደደ እንጀራ ከበርበሬ ሾርባ ጋር ተቀላቅሏል።", oo: "Injera ciccitaa berbere fi kibbeh waliin qasse." }, details: { en: "Classic Ethiopian breakfast of shredded injera cooked with berbere sauce and niter kibbeh, creating a hearty, warming dish.", am: "ቀለል ያለ የቁርስ ምግብ — እንጀራ ከበርበሬ ሾርባ ጋር።", oo: "Quraanso Itoophiyaa aadaa — injera berbere fi kibbeh waliin." }, tags: "Gluten · Spicy", img: "https://tse1.mm.bing.net/th/id/OIP.h8GWdCLFpzcosFJ18tPAKQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Tibes Firfir", am: "ጥብስ ፍርፍር", oo: "Tibes Firfir" }, price: 450, hint: { en: "Beef · Rosemary · Spices", am: "ሥጋ · ሮዝማሪ", oo: "Foon · Rosemary" }, desc: { en: "Firfir topped with tender sautéed beef tibs.", am: "ፍርፍር ከጥብስ ሥጋ ጋር ቀርቧል።", oo: "Firfir foon tibs waliin dhiyaate." }, details: { en: "A satisfying combination of classic firfir enriched with juicy sautéed beef tibs, seasoned with rosemary, onions, and Ethiopian spices.", am: "ፍርፍር ከጥብስ ሥጋ ጋር — የሮዝማሪ ጣዕም ያለው።", oo: "Firfir fi tibs waliin — rosemary fi qullubbiin qindaa'e." }, tags: "Meat · Gluten · Spicy", img: "https://tse1.mm.bing.net/th/id/OIP.Le8csBvizLObN8zaG2ZEXgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Chechebsa", am: "ጨጨብሳ", oo: "Chechebsa" }, price: 270, hint: { en: "Flatbread · Niter Kibbeh", am: "ፒሮ · ቅቤ", oo: "Daabboo · Kibbeh" }, desc: { en: "Shredded flatbread with spiced butter and berbere.", am: "ቆሎ ዳቦ ከቅቤ እና በርበሬ ጋር።", oo: "Daabboo ciccitaa kibbeh fi berbere waliin." }, details: { en: "A traditional Oromo breakfast made from pan-fried flatbread torn and mixed with niter kibbeh and berbere. Comforting, aromatic, and deeply rooted in Ethiopian culture.", am: "ዘሮ — ቆሎ ዳቦ ከቅቤ ጋር ቀርቧል።", oo: "Quraanso aadaa Oromo — daabboo kibbeh fi berbere waliin." }, tags: "Dairy · Gluten", img: "https://tse2.mm.bing.net/th/id/OIP.njrr2x1kaOpFPbqrJMe2yQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Kinche", am: "ቅንጬ", oo: "Kinche" }, price: 280, hint: { en: "Cracked Wheat · Porridge", am: "ስንዴ · ቁርስ", oo: "Qamadi · Porridge" }, desc: { en: "Cracked wheat porridge finished with spiced butter.", am: "የስንዴ ቁርስ ከቅቤ ጋር ቀርቧል።", oo: "Qamadi ciccitwaa kibbeh waliin." }, details: { en: "A wholesome Ethiopian porridge made from cracked wheat or barley, slow-cooked and finished with a generous drizzle of niter kibbeh.", am: "ፍሬ ስንዴ ቁርስ ከቅቤ ጋር — ቀቅሎ ቀርቧል።", oo: "Qamadi ciccitaa danda'amee kibbeh waliin." }, tags: "Gluten · Dairy", img: "https://th.bing.com/th/id/R.b2cd9ffe15f5281a0731e2fa9de2e9bd?rik=S5YWA6mM0kDFwA&pid=ImgRaw&r=0" },
-          { name: { en: "Eggs with Avocado", am: "እንቁላል ከአቮካዶ ጋር", oo: "Hanqaaquu fi Avocado" }, price: 370, hint: { en: "Creamy · Nutritious", am: "ለስላሳ · ጤናማ", oo: "Laafaa · Fayyaa" }, desc: { en: "Fresh eggs served with creamy sliced avocado.", am: "ትኩስ እንቁላል ከአቮካዶ ጋር ቀርቧል።", oo: "Hanqaaquu harootaa avocado waliin dhiyaate." }, details: { en: "A modern breakfast favourite — perfectly cooked eggs paired with fresh, creamy avocado. Nutritious, satisfying, and beautifully presented.", am: "ዘመናዊ ቁርስ — እንቁላል ከአቮካዶ ጋር።", oo: "Quraanso ammayyaa — hanqaaquu fi avocado." }, tags: "Eggs · Healthy", img: "https://tse3.mm.bing.net/th/id/OIP.KI_khTvdU2SyWsPPWG05gQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Fetira", am: "ፍጥሪ", oo: "Fetira" }, price: 370, hint: { en: "Crispy · Honey · Butter", am: "ቆሎ · ማር · ቅቤ", oo: "Ciiccoo · Damma · Butter" }, desc: { en: "Crispy Ethiopian flatbread drizzled with honey or spiced butter.", am: "ቆሎ ዳቦ ከማር ወይም ቅቤ ጋር ቀርቧል።", oo: "Daabboo ciiccoo damma ykn kibbeh waliin." }, details: { en: "A thin, crispy pan-fried bread served warm with honey or niter kibbeh. A beloved Ethiopian street-food breakfast.", am: "ቀጭን ቆሎ ዳቦ ከማር ወይም ቅቤ ጋር — ደስ የሚል ቁርስ።", oo: "Daabboo ciiccoo dhumaa damma ykn kibbeh waliin ho'aa dhiyaate." }, tags: "Gluten · Dairy", img: "https://tse3.mm.bing.net/th/id/OIP.bxQzexFHWoIYxNWCQ_L-KAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Combo", am: "ኮምቦ", oo: "Walitti fidumsaa" }, price: 650, hint: { en: "Traditional Selections", am: "ባህላዊ ምርጫዎች", oo: "Filannoo Aadaa" }, desc: { en: "A generous breakfast combination of multiple traditional items.", am: "ብዙ ባህላዊ ቁርስ ምግቦች ተጣምረዋል።", oo: "Nyaata quraanso aadaa hedduu walitti fidame." }, details: { en: "The ultimate Yo breakfast combination — a well-rounded plate featuring a selection of our favourite traditional breakfast dishes served together.", am: "ዮ ቁርስ ኮምቦ — ምርጥ ባህላዊ ቁርሶቻቻን ጣምሮ ቀርቧል።", oo: "Walitti fidumsaa quraanso Yo — nyaata aadaa filatamaa." }, tags: "Meat · Dairy · Gluten", img: "https://tse4.mm.bing.net/th/id/OIP.qUrcO8D2yF3fiaaPAnGEJQHaFW?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Dulet", am: "ዱለት", oo: "Dulet" }, price: 450, hint: { en: "Berbere · Niter Kibbeh", am: "በርበሬ · ቅቤ", oo: "Berbere · Kibbeh" }, desc: { en: "Minced tripe, liver, and lean meat sautéed with berbere and niter kibbeh.", am: "ጥቅሻ፣ ጉበት እና ሥጋ ከበርበሬ እና ቅቤ ጋር ተጠብሷል።", oo: "Ganda fincaan, tiruu fi foon berbere fi kibbeh waliin." }, details: { en: "A beloved Ethiopian breakfast specialty — finely minced tripe, liver, and lean beef pan-fried with berbere spice, onions, and clarified spiced butter.", am: "የሚወደድ የኢትዮጵያ ቁርስ።", oo: "Quraanso Itoophiyaa jaalatamaa." }, tags: "Meat · Spicy", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBclghxyA-cN_spqauYwKk0DM65guj-h5uiA&s" },
+          { name: { en: "Firfir", am: "ፍርፍር", oo: "Firfir" }, price: 280, hint: { en: "Injera · Berbere Sauce", am: "እንጀራ · የበርበሬ ሾርባ", oo: "Injera · Salsaa Berbere" }, desc: { en: "Torn injera stir-fried with berbere sauce and spiced butter.", am: "ቀደደ እንጀራ ከበርበሬ ሾርባ ጋር ተቀላቅሏል።", oo: "Injera ciccitaa berbere fi kibbeh waliin qasse." }, details: { en: "Classic Ethiopian breakfast of shredded injera cooked with berbere sauce and niter kibbeh.", am: "ቀለል ያለ የቁርስ ምግብ።", oo: "Quraanso Itoophiyaa aadaa." }, tags: "Gluten · Spicy", img: "https://tse1.mm.bing.net/th/id/OIP.h8GWdCLFpzcosFJ18tPAKQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Tibes Firfir", am: "ጥብስ ፍርፍር", oo: "Tibes Firfir" }, price: 450, hint: { en: "Beef · Rosemary · Spices", am: "ሥጋ · ሮዝማሪ", oo: "Foon · Rosemary" }, desc: { en: "Firfir topped with tender sautéed beef tibs.", am: "ፍርፍር ከጥብስ ሥጋ ጋር ቀርቧል።", oo: "Firfir foon tibs waliin dhiyaate." }, details: { en: "A satisfying combination of classic firfir enriched with juicy sautéed beef tibs.", am: "ፍርፍር ከጥብስ ሥጋ ጋር።", oo: "Firfir fi tibs waliin." }, tags: "Meat · Gluten · Spicy", img: "https://tse1.mm.bing.net/th/id/OIP.Le8csBvizLObN8zaG2ZEXgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Chechebsa", am: "ጨጨብሳ", oo: "Chechebsa" }, price: 270, hint: { en: "Flatbread · Niter Kibbeh", am: "ፒሮ · ቅቤ", oo: "Daabboo · Kibbeh" }, desc: { en: "Shredded flatbread with spiced butter and berbere.", am: "ቆሎ ዳቦ ከቅቤ እና በርበሬ ጋር።", oo: "Daabboo ciccitaa kibbeh fi berbere waliin." }, details: { en: "A traditional Oromo breakfast made from pan-fried flatbread.", am: "ዘሮ — ቆሎ ዳቦ ከቅቤ ጋር።", oo: "Quraanso aadaa Oromo." }, tags: "Dairy · Gluten", img: "https://tse2.mm.bing.net/th/id/OIP.njrr2x1kaOpFPbqrJMe2yQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Kinche", am: "ቅንጬ", oo: "Kinche" }, price: 280, hint: { en: "Cracked Wheat · Porridge", am: "ስንዴ · ቁርስ", oo: "Qamadi · Porridge" }, desc: { en: "Cracked wheat porridge finished with spiced butter.", am: "የስንዴ ቁርስ ከቅቤ ጋር ቀርቧል።", oo: "Qamadi ciccitwaa kibbeh waliin." }, details: { en: "A wholesome Ethiopian porridge made from cracked wheat or barley.", am: "ፍሬ ስንዴ ቁርስ ከቅቤ ጋር።", oo: "Qamadi ciccitaa kibbeh waliin." }, tags: "Gluten · Dairy", img: "https://th.bing.com/th/id/R.b2cd9ffe15f5281a0731e2fa9de2e9bd?rik=S5YWA6mM0kDFwA&pid=ImgRaw&r=0" },
+          { name: { en: "Eggs with Avocado", am: "እንቁላል ከአቮካዶ ጋር", oo: "Hanqaaquu fi Avocado" }, price: 370, hint: { en: "Creamy · Nutritious", am: "ለስላሳ · ጤናማ", oo: "Laafaa · Fayyaa" }, desc: { en: "Fresh eggs served with creamy sliced avocado.", am: "ትኩስ እንቁላል ከአቮካዶ ጋር ቀርቧል።", oo: "Hanqaaquu harootaa avocado waliin dhiyaate." }, details: { en: "A modern breakfast favourite — perfectly cooked eggs paired with fresh, creamy avocado.", am: "ዘመናዊ ቁርስ — እንቁላል ከአቮካዶ ጋር።", oo: "Quraanso ammayyaa — hanqaaquu fi avocado." }, tags: "Eggs · Healthy", img: "https://tse3.mm.bing.net/th/id/OIP.KI_khTvdU2SyWsPPWG05gQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Fetira", am: "ፍጥሪ", oo: "Fetira" }, price: 370, hint: { en: "Crispy · Honey · Butter", am: "ቆሎ · ማር · ቅቤ", oo: "Ciiccoo · Damma · Butter" }, desc: { en: "Crispy Ethiopian flatbread drizzled with honey or spiced butter.", am: "ቆሎ ዳቦ ከማር ወይም ቅቤ ጋር ቀርቧል።", oo: "Daabboo ciiccoo damma ykn kibbeh waliin." }, details: { en: "A thin, crispy pan-fried bread served warm with honey or niter kibbeh.", am: "ቀጭን ቆሎ ዳቦ ከማር ወይም ቅቤ ጋር።", oo: "Daabboo ciiccoo dhumaa damma ykn kibbeh waliin ho'aa dhiyaate." }, tags: "Gluten · Dairy", img: "https://tse3.mm.bing.net/th/id/OIP.bxQzexFHWoIYxNWCQ_L-KAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Combo", am: "ኮምቦ", oo: "Walitti fidumsaa" }, price: 650, hint: { en: "Traditional Selections", am: "ባህላዊ ምርጫዎች", oo: "Filannoo Aadaa" }, desc: { en: "A generous breakfast combination of multiple traditional items.", am: "ብዙ ባህላዊ ቁርስ ምግቦች ተጣምረዋል።", oo: "Nyaata quraanso aadaa hedduu walitti fidame." }, details: { en: "The ultimate breakfast combination — a well-rounded plate featuring a selection of our favourite traditional breakfast dishes.", am: "ዮ ቁርስ ኮምቦ — ምርጥ ባህላዊ ቁርሶቻቻን ጣምሮ ቀርቧል።", oo: "Walitti fidumsaa quraanso Yo." }, tags: "Meat · Dairy · Gluten", img: "https://tse4.mm.bing.net/th/id/OIP.qUrcO8D2yF3fiaaPAnGEJQHaFW?rs=1&pid=ImgDetMain&o=7&rm=3" },
         ]
       },
       lunch: {
@@ -1625,11 +2135,11 @@
         label: { en: "02 — Midday", am: "02 — ቀትር", oo: "02 — Guyyaa" },
         title: { en: "Lunch", am: "ምሳ", oo: "Laaqana" },
         items: [
-          { name: { en: "LAMP Tibes", am: "የበግ ጥብስ", oo: "Tibs Hoolaa" }, price: 650, hint: { en: "Lamb · Rosemary · Jalapeños", am: "ጠቦት · ሮዝማሪ", oo: "Hoolaa · Rosemary" }, desc: { en: "Tender lamb pieces sautéed with rosemary, onions, and jalapeños.", am: "ጠቦት ሥጋ ከሮዝማሪ እና ቀይ ሽንኩርት ጋር ተጠብሷል።", oo: "Foon hoolaa rosemary, qullubbii fi jalapeno waliin qasse." }, details: { en: "Succulent lamb cut into generous pieces and sautéed with rosemary, onions, jalapeños, and niter kibbeh. A robust and flavourful centrepiece.", am: "ጠቦት ሥጋ ከሮዝማሪ ጋር — ጣዕም ያለው ምሳ።", oo: "Foon hoolaa guddaa rosemary fi jalapeno waliin." }, tags: "Lamb · Spicy", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80" },
-          { name: { en: "Fillet Tibes", am: "ፊሌ ጥብስ", oo: "Tibs Fillet" }, price: 600, hint: { en: "Premium Beef · Jalapeños", am: "ምርጥ ሥጋ · ቃሪያ", oo: "Foon Filatame · Jalapeno" }, desc: { en: "Premium beef fillet tibs with onions, tomatoes, and herbs.", am: "ምርጥ ፊሌ ሥጋ ከቃሪያ ጋር ተጠብሷል።", oo: "Foon fillet qullubbii, tomeetii fi qorqoroosaa waliin qasse." }, details: { en: "Choice cuts of beef fillet stir-fried with onions, tomatoes, jalapeños, and rosemary in spiced butter. Tender, juicy, and full of bold Ethiopian flavour.", am: "ምርጥ ፊሌ ሥጋ ከቃሪያ ጋር — ጣዕም ያለው ምሳ።", oo: "Fillet foon filatamaa qullubbii fi jalapeno waliin." }, tags: "Beef · Spicy", img: "https://tse2.mm.bing.net/th/id/OIP.JTwTdu6oxMoCRa7ofcHfHwHaF5?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Shiro", am: "ሽሮ", oo: "Shiro" }, price: 280, hint: { en: "Chickpea · Berbere", am: "ሽምብራ · በርበሬ", oo: "Qorqoree · Berbere" }, desc: { en: "Smooth spiced chickpea stew served with injera.", am: "ሽምብራ ፍሬ ከበርበሬ ጋር — ጭቃ ሾርባ።", oo: "Shiro qorqoree berbere waliin — injera waliin dhiyaate." }, details: { en: "A comforting Ethiopian staple — finely ground chickpea flour simmered into a rich, velvety stew seasoned with berbere, garlic, and onions. Fasting-friendly.", am: "የሽምብራ ፍሬ ሾርባ — ከበርበሬ ጋር ቀቅሎ ቀርቧል።", oo: "Shiro aadaa Itoophiyaa — qorqoree berbere waliin." }, tags: "Vegan · Fasting-Friendly", img: "https://tse2.mm.bing.net/th/id/OIP.vkCAsrQHh-JSrDAl5IdaOwHaFy?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Keywet", am: "ቅወት", oo: "Keywet" }, price: 450, hint: { en: "Slow-Simmered Beef Stew", am: "ቀርቧ የበሬ ሾርባ", oo: "Suphee Foon Foonni Saalfate" }, desc: { en: "Slow-simmered red beef stew with berbere and niter kibbeh.", am: "ቀርቧ ቅወት ከበርበሬ እና ቅቤ ጋር ቀቅሎ ቀርቧል።", oo: "Keywet suphee berbere fi kibbeh waliin." }, details: { en: "A cornerstone of Ethiopian cuisine — beef slow-cooked in a deeply spiced berbere and niter kibbeh sauce until fall-apart tender.", am: "የኢትዮጵያ ምግብ ምሰሶ — ቅወት ከበርበሬ ጋር ቀቅሎ ቀርቧል።", oo: "Bu'uura nyaata Itoophiyaa — keywet berbere fi kibbeh waliin." }, tags: "Beef · Spicy · Gluten", img: "https://tse3.mm.bing.net/th/id/OIP.oAz--4jzrBB_3-MWoyetTQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Traditional Combo", am: "ባህላዊ ኮምቦ", oo: "Walitti fidumsaa Aadaa" }, price: 1700, hint: { en: "Grand Platter · Shareable", am: "ባህላዊ ምጣድ", oo: "Palet Guddaa" }, desc: { en: "A grand platter of traditional Ethiopian meat and vegetable stews.", am: "ባህላዊ ምጣድ — ሥጋ እና አትክልት ሾርባዎች።", oo: "Palet aadaa Itoophiyaa guddaa — suphee foon fi kuduraa." }, details: { en: "The ultimate Ethiopian feast — a large injera-lined platter topped with a curated selection of meat and vegetable stews, representing the very best of our traditional kitchen.", am: "ባህላዊ ምጣድ — ምርጥ ምግቦቻቻን ሁሉ።", oo: "Ayyaana nyaataa Itoophiyaa — injera fi suphee hedduu." }, tags: "Meat · Gluten · Shareable", img: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=800&q=80" },
+          { name: { en: "LAMB Tibes", am: "የበግ ጥብስ", oo: "Tibs Hoolaa" }, price: 650, hint: { en: "Lamb · Rosemary · Jalapeños", am: "ጠቦት · ሮዝማሪ", oo: "Hoolaa · Rosemary" }, desc: { en: "Tender lamb pieces sautéed with rosemary, onions, and jalapeños.", am: "ጠቦት ሥጋ ከሮዝማሪ እና ቀይ ሽንኩርት ጋር ተጠብሷል።", oo: "Foon hoolaa rosemary, qullubbii fi jalapeno waliin qasse." }, details: { en: "Succulent lamb cut into generous pieces and sautéed with rosemary, onions, jalapeños, and niter kibbeh.", am: "ጠቦት ሥጋ ከሮዝማሪ ጋር።", oo: "Foon hoolaa guddaa rosemary fi jalapeno waliin." }, tags: "Lamb · Spicy", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80" },
+          { name: { en: "Fillet Tibes", am: "ፊሌ ጥብስ", oo: "Tibs Fillet" }, price: 600, hint: { en: "Premium Beef · Jalapeños", am: "ምርጥ ሥጋ · ቃሪያ", oo: "Foon Filatame · Jalapeno" }, desc: { en: "Premium beef fillet tibs with onions, tomatoes, and herbs.", am: "ምርጥ ፊሌ ሥጋ ከቃሪያ ጋር ተጠብሷል።", oo: "Foon fillet qullubbii, tomeetii fi qorqoroosaa waliin qasse." }, details: { en: "Choice cuts of beef fillet stir-fried with onions, tomatoes, jalapeños, and rosemary in spiced butter.", am: "ምርጥ ፊሌ ሥጋ ከቃሪያ ጋር።", oo: "Fillet foon filatamaa qullubbii fi jalapeno waliin." }, tags: "Beef · Spicy", img: "https://tse2.mm.bing.net/th/id/OIP.JTwTdu6oxMoCRa7ofcHfHwHaF5?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Shiro", am: "ሽሮ", oo: "Shiro" }, price: 280, hint: { en: "Chickpea · Berbere", am: "ሽምብራ · በርበሬ", oo: "Qorqoree · Berbere" }, desc: { en: "Smooth spiced chickpea stew served with injera.", am: "ሽምብራ ፍሬ ከበርበሬ ጋር — ጭቃ ሾርባ።", oo: "Shiro qorqoree berbere waliin — injera waliin dhiyaate." }, details: { en: "A comforting Ethiopian staple — finely ground chickpea flour simmered into a rich stew.", am: "የሽምብራ ፍሬ ሾርባ — ከበርበሬ ጋር ቀቅሎ ቀርቧል።", oo: "Shiro aadaa Itoophiyaa." }, tags: "Vegan · Fasting-Friendly", img: "https://tse2.mm.bing.net/th/id/OIP.vkCAsrQHh-JSrDAl5IdaOwHaFy?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Keywet", am: "ቅወት", oo: "Keywet" }, price: 450, hint: { en: "Slow-Simmered Beef Stew", am: "ቀርቧ የበሬ ሾርባ", oo: "Suphee Foon" }, desc: { en: "Slow-simmered red beef stew with berbere and niter kibbeh.", am: "ቀርቧ ቅወት ከበርበሬ እና ቅቤ ጋር ቀቅሎ ቀርቧል።", oo: "Keywet suphee berbere fi kibbeh waliin." }, details: { en: "A cornerstone of Ethiopian cuisine — beef slow-cooked in a deeply spiced berbere and niter kibbeh sauce.", am: "የኢትዮጵያ ምግብ ምሰሶ — ቅወት ከበርበሬ ጋር ቀቅሎ ቀርቧል።", oo: "Bu'uura nyaata Itoophiyaa." }, tags: "Beef · Spicy · Gluten", img: "https://tse3.mm.bing.net/th/id/OIP.oAz--4jzrBB_3-MWoyetTQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Traditional Combo", am: "ባህላዊ ኮምቦ", oo: "Walitti fidumsaa Aadaa" }, price: 1700, hint: { en: "Grand Platter · Shareable", am: "ባህላዊ ምጣድ", oo: "Palet Guddaa" }, desc: { en: "A grand platter of traditional Ethiopian meat and vegetable stews.", am: "ባህላዊ ምጣድ — ሥጋ እና አትክልት ሾርባዎች።", oo: "Palet aadaa Itoophiyaa guddaa." }, details: { en: "The ultimate Ethiopian feast — a large injera-lined platter topped with a curated selection of meat and vegetable stews.", am: "ባህላዊ ምጣድ — ምርጥ ምግቦቻቻን ሁሉ።", oo: "Ayyaana nyaataa Itoophiyaa." }, tags: "Meat · Gluten · Shareable", img: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=800&q=80" },
         ]
       },
       snack: {
@@ -1638,8 +2148,8 @@
         title: { en: "Snack", am: "ቆረጣ", oo: "Ciqilee" },
         items: [
           { name: { en: "Special Burger", am: "ስፔሻል በርገር", oo: "Burger Addaa" }, price: 530, hint: { en: "Signature Sauce · Toasted Bun", am: "ምልክት ሾርባ", oo: "Salsaa Addaa" }, desc: { en: "Bar's signature house burger with special sauce.", am: "ባር ምልክት ቡርገር ከስፔሻል ሾርባ ጋር።", oo: "Burger addaa Bar salsaa addaa waliin." }, details: { en: "Our signature house burger — a juicy seasoned patty layered with our special sauce, fresh vegetables, and toasted bun.", am: "ቡርገር — ስፔሻል ሾርባ ያለው።", oo: "Burger aaddaa salsaa addaa fi kuduraa haraa waliin." }, tags: "Gluten · Meat · Signature", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" },
-          { name: { en: "Feshta Burger", am: "ፌሽታ ቡርገር", oo: "Burger Ayyaanaa" }, price: 700, hint: { en: "Premium · Double Sauce", am: "ምርጥ · ድርብ ሾርባ", oo: "Premium · Salsaa Lamaa" }, desc: { en: "Premium loaded burger — the celebration burger.", am: "ምርጥ ቡርገር — ፌሽታ ቡርገር።", oo: "Burger premium — ayyaana." }, details: { en: "Our premium celebration burger stacked with extra fillings, double sauce, and everything that makes a burger unforgettable.", am: "ፌሽታ ቡርገር — ምርጥ ቡርገር ከድርብ ሾርባ ጋር።", oo: "Burger ayyaanaa premium — guutummaawwan dabalataa fi salsaa lamaan." }, tags: "Gluten · Meat · Premium", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80" },
-          { name: { en: "Chicken Shewarema", am: "ዶሮ ሻዋርማ", oo: "Chicken Shawarma" }, price: 580, hint: { en: "Garlic Sauce · Fresh Wrap", am: "ሽንኩርት ሾርባ · ዝርጋ", oo: "Salsaa Qullubbii · Wrap" }, desc: { en: "Spiced shawarma-style chicken wrap with fresh vegetables.", am: "ዶሮ ሻዋርማ ከሽንኩርት ሾርባ ጋር ቀርቧል።", oo: "Shawarma doro salsaa qullubbii fi kuduraa haraan." }, details: { en: "Marinated and slow-roasted chicken carved into a soft wrap with garlic sauce, fresh tomatoes, and crunchy vegetables.", am: "ዶሮ ሻዋርማ — ሽንኩርት ሾርባ ያለው።", oo: "Doro marinated ykn danda'ame — salsaa qullubbii fi kuduraa haraa." }, tags: "Poultry · Gluten", img: "https://tse3.mm.bing.net/th/id/OIP.mt0fJeCO7s8LVC5HTN5PdwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Feshta Burger", am: "ፌሽታ ቡርገር", oo: "Burger Ayyaanaa" }, price: 700, hint: { en: "Premium · Double Sauce", am: "ምርጥ · ድርብ ሾርባ", oo: "Premium · Salsaa Lamaa" }, desc: { en: "Premium loaded burger — the celebration burger.", am: "ምርጥ ቡርገር — ፌሽታ ቡርገር።", oo: "Burger premium — ayyaana." }, details: { en: "Our premium celebration burger stacked with extra fillings, double sauce.", am: "ፌሽታ ቡርገር — ምርጥ ቡርገር ከድርብ ሾርባ ጋር።", oo: "Burger ayyaanaa premium." }, tags: "Gluten · Meat · Premium", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80" },
+          { name: { en: "Chicken Shawarma", am: "ዶሮ ሻዋርማ", oo: "Chicken Shawarma" }, price: 580, hint: { en: "Garlic Sauce · Fresh Wrap", am: "ሽንኩርት ሾርባ · ዝርጋ", oo: "Salsaa Qullubbii · Wrap" }, desc: { en: "Spiced shawarma-style chicken wrap with fresh vegetables.", am: "ዶሮ ሻዋርማ ከሽንኩርት ሾርባ ጋር ቀርቧል።", oo: "Shawarma doro salsaa qullubbii fi kuduraa haraan." }, details: { en: "Marinated and slow-roasted chicken carved into a soft wrap with garlic sauce and crunchy vegetables.", am: "ዶሮ ሻዋርማ — ሽንኩርት ሾርባ ያለው።", oo: "Doro marinated salsaa qullubbii fi kuduraa haraa." }, tags: "Poultry · Gluten", img: "https://tse3.mm.bing.net/th/id/OIP.mt0fJeCO7s8LVC5HTN5PdwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
           { name: { en: "Club Sandwich", am: "ክለብ ሳንድዊች", oo: "Sandwich Klaba" }, price: 530, hint: { en: "Triple-Decker · Toasted", am: "ሦስት ደረጃ · ቆሎ", oo: "Sadii Sadarkaa · Daabboo" }, desc: { en: "Classic triple-decker club sandwich with chicken and fresh fillings.", am: "ሦስት ደረጃ ሳንድዊች ከዶሮ ጋር ቀርቧል።", oo: "Sandwich sadarkaa sadii doro fi guutummaawwan haraan." }, details: { en: "The timeless triple-decker — toasted layers stacked with chicken, fresh lettuce, tomato, cheese, and a creamy spread.", am: "ሳንድዊች ሦስት ደረጃ — ዶሮ ፣ ቲማቲም ፣ ቅቤ ያለው።", oo: "Sandwich sadarkaa sadii — doro, tomeetii, cheese fi spread." }, tags: "Poultry · Dairy · Gluten", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800&q=80" },
           { name: { en: "Chips", am: "ቺፕስ", oo: "Chipsii" }, price: 350, hint: { en: "Golden · Crispy · Salted", am: "ወርቃማ · ቆሎ", oo: "Warqee · Ciiccoo" }, desc: { en: "Crispy golden fried potato chips.", am: "ወርቃማ ቆሎ ድንቹ ቺፕስ ቀርቧል።", oo: "Chipsii burtukaanaa ciiccoo fi dafaa." }, details: { en: "Golden, crispy fried potato chips — perfectly salted and served hot.", am: "ድንቹ ቺፕስ — ቆሎ ወርቃማ ቀርቧል።", oo: "Chipsii burtukaanaa ho'aa fi miliqii dhiyaate." }, tags: "Vegan · Gluten", img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&q=80" },
         ]
@@ -1649,11 +2159,11 @@
         label: { en: "04 — Stone-Baked", am: "04 — ፒዛ", oo: "04 — Pizza" },
         title: { en: "Pizza", am: "ፒዛ", oo: "Pizza" },
         items: [
-          { name: { en: "Special Pizza", am: "ስፔሻል ፒዛ", oo: "Pizza Addaa" }, price: 700, hint: { en: "Chef's Selection Toppings", am: "የሼፍ ምርጫ", oo: "Filatama Shoofii" }, desc: { en: "Yo Bar's signature pizza with a chef's selection of toppings.", am: "ዮ ባር ምልክት ፒዛ ከሼፍ ምርጫ ጣፋዊ ያለው።", oo: "Pizza addaa Yo Bar shoofii filataman waliin." }, details: { en: "Our signature pizza loaded with the chef's special combination of toppings on a perfectly baked base.", am: "ዮ ፒዛ — ሼፍ ምርጫ ያለው።", oo: "Pizza aaddaa Yo — shoofii filatamaan." }, tags: "Gluten · Dairy · Signature", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" },
-          { name: { en: "Super Special Pizza", am: "ሱፐር ስፔሻል ፒዛ", oo: "Pizza Super Addaa" }, price: 850, hint: { en: "Extra Cheese · Premium", am: "ተጨማሪ ቅቤ ፍሬ", oo: "Cheese Dabalataa" }, desc: { en: "The ultimate loaded pizza with premium toppings.", am: "ምርጥ ፒዛ ከተጨማሪ ቅቤ ፍሬ ጋር ቀርቧል።", oo: "Pizza premium cheese dabalataa waliin." }, details: { en: "Our most indulgent pizza — piled high with a premium selection of toppings, extra cheese, and our house pizza sauce.", am: "ምርጥ ፒዛ — ከተጨማሪ ቅቤ ፍሬ ጋር።", oo: "Pizza premium keenya — cheese dabalataa fi salsaa pizza." }, tags: "Gluten · Dairy · Premium", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" },
+          { name: { en: "Special Pizza", am: "ስፔሻል ፒዛ", oo: "Pizza Addaa" }, price: 700, hint: { en: "Chef's Selection Toppings", am: "የሼፍ ምርጫ", oo: "Filatama Shoofii" }, desc: { en: "Bar's signature pizza with a chef's selection of toppings.", am: "ዮ ባር ምልክት ፒዛ ከሼፍ ምርጫ ጣፋዊ ያለው።", oo: "Pizza addaa Yo Bar shoofii filataman waliin." }, details: { en: "Our signature pizza loaded with the chef's special combination of toppings on a perfectly baked base.", am: "ዮ ፒዛ — ሼፍ ምርጫ ያለው።", oo: "Pizza aaddaa Yo." }, tags: "Gluten · Dairy · Signature", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" },
+          { name: { en: "Super Special Pizza", am: "ሱፐር ስፔሻል ፒዛ", oo: "Pizza Super Addaa" }, price: 850, hint: { en: "Extra Cheese · Premium", am: "ተጨማሪ ቅቤ ፍሬ", oo: "Cheese Dabalataa" }, desc: { en: "The ultimate loaded pizza with premium toppings.", am: "ምርጥ ፒዛ ከተጨማሪ ቅቤ ፍሬ ጋር ቀርቧል።", oo: "Pizza premium cheese dabalataa waliin." }, details: { en: "Our most indulgent pizza — piled high with premium toppings, extra cheese, and our house pizza sauce.", am: "ምርጥ ፒዛ — ከተጨማሪ ቅቤ ፍሬ ጋር።", oo: "Pizza premium keenya." }, tags: "Gluten · Dairy · Premium", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80" },
           { name: { en: "Chicken Pizza", am: "ዶሮ ፒዛ", oo: "Pizza Doro" }, price: 720, hint: { en: "Mozzarella · Herbs", am: "ሞዝዛሬላ · ዕፅዋት", oo: "Mozzarella · Qorqoroosaa" }, desc: { en: "Tender seasoned chicken on a tomato and cheese base.", am: "ዶሮ ሥጋ ፒዛ ከቲማቲም እና ቅቤ ፍሬ ጋር።", oo: "Doro pizza tomeetii fi mozzarella waliin." }, details: { en: "Juicy seasoned chicken pieces on a rich tomato sauce base, topped with generous mozzarella and aromatic herbs.", am: "ዶሮ ፒዛ — ቲማቲም ሾርባ ፣ ሞዝዛሬላ ያለው።", oo: "Doro pizza — tomeetii, mozzarella fi qorqoroosaa." }, tags: "Gluten · Dairy · Poultry", img: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?w=800&q=80" },
-          { name: { en: "Margherita", am: "ማርጌሪታ", oo: "Margherita" }, price: 570, hint: { en: "Tomato · Mozzarella · Basil", am: "ቲማቲም · ሞዝዛሬላ", oo: "Tomeetii · Mozzarella" }, desc: { en: "Classic margherita with tomato, mozzarella, and fresh basil.", am: "ክላሲክ ማርጌሪታ — ቲማቲም እና ሞዝዛሬላ ያለው።", oo: "Margherita aadaa — tomeetii, mozzarella fi basil haraa." }, details: { en: "The timeless Italian classic — vibrant tomato sauce, creamy melted mozzarella, and fresh basil leaves on a perfectly crisp base.", am: "ጣሊያናዊ ክላሲክ — ቲማቲም ሾርባ ፣ ሞዝዛሬላ ፣ ቅጠሎ ያለው።", oo: "Classic Xaaliyaanoo — tomeetii, mozzarella fi basil haraa." }, tags: "Gluten · Dairy · Vegetarian", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80" },
-          { name: { en: "Vegetarian Pizza", am: "አትክልት ፒዛ", oo: "Pizza Kuduraa" }, price: 450, hint: { en: "Garden-Fresh · Light", am: "አትክልት · ቀላል", oo: "Kuduraa Haraa · Salphaa" }, desc: { en: "Colourful vegetable pizza with garden-fresh toppings.", am: "ቀለማት ያለው አትክልት ፒዛ ቀርቧል።", oo: "Pizza kuduraa halluu qabuu haraa." }, details: { en: "A vibrant pizza topped with a colourful selection of fresh garden vegetables on our house tomato sauce and melted cheese.", am: "አትክልት ፒዛ — ቀለማት ያለው ቀርቧል።", oo: "Pizza kuduraa halluu qabuu — salsaa tomeetii fi cheese." }, tags: "Gluten · Dairy · Vegetarian", img: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=800&q=80" },
+          { name: { en: "Margherita", am: "ማርጌሪታ", oo: "Margherita" }, price: 570, hint: { en: "Tomato · Mozzarella · Basil", am: "ቲማቲም · ሞዝዛሬላ", oo: "Tomeetii · Mozzarella" }, desc: { en: "Classic margherita with tomato, mozzarella, and fresh basil.", am: "ክላሲክ ማርጌሪታ — ቲማቲም እና ሞዝዛሬላ ያለው።", oo: "Margherita aadaa — tomeetii, mozzarella fi basil haraa." }, details: { en: "The timeless Italian classic — vibrant tomato sauce, creamy melted mozzarella, and fresh basil leaves.", am: "ጣሊያናዊ ክላሲክ — ቲማቲም ሾርባ ፣ ሞዝዛሬላ ፣ ቅጠሎ ያለው።", oo: "Classic Xaaliyaanoo." }, tags: "Gluten · Dairy · Vegetarian", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80" },
+          { name: { en: "Vegetarian Pizza", am: "አትክልት ፒዛ", oo: "Pizza Kuduraa" }, price: 450, hint: { en: "Garden-Fresh · Light", am: "አትክልት · ቀላል", oo: "Kuduraa Haraa · Salphaa" }, desc: { en: "Colourful vegetable pizza with garden-fresh toppings.", am: "ቀለማት ያለው አትክልት ፒዛ ቀርቧል።", oo: "Pizza kuduraa halluu qabuu haraa." }, details: { en: "A vibrant pizza topped with a colourful selection of fresh garden vegetables.", am: "አትክልት ፒዛ — ቀለማት ያለው ቀርቧል።", oo: "Pizza kuduraa halluu qabuu." }, tags: "Gluten · Dairy · Vegetarian", img: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=800&q=80" },
         ]
       },
       asian: {
@@ -1661,10 +2171,10 @@
         label: { en: "05 — International", am: "05 — ዓለም አቀፍ", oo: "05 — Idil-addunyaa" },
         title: { en: "Asian Fusion", am: "እስያ ምግብ", oo: "Idil-addunyaa" },
         items: [
-          { name: { en: "Special Noodles", am: "ስፔሻል ኑደልስ", oo: "Noodle Addaa" }, price: 650, hint: { en: "Wok-Tossed · Sesame Oil", am: "ዎክ ጥብስ · ሰሚሶ ዘይት", oo: "Wok · Zeyti Sesame" }, desc: { en: "Wok-tossed noodles with vegetables and house special sauce.", am: "ዎክ ጥብስ ኑደልስ ከአትክልት ጋር ቀርቧል።", oo: "Noodle wok fi kuduraa salsaa addaa waliin." }, details: { en: "Our signature noodle dish — stir-fried with a medley of vegetables, soy-based house sauce, and aromatic sesame oil. A crowd favourite.", am: "ዮ ኑደልስ — ከአትክልት ጋር ዎክ ጥብስ ቀርቧል።", oo: "Noodle aaddaa Yo — kuduraa fi salsaa soy waliin." }, tags: "Gluten · Soy · Signature", img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80" },
-          { name: { en: "Fried Chicken", am: "የጠበሰ ዶሮ", oo: "Doro Gubbifame" }, price: 900, hint: { en: "Crispy · Juicy · Signature", am: "ቆሎ · ጭማቂ", oo: "Ciiccoo · Jiitii" }, desc: { en: "Golden crispy fried chicken with dipping sauce.", am: "ወርቃማ ቆሎ ዶሮ ከሾርባ ጋር ቀርቧል።", oo: "Doro gubbifame warqee fi ciiccoo salsaa waliin." }, details: { en: "Perfectly seasoned and fried to a golden crisp — juicy on the inside with an irresistibly crunchy coating. Served with your choice of dipping sauce.", am: "ዶሮ ጠብሰ — ቆሎ ወርቃማ ቀርቧል።", oo: "Doro gubbifame dafaa — ciiccoo fi jiitii salsaa filannoo waliin." }, tags: "Poultry · Gluten", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=800&q=80" },
-          { name: { en: "Chicken Fajita", am: "ዶሮ ፋጂታ", oo: "Fajita Doro" }, price: 800, hint: { en: "Sizzling · Peppers · Tortilla", am: "ትኩስ · ቃሪያ · ቶርቲላ", oo: "Ho'aa · Pirpiri · Tortilla" }, desc: { en: "Sizzling chicken strips with peppers and warm tortillas.", am: "ዶሮ ፋጂታ ከቃሪያ እና ቶርቲላ ጋር ቀርቧል።", oo: "Fajita doro pirpiri fi tortilla ho'aa waliin." }, details: { en: "Sizzling strips of marinated chicken served with colourful sautéed peppers and onions, accompanied by warm tortillas and fresh sides.", am: "ዶሮ ፋጂታ — ቃሪያ ፣ ቀይ ሽንኩርት ፣ ቶርቲላ ያለው።", oo: "Fajita doro — pirpiri, qullubbii fi tortilla ho'aa." }, tags: "Poultry · Gluten · Spicy", img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80" },
-          { name: { en: "Full Roast Chicken", am: "ሙሉ ዶሮ", oo: "Doro Guutuu Gubbifame" }, price: 3000, hint: { en: "Whole · Herbs · Shareable", am: "ሙሉ ዶሮ · ዕፅዋት", oo: "Doro Guutuu · Qorqoroosaa" }, desc: { en: "Whole slow-roasted chicken with herbs and sides — great for sharing.", am: "ሙሉ ዶሮ ከዕፅዋት ጋር ቀርቧል — ለቡድን ።", oo: "Doro guutuu gubbifame qorqoroosaa fi dibattii waliin." }, details: { en: "A whole chicken slow-roasted to golden perfection with aromatic herbs and spices. Ideal for sharing — juicy, flavourful, and a true showstopper.", am: "ሙሉ ዶሮ — ቀስ ብሎ ጠብሶ ቀርቧል።", oo: "Doro guutuu gubbifame — qorqoroosaa fi waafirriin." }, tags: "Poultry · Shareable", img: "https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=800&q=80" },
+          { name: { en: "Special Noodles", am: "ስፔሻል ኑደልስ", oo: "Noodle Addaa" }, price: 650, hint: { en: "Wok-Tossed · Sesame Oil", am: "ዎክ ጥብስ · ሰሚሶ ዘይት", oo: "Wok · Zeyti Sesame" }, desc: { en: "Wok-tossed noodles with vegetables and house special sauce.", am: "ዎክ ጥብስ ኑደልስ ከአትክልት ጋር ቀርቧል።", oo: "Noodle wok fi kuduraa salsaa addaa waliin." }, details: { en: "Our signature noodle dish — stir-fried with a medley of vegetables, soy-based house sauce, and aromatic sesame oil.", am: "ዮ ኑደልስ — ከአትክልት ጋር ዎክ ጥብስ ቀርቧል።", oo: "Noodle aaddaa Yo." }, tags: "Gluten · Soy · Signature", img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80" },
+          { name: { en: "Fried Chicken", am: "የጠበሰ ዶሮ", oo: "Doro Gubbifame" }, price: 900, hint: { en: "Crispy · Juicy · Signature", am: "ቆሎ · ጭማቂ", oo: "Ciiccoo · Jiitii" }, desc: { en: "Golden crispy fried chicken with dipping sauce.", am: "ወርቃማ ቆሎ ዶሮ ከሾርባ ጋር ቀርቧል።", oo: "Doro gubbifame warqee fi ciiccoo salsaa waliin." }, details: { en: "Perfectly seasoned and fried to a golden crisp — juicy on the inside with an irresistibly crunchy coating.", am: "ዶሮ ጠብሰ — ቆሎ ወርቃማ ቀርቧል።", oo: "Doro gubbifame dafaa." }, tags: "Poultry · Gluten", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=800&q=80" },
+          { name: { en: "Chicken Fajita", am: "ዶሮ ፋጂታ", oo: "Fajita Doro" }, price: 800, hint: { en: "Sizzling · Peppers · Tortilla", am: "ትኩስ · ቃሪያ · ቶርቲላ", oo: "Ho'aa · Pirpiri · Tortilla" }, desc: { en: "Sizzling chicken strips with peppers and warm tortillas.", am: "ዶሮ ፋጂታ ከቃሪያ እና ቶርቲላ ጋር ቀርቧል።", oo: "Fajita doro pirpiri fi tortilla ho'aa waliin." }, details: { en: "Sizzling strips of marinated chicken served with colourful sautéed peppers and warm tortillas.", am: "ዶሮ ፋጂታ — ቃሪያ ፣ ቀይ ሽንኩርት ፣ ቶርቲላ ያለው።", oo: "Fajita doro — pirpiri, qullubbii fi tortilla ho'aa." }, tags: "Poultry · Gluten · Spicy", img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80" },
+          { name: { en: "Full Roast Chicken", am: "ሙሉ ዶሮ", oo: "Doro Guutuu Gubbifame" }, price: 3000, hint: { en: "Whole · Herbs · Shareable", am: "ሙሉ ዶሮ · ዕፅዋት", oo: "Doro Guutuu · Qorqoroosaa" }, desc: { en: "Whole slow-roasted chicken with herbs and sides — great for sharing.", am: "ሙሉ ዶሮ ከዕፅዋት ጋር ቀርቧል — ለቡድን ።", oo: "Doro guutuu gubbifame qorqoroosaa fi dibattii waliin." }, details: { en: "A whole chicken slow-roasted to golden perfection with aromatic herbs and spices.", am: "ሙሉ ዶሮ — ቀስ ብሎ ጠብሶ ቀርቧል።", oo: "Doro guutuu gubbifame." }, tags: "Poultry · Shareable", img: "https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=800&q=80" },
         ]
       },
       pasta: {
@@ -1672,9 +2182,9 @@
         label: { en: "06 — Comfort", am: "06 — ምቾት", oo: "06 — Ho'ina" },
         title: { en: "Pasta & Rice", am: "ፓስታ እና ሩዝ", oo: "Pasta fi Ruuzii" },
         items: [
-          { name: { en: "Meat Sauce Pasta", am: "ሥጋ ሾርባ ፓስታ", oo: "Pasta Salsaa Foon" }, price: 450, hint: { en: "Al Dente · Slow-Cooked", am: "ፓስታ · ሥጋ ሾርባ", oo: "Al Dente · Danda'ame" }, desc: { en: "Al dente pasta in a rich slow-cooked meat sauce.", am: "ፓስታ ከሥጋ ሾርባ ጋር ቀርቧል።", oo: "Pasta salsaa foon danda'ame waliin." }, details: { en: "Al dente pasta smothered in a rich, slow-simmered meat sauce seasoned with garlic, tomatoes, and aromatic herbs.", am: "ፓስታ ሥጋ ሾርባ — ቀቅሎ ቀርቧል።", oo: "Pasta salsaa foon danda'ame — qullubbii, tomeetii fi qorqoroosaa." }, tags: "Gluten · Meat", img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800&q=80" },
-          { name: { en: "Vegetable Pasta", am: "አትክልት ፓስታ", oo: "Pasta Kuduraa" }, price: 300, hint: { en: "Seasonal · Olive Oil", am: "ወቅቱ · ወይራ ዘይት", oo: "Yeroo · Zeyti Olive" }, desc: { en: "Pasta tossed with seasonal vegetables and olive oil.", am: "ፓስታ ከወቅቱ አትክልት ጋር ቀርቧል።", oo: "Pasta kuduraa yeroo fi zeyti olive waliin." }, details: { en: "A light and fresh pasta dish tossed with colourful seasonal vegetables, garlic, and a drizzle of olive oil. Simple, wholesome, and delicious.", am: "ፓስታ — ወቅቱ አትክልት ፣ ወይራ ዘይት ያለው።", oo: "Pasta salphaa — kuduraa yeroo, qullubbii fi zeyti olive." }, tags: "Gluten · Vegan", img: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80" },
-          { name: { en: "Lazagna", am: "ላዛኛ", oo: "Lasagna" }, price: 650, hint: { en: "Béchamel · Melted Cheese", am: "ቤሻሜል · ቅቤ ፍሬ", oo: "Béchamel · Cheese" }, desc: { en: "Layered baked lasagna with meat, béchamel, and melted cheese.", am: "ላዛኛ ከሥጋ ፣ ቤሻሜል እና ቅቤ ፍሬ ጋር ቀርቧል።", oo: "Lasagna suuphee foon, béchamel fi cheese waliin." }, details: { en: "Classic baked lasagna with layers of tender pasta sheets, rich meat sauce, creamy béchamel, and melted cheese. Golden on top, hearty throughout.", am: "ክላሲክ ላዛኛ — ሥጋ ሾርባ ፣ ቤሻሜል ፣ ቅቤ ፍሬ ያለው።", oo: "Lasagna classic — salsaa foon, béchamel fi cheese." }, tags: "Gluten · Dairy · Meat", img: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80" },
+          { name: { en: "Meat Sauce Pasta", am: "ሥጋ ሾርባ ፓስታ", oo: "Pasta Salsaa Foon" }, price: 450, hint: { en: "Al Dente · Slow-Cooked", am: "ፓስታ · ሥጋ ሾርባ", oo: "Al Dente · Danda'ame" }, desc: { en: "Al dente pasta in a rich slow-cooked meat sauce.", am: "ፓስታ ከሥጋ ሾርባ ጋር ቀርቧል።", oo: "Pasta salsaa foon danda'ame waliin." }, details: { en: "Al dente pasta smothered in a rich, slow-simmered meat sauce seasoned with garlic, tomatoes, and aromatic herbs.", am: "ፓስታ ሥጋ ሾርባ — ቀቅሎ ቀርቧል።", oo: "Pasta salsaa foon danda'ame." }, tags: "Gluten · Meat", img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800&q=80" },
+          { name: { en: "Vegetable Pasta", am: "አትክልት ፓስታ", oo: "Pasta Kuduraa" }, price: 300, hint: { en: "Seasonal · Olive Oil", am: "ወቅቱ · ወይራ ዘይት", oo: "Yeroo · Zeyti Olive" }, desc: { en: "Pasta tossed with seasonal vegetables and olive oil.", am: "ፓስታ ከወቅቱ አትክልት ጋር ቀርቧል።", oo: "Pasta kuduraa yeroo fi zeyti olive waliin." }, details: { en: "A light and fresh pasta dish tossed with colourful seasonal vegetables and a drizzle of olive oil.", am: "ፓስታ — ወቅቱ አትክልት ፣ ወይራ ዘይት ያለው።", oo: "Pasta salphaa." }, tags: "Gluten · Vegan", img: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80" },
+          { name: { en: "Lasagna", am: "ላዛኛ", oo: "Lasagna" }, price: 650, hint: { en: "Béchamel · Melted Cheese", am: "ቤሻሜል · ቅቤ ፍሬ", oo: "Béchamel · Cheese" }, desc: { en: "Layered baked lasagna with meat, béchamel, and melted cheese.", am: "ላዛኛ ከሥጋ ፣ ቤሻሜል እና ቅቤ ፍሬ ጋር ቀርቧል።", oo: "Lasagna suuphee foon, béchamel fi cheese waliin." }, details: { en: "Classic baked lasagna with layers of tender pasta sheets, rich meat sauce, creamy béchamel, and melted cheese.", am: "ክላሲክ ላዛኛ — ሥጋ ሾርባ ፣ ቤሻሜል ፣ ቅቤ ፍሬ ያለው።", oo: "Lasagna classic." }, tags: "Gluten · Dairy · Meat", img: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80" },
         ]
       },
       juice: {
@@ -1682,11 +2192,11 @@
         label: { en: "07 — Blended", am: "07 — ጭማቂ", oo: "07 — Jiitii" },
         title: { en: "Juice & Shakes", am: "ጭማቂ እና ሻኬ", oo: "Jiitii fi Shake" },
         items: [
-          { name: { en: "Special Juice", am: "ስፔሻል ጭማቂ", oo: "Jiitii Addaa" }, price: 220, hint: { en: "Secret Blend · Seasonal", am: "ምስጢር ቅልቅል", oo: "Walitti fidumsaa Dhoqqee" }, desc: { en: "Bar's signature blend of fresh seasonal fruits.", am: "ባር ምልክት ጭማቂ — ትኩስ ፍሬዎች ቅልቅል።", oo: "Jiitii addaa Bar — firii haraa walitti fidame." }, details: { en: "A secret blend of fresh seasonal fruits crafted by our juicers — vibrant, sweet, and bursting with natural goodness.", am: "ስፔሻል ጭማቂ — ምስጢር ፍሬ ቅልቅል ቀርቧል።", oo: "Jiitii dhoqqee bar — firii haraa yeroo walitti fidame." }, tags: "Vegan · Fresh · Signature", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800&q=80" },
-          { name: { en: "Avocado Juice", am: "አቮካዶ ጭማቂ", oo: "Jiitii Avocado" }, price: 200, hint: { en: "Thick · Creamy · Natural", am: "ወፍራም · ቅቤ", oo: "Gurraacaa · Cream" }, desc: { en: "Thick and creamy fresh avocado juice.", am: "ወፍራም ቅቤ አቮካዶ ጭማቂ ቀርቧል።", oo: "Jiitii avocado gurraacaa fi cream." }, details: { en: "Pure, fresh avocado blended into a thick and luscious juice. Creamy, mild, and packed with natural healthy fats — an Ethiopian café staple.", am: "አቮካዶ ጭማቂ — ወፍራም ፣ ቅቤ ያለው ቀርቧል።", oo: "Jiitii avocado haraa — gurraacaa fi cream." }, tags: "Vegan · Healthy", img: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=800&q=80" },
-          { name: { en: "Oreo Shake", am: "ኦሪዮ ሻኬ", oo: "Shake Oreo" }, price: 320, hint: { en: "Indulgent · Dessert in a Glass", am: "ጣፋጭ · ብርጭቆ ውስጥ ምሳ", oo: "Mi'aa · Dessert" }, desc: { en: "Creamy blended Oreo cookie milkshake.", am: "ኦሪዮ ኩኪ ሻኬ ቀርቧል።", oo: "Shake Oreo cream waliin." }, details: { en: "Crushed Oreo cookies blended with creamy milk and ice cream into a thick, indulgent shake. A dessert in a glass that nobody can resist.", am: "ኦሪዮ ሻኬ — ወተት ፣ አይስ ክሪም ያለው።", oo: "Shake Oreo — ciiccoo, aannan fi ice cream." }, tags: "Dairy · Sweet", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80" },
-          { name: { en: "Strawberry Shake", am: "ስትሮቤሪ ሻኬ", oo: "Shake Strawberry" }, price: 300, hint: { en: "Fresh · Vibrant Pink", am: "ትኩስ · ሮዝ ቀለም", oo: "Haraa · Halluu Adii-Diimaa" }, desc: { en: "Sweet and creamy fresh strawberry milkshake.", am: "ትኩስ ስትሮቤሪ ሻኬ ቀርቧል።", oo: "Shake strawberry haraa fi cream." }, details: { en: "Fresh strawberries blended with creamy milk into a vibrant pink milkshake. Fruity, sweet, and utterly refreshing.", am: "ስትሮቤሪ ሻኬ — ትኩስ ፣ ሮዝ ቀለም ያለው።", oo: "Shake strawberry — haraa, halluu adii-diimaa." }, tags: "Dairy · Fresh", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&q=80" },
-          { name: { en: "Pineapple Juice", am: "አናናስ ጭማቂ", oo: "Jiitii Annaanaasii" }, price: 250, hint: { en: "Tropical · Sweet · Tangy", am: "ሐሩር · ጣፋጭ · ኮምጣጤ", oo: "Tropical · Mi'aa · Haara" }, desc: { en: "Sweet and tangy fresh pineapple juice.", am: "ሐሩር አናናስ ጭማቂ ቀርቧል።", oo: "Jiitii annaanaasii haraa mi'aa fi haara." }, details: { en: "Freshly pressed pineapple juice — sweet, tangy, and bursting with tropical flavour.", am: "አናናስ ጭማቂ — ጣፋጭ ፣ ኮምጣጤ ቀርቧል።", oo: "Jiitii annaanaasii haraa — mi'aa fi haara." }, tags: "Vegan · Fresh", img: "https://tse4.mm.bing.net/th/id/OIP.YFLxNjZp8pTtch1qcxzhCAHaKt?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Special Juice", am: "ስፔሻል ጭማቂ", oo: "Jiitii Addaa" }, price: 220, hint: { en: "Secret Blend · Seasonal", am: "ምስጢር ቅልቅል", oo: "Walitti fidumsaa Dhoqqee" }, desc: { en: "Bar's signature blend of fresh seasonal fruits.", am: "ባር ምልክት ጭማቂ — ትኩስ ፍሬዎች ቅልቅል።", oo: "Jiitii addaa Bar — firii haraa walitti fidame." }, details: { en: "A secret blend of fresh seasonal fruits crafted by our juicers.", am: "ስፔሻል ጭማቂ — ምስጢር ፍሬ ቅልቅል ቀርቧል።", oo: "Jiitii dhoqqee bar." }, tags: "Vegan · Fresh · Signature", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800&q=80" },
+          { name: { en: "Avocado Juice", am: "አቮካዶ ጭማቂ", oo: "Jiitii Avocado" }, price: 200, hint: { en: "Thick · Creamy · Natural", am: "ወፍራም · ቅቤ", oo: "Gurraacaa · Cream" }, desc: { en: "Thick and creamy fresh avocado juice.", am: "ወፍራም ቅቤ አቮካዶ ጭማቂ ቀርቧል።", oo: "Jiitii avocado gurraacaa fi cream." }, details: { en: "Pure, fresh avocado blended into a thick and luscious juice. Creamy, mild, and packed with natural healthy fats.", am: "አቮካዶ ጭማቂ — ወፍራም ፣ ቅቤ ያለው ቀርቧል።", oo: "Jiitii avocado haraa." }, tags: "Vegan · Healthy", img: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=800&q=80" },
+          { name: { en: "Oreo Shake", am: "ኦሪዮ ሻኬ", oo: "Shake Oreo" }, price: 320, hint: { en: "Indulgent · Dessert in a Glass", am: "ጣፋጭ · ብርጭቆ ውስጥ ምሳ", oo: "Mi'aa · Dessert" }, desc: { en: "Creamy blended Oreo cookie milkshake.", am: "ኦሪዮ ኩኪ ሻኬ ቀርቧል።", oo: "Shake Oreo cream waliin." }, details: { en: "Crushed Oreo cookies blended with creamy milk and ice cream into a thick, indulgent shake.", am: "ኦሪዮ ሻኬ — ወተት ፣ አይስ ክሪም ያለው።", oo: "Shake Oreo." }, tags: "Dairy · Sweet", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80" },
+          { name: { en: "Strawberry Shake", am: "ስትሮቤሪ ሻኬ", oo: "Shake Strawberry" }, price: 300, hint: { en: "Fresh · Vibrant Pink", am: "ትኩስ · ሮዝ ቀለም", oo: "Haraa · Halluu Adii-Diimaa" }, desc: { en: "Sweet and creamy fresh strawberry milkshake.", am: "ትኩስ ስትሮቤሪ ሻኬ ቀርቧል።", oo: "Shake strawberry haraa fi cream." }, details: { en: "Fresh strawberries blended with creamy milk into a vibrant pink milkshake.", am: "ስትሮቤሪ ሻኬ — ትኩስ ፣ ሮዝ ቀለም ያለው።", oo: "Shake strawberry." }, tags: "Dairy · Fresh", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=800&q=80" },
+          { name: { en: "Pineapple Juice", am: "አናናስ ጭማቂ", oo: "Jiitii Annaanaasii" }, price: 250, hint: { en: "Tropical · Sweet · Tangy", am: "ሐሩር · ጣፋጭ · ኮምጣጤ", oo: "Tropical · Mi'aa · Haara" }, desc: { en: "Sweet and tangy fresh pineapple juice.", am: "ሐሩር አናናስ ጭማቂ ቀርቧል።", oo: "Jiitii annaanaasii haraa mi'aa fi haara." }, details: { en: "Freshly pressed pineapple juice — sweet, tangy, and bursting with tropical flavour.", am: "አናናስ ጭማቂ — ጣፋጭ ፣ ኮምጣጤ ቀርቧል።", oo: "Jiitii annaanaasii haraa." }, tags: "Vegan · Fresh", img: "https://tse4.mm.bing.net/th/id/OIP.YFLxNjZp8pTtch1qcxzhCAHaKt?rs=1&pid=ImgDetMain&o=7&rm=3" },
         ]
       },
       hotdrinks: {
@@ -1694,11 +2204,11 @@
         label: { en: "08 — Warm", am: "08 — ሙቅ", oo: "08 — Ho'aa" },
         title: { en: "Hot Drinks", am: "ሙቅ መጠጦች", oo: "Dhugaatii Ho'aa" },
         items: [
-          { name: { en: "Makiyato", am: "ማኪያቶ", oo: "Makiyato" }, price: 100, hint: { en: "Ethiopian Macchiato", am: "የኢትዮጵያ ካፌ", oo: "Kafee Itoophiyaa" }, desc: { en: "Ethiopian-style macchiato — espresso with a dash of milk.", am: "የኢትዮጵያ ማኪያቶ — ኤስፕሬሶ ከወተት ጋር።", oo: "Makiyato Itoophiyaa — espresso aannan xinnoo waliin." }, details: { en: "A beloved Ethiopian coffee ritual — a strong shot of espresso topped with a small amount of creamy milk. Bold, smooth, and deeply satisfying.", am: "ማኪያቶ — ኤስፕሬሶ ከወተት ጋር ቀርቧል።", oo: "Makiyato — espresso aannan xinnoo waliin." }, tags: "Dairy · Coffee · Signature", img: "https://th.bing.com/th/id/OIP.puKeTGM0cY9wN-6CvNR9fwHaEO?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Cappuccino", am: "ካፑቺኖ", oo: "Cappuccino" }, price: 110, hint: { en: "Steamed Milk · Silky Foam", am: "ወተት · ፈሳሽ", oo: "Aannan Ho'ifame · Foam" }, desc: { en: "Espresso topped with steamed milk and silky foam.", am: "ካፑቺኖ — ወተት ፣ ፈሳሽ ያለው ቀርቧል።", oo: "Cappuccino — espresso, aannan ho'ifame fi foam." }, details: { en: "Classic Italian cappuccino — a shot of rich espresso crowned with velvety steamed milk and a thick layer of silky foam. The perfect coffee moment.", am: "ጣሊያናዊ ካፑቺኖ — ኤስፕሬሶ ፣ ወተት ፣ ፈሳሽ ያለው።", oo: "Cappuccino classic Xaaliyaanoo — espresso, aannan fi foam." }, tags: "Dairy · Coffee", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&q=80" },
-          { name: { en: "Hot Chocolate", am: "ሙቅ ቸኮሌት", oo: "Chokolaatii Ho'aa" }, price: 200, hint: { en: "Velvety · Rich Cocoa", am: "ጥቅምት · ቸኮሌት", oo: "Danbal · Cocoa" }, desc: { en: "Rich, creamy hot chocolate — a warm indulgence.", am: "ሙቅ ቸኮሌት — ወፍራም ፣ ቅቤ ያለው ቀርቧል።", oo: "Chokolaatii ho'aa — danbal fi cocoa." }, details: { en: "Velvety hot chocolate made from rich cocoa and steamed creamy milk. A warm, indulgent hug in a mug.", am: "ሙቅ ቸኮሌት — ቅቤ ፣ ኮኮ ያለው ቀርቧል።", oo: "Chokolaatii ho'aa — cocoa fi aannan ho'ifame." }, tags: "Dairy · Sweet", img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80" },
-          { name: { en: "Jebena Coffee", am: "ጀበና ቡና", oo: "Bunaa Jabana" }, price: 60, hint: { en: "Traditional Ceremony", am: "ባህላዊ ሥርዓት", oo: "Aadaa Sirna" }, desc: { en: "Traditional Ethiopian jebena-brewed coffee ceremony cup.", am: "ጀበና ቡና — ባህላዊ ሥርዓት ቀርቧል።", oo: "Bunaa jabana — sirna aadaa Itoophiyaa." }, details: { en: "Coffee brewed the traditional Ethiopian way in a clay jebena pot — served in small cups with popcorn as is customary. A true cultural experience.", am: "ጀበና ቡና — ሸክላ ዕቃ ፣ ቆሎ ፣ ባህላዊ ሥርዓት ያለው።", oo: "Bunaa jabana — sibiilaa muudhaa, kaa'ii fi sirna aadaa waliin." }, tags: "Coffee · Vegan · Traditional", img: "https://th.bing.com/th/id/OIP.uSgbNUtj4qIL5c1V68JoXAHaEc?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Special Tea", am: "ስፔሻል ሻይ", oo: "Shaayii Addaa" }, price: 150, hint: { en: "Aromatic · Warming Spices", am: "ጠረን · ቅመም", oo: "Urgaa · Qorqoroosaa" }, desc: { en: "Aromatic blended herbal or spiced special tea.", am: "ስፔሻል ሻይ — ጠረን ፣ ቅመም ያለው ቀርቧል።", oo: "Shaayii addaa — qorqoroosaa fi urgaa." }, details: { en: "Our house special tea — a carefully blended aromatic brew with warming spices and herbal notes.", am: "ስፔሻል ሻይ — ቅመም ፣ ዕፅዋት ያለው።", oo: "Shaayii addaa keenya — qorqoroosaa fi qorqoroosaa." }, tags: "Tea · Vegan", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80" },
+          { name: { en: "Makiyato", am: "ማኪያቶ", oo: "Makiyato" }, price: 100, hint: { en: "Ethiopian Macchiato", am: "የኢትዮጵያ ካፌ", oo: "Kafee Itoophiyaa" }, desc: { en: "Ethiopian-style macchiato — espresso with a dash of milk.", am: "የኢትዮጵያ ማኪያቶ — ኤስፕሬሶ ከወተት ጋር።", oo: "Makiyato Itoophiyaa." }, details: { en: "A beloved Ethiopian coffee ritual — a strong shot of espresso topped with a small amount of creamy milk.", am: "ማኪያቶ — ኤስፕሬሶ ከወተት ጋር ቀርቧል።", oo: "Makiyato — espresso aannan xinnoo waliin." }, tags: "Dairy · Coffee · Signature", img: "https://th.bing.com/th/id/OIP.puKeTGM0cY9wN-6CvNR9fwHaEO?o=7&rs=1&pid=ImgDetMain&rm=3" },
+          { name: { en: "Cappuccino", am: "ካፑቺኖ", oo: "Cappuccino" }, price: 110, hint: { en: "Steamed Milk · Silky Foam", am: "ወተት · ፈሳሽ", oo: "Aannan Ho'ifame · Foam" }, desc: { en: "Espresso topped with steamed milk and silky foam.", am: "ካፑቺኖ — ወተት ፣ ፈሳሽ ያለው ቀርቧል።", oo: "Cappuccino — espresso, aannan ho'ifame fi foam." }, details: { en: "Classic Italian cappuccino — a shot of rich espresso crowned with velvety steamed milk and a thick layer of silky foam.", am: "ጣሊያናዊ ካፑቺኖ — ኤስፕሬሶ ፣ ወተት ፣ ፈሳሽ ያለው።", oo: "Cappuccino classic Xaaliyaanoo." }, tags: "Dairy · Coffee", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&q=80" },
+          { name: { en: "Hot Chocolate", am: "ሙቅ ቸኮሌት", oo: "Chokolaatii Ho'aa" }, price: 200, hint: { en: "Velvety · Rich Cocoa", am: "ጥቅምት · ቸኮሌት", oo: "Danbal · Cocoa" }, desc: { en: "Rich, creamy hot chocolate — a warm indulgence.", am: "ሙቅ ቸኮሌት — ወፍራም ፣ ቅቤ ያለው ቀርቧል።", oo: "Chokolaatii ho'aa — danbal fi cocoa." }, details: { en: "Velvety hot chocolate made from rich cocoa and steamed creamy milk.", am: "ሙቅ ቸኮሌት — ቅቤ ፣ ኮኮ ያለው ቀርቧል።", oo: "Chokolaatii ho'aa — cocoa fi aannan ho'ifame." }, tags: "Dairy · Sweet", img: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800&q=80" },
+          { name: { en: "Jebena Coffee", am: "ጀበና ቡና", oo: "Bunaa Jabana" }, price: 60, hint: { en: "Traditional Ceremony", am: "ባህላዊ ሥርዓት", oo: "Aadaa Sirna" }, desc: { en: "Traditional Ethiopian jebena-brewed coffee ceremony cup.", am: "ጀበና ቡና — ባህላዊ ሥርዓት ቀርቧል።", oo: "Bunaa jabana — sirna aadaa Itoophiyaa." }, details: { en: "Coffee brewed the traditional Ethiopian way in a clay jebena pot — served in small cups with popcorn as is customary.", am: "ጀበና ቡና — ሸክላ ዕቃ ፣ ቆሎ ፣ ባህላዊ ሥርዓት ያለው።", oo: "Bunaa jabana — sibiilaa muudhaa, kaa'ii fi sirna aadaa waliin." }, tags: "Coffee · Vegan · Traditional", img: "https://th.bing.com/th/id/OIP.uSgbNUtj4qIL5c1V68JoXAHaEc?o=7&rs=1&pid=ImgDetMain&rm=3" },
+          { name: { en: "Special Tea", am: "ስፔሻል ሻይ", oo: "Shaayii Addaa" }, price: 150, hint: { en: "Aromatic · Warming Spices", am: "ጠረን · ቅመም", oo: "Urgaa · Qorqoroosaa" }, desc: { en: "Aromatic blended herbal or spiced special tea.", am: "ስፔሻል ሻይ — ጠረን ፣ ቅመም ያለው ቀርቧል።", oo: "Shaayii addaa — qorqoroosaa fi urgaa." }, details: { en: "Our house special tea — a carefully blended aromatic brew with warming spices and herbal notes.", am: "ስፔሻል ሻይ — ቅመም ፣ ዕፅዋት ያለው።", oo: "Shaayii addaa keenya." }, tags: "Tea · Vegan", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80" },
         ]
       },
       colddrinks: {
@@ -1706,9 +2216,9 @@
         label: { en: "09 — Chilled", am: "09 — ቀዝቃዛ", oo: "09 — Qabbana'aa" },
         title: { en: "Cold Drinks", am: "ቀዝቃዛ መጠጦች", oo: "Dhugaatii Qabbana'aa" },
         items: [
-          { name: { en: "Soft Drinks", am: "ሶፍት ድሪንክ", oo: "Dhugaatii Laafaa" }, price: 80, hint: { en: "Assorted Flavours", am: "ብዙ ጣዕሞች", oo: "Foolii Hedduu" }, desc: { en: "Chilled assorted sodas and soft drinks.", am: "ቀዝቃዛ ሶፍት ድሪንክ ቀርቧል።", oo: "Dhugaatii laafaa qabbana'aa foolii hedduu." }, details: { en: "A selection of chilled sodas and soft drinks. Ask your server for available flavours — always served ice-cold.", am: "ቀዝቃዛ ሶፍት ድሪንክ — ብዙ ጣዕሞች ቀርቧል።", oo: "Dhugaatii laafaa — foolii hedduu, harka hojjataatti gaafadhu." }, tags: "Non-Alcoholic", img: "https://th.bing.com/th/id/OIP.dAEouu9IuHqhO-1udxRGQQHaEy?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Beer", am: "ቢራ", oo: "Biiraa" }, price: 140, hint: { en: "Local & Imported · Chilled", am: "አካባቢያዊ እና ከውጭ", oo: "Naannoo fi Alaa · Qabbana'aa" }, desc: { en: "Cold local or imported beer served in a chilled glass.", am: "ቀዝቃዛ ቢራ — አካባቢያዊ ወይም ከውጭ ቀርቧል።", oo: "Biiraa qabbana'aa — naannoo ykn alaa." }, details: { en: "Enjoy a cold, refreshing beer — locally brewed or imported — served ice-cold. The perfect companion to any of our meals.", am: "ቀዝቃዛ ቢራ — አካባቢያዊ ወይም ከውጭ ቀርቧል።", oo: "Biiraa qabbana'aa — naannoo ykn alaa seera dhiyaachu hordofee." }, tags: "Alcohol · Gluten", img: "https://tse2.mm.bing.net/th/id/OIP.Wn0ZIrLEKydgcwOcB4Dp-AHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" },
-          { name: { en: "Sinq", am: "ሲንቅ", oo: "Sinq" }, price: 130, hint: { en: "Honey Wine · Traditional", am: "ማር ወይን · ባህላዊ", oo: "Waynii Damma · Aadaa" }, desc: { en: "Traditional Ethiopian fermented honey wine.", am: "ባህላዊ የኢትዮጵያ ሲንቅ — ከማር ቀርቧል።", oo: "Sinq aadaa Itoophiyaa — dammaan hojjetame." }, details: { en: "A traditional Ethiopian beverage made from fermented honey — mildly sweet, naturally carbonated, and uniquely satisfying.", am: "ሲንቅ — ከማር ቀርቧል ፣ ቀጠን ያለ።", oo: "Sinq aadaa — dammaan hojjetame, mi'aa fi tasumma." }, tags: "Alcohol · Traditional", img: "https://tse3.mm.bing.net/th/id/OIP.NnGlr2Js7Na5A4omAWlIBgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Soft Drinks", am: "ሶፍት ድሪንክ", oo: "Dhugaatii Laafaa" }, price: 80, hint: { en: "Assorted Flavours", am: "ብዙ ጣዕሞች", oo: "Foolii Hedduu" }, desc: { en: "Chilled assorted sodas and soft drinks.", am: "ቀዝቃዛ ሶፍት ድሪንክ ቀርቧል።", oo: "Dhugaatii laafaa qabbana'aa foolii hedduu." }, details: { en: "A selection of chilled sodas and soft drinks. Ask your server for available flavours.", am: "ቀዝቃዛ ሶፍት ድሪንክ — ብዙ ጣዕሞች ቀርቧል።", oo: "Dhugaatii laafaa — foolii hedduu." }, tags: "Non-Alcoholic", img: "https://th.bing.com/th/id/OIP.dAEouu9IuHqhO-1udxRGQQHaEy?o=7&rs=1&pid=ImgDetMain&rm=3" },
+          { name: { en: "Beer", am: "ቢራ", oo: "Biiraa" }, price: 140, hint: { en: "Local & Imported · Chilled", am: "አካባቢያዊ እና ከውጭ", oo: "Naannoo fi Alaa · Qabbana'aa" }, desc: { en: "Cold local or imported beer served in a chilled glass.", am: "ቀዝቃዛ ቢራ — አካባቢያዊ ወይም ከውጭ ቀርቧል።", oo: "Biiraa qabbana'aa — naannoo ykn alaa." }, details: { en: "Enjoy a cold, refreshing beer — locally brewed or imported — served ice-cold.", am: "ቀዝቃዛ ቢራ — አካባቢያዊ ወይም ከውጭ ቀርቧል።", oo: "Biiraa qabbana'aa." }, tags: "Alcohol · Gluten", img: "https://tse2.mm.bing.net/th/id/OIP.Wn0ZIrLEKydgcwOcB4Dp-AHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" },
+          { name: { en: "Sinq", am: "ሲንቅ", oo: "Sinq" }, price: 130, hint: { en: "Honey Wine · Traditional", am: "ማር ወይን · ባህላዊ", oo: "Waynii Damma · Aadaa" }, desc: { en: "Traditional Ethiopian fermented honey wine.", am: "ባህላዊ የኢትዮጵያ ሲንቅ — ከማር ቀርቧል።", oo: "Sinq aadaa Itoophiyaa — dammaan hojjetame." }, details: { en: "A traditional Ethiopian beverage made from fermented honey — mildly sweet and naturally carbonated.", am: "ሲንቅ — ከማር ቀርቧል ፣ ቀጠን ያለ።", oo: "Sinq aadaa." }, tags: "Alcohol · Traditional", img: "https://tse3.mm.bing.net/th/id/OIP.NnGlr2Js7Na5A4omAWlIBgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
         ]
       },
       fish: {
@@ -1716,8 +2226,8 @@
         label: { en: "10 — From the Sea", am: "10 — ዓሣ", oo: "10 — Qurxummii" },
         title: { en: "Fish Corner", am: "ዓሣ", oo: "Qurxummii" },
         items: [
-          { name: { en: "Fish Goulash", am: "ዓሣ ጉላሽ", oo: "Goulash Qurxummii" }, price: 500, hint: { en: "Paprika Spiced · Rich", am: "ፓፕሪካ · ሙቀት", oo: "Paprika · Ho'aa" }, desc: { en: "Tender fish in a rich, spiced goulash sauce.", am: "ዓሣ ጉላሽ — ፓፕሪካ ፣ ሙቀት ያለው ቀርቧል።", oo: "Goulash qurxummii paprika fi salsaa ho'aa waliin." }, details: { en: "Flaky fish cooked in a rich, paprika-spiced goulash sauce with onions and tomatoes.", am: "ዓሣ ጉላሽ — ፓፕሪካ ፣ ቲማቲም ፣ ቀይ ሽንኩርት ያለው።", oo: "Qurxummii goulash — paprika, tomeetii fi qullubbii waliin." }, tags: "Fish · Gluten-Free", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80" },
-          { name: { en: "Fish Cutlet", am: "ዓሣ ኩትሌት", oo: "Cutlet Qurxummii" }, price: 500, hint: { en: "Crispy Breadcrumb · Golden", am: "ቆሎ · ወርቃማ", oo: "Dhumma · Warqee" }, desc: { en: "Crispy seasoned fish cutlets, golden and crunchy.", am: "ዓሣ ኩትሌት — ቆሎ ፣ ወርቃማ ቀርቧል።", oo: "Cutlet qurxummii — dhumma, warqee fi ciiccoo." }, details: { en: "Seasoned fish portions coated in a crispy breadcrumb crust and fried to golden perfection.", am: "ዓሣ ኩትሌት — ቆሎ ዳቦ ቀርቧል።", oo: "Qurxummii dhumma — daabboo ciiccoo waliin gubbifame." }, tags: "Fish · Gluten", img: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&q=80" },
+          { name: { en: "Fish Goulash", am: "ዓሣ ጉላሽ", oo: "Goulash Qurxummii" }, price: 500, hint: { en: "Paprika Spiced · Rich", am: "ፓፕሪካ · ሙቀት", oo: "Paprika · Ho'aa" }, desc: { en: "Tender fish in a rich, spiced goulash sauce.", am: "ዓሣ ጉላሽ — ፓፕሪካ ፣ ሙቀት ያለው ቀርቧል።", oo: "Goulash qurxummii paprika fi salsaa ho'aa waliin." }, details: { en: "Flaky fish cooked in a rich, paprika-spiced goulash sauce with onions and tomatoes.", am: "ዓሣ ጉላሽ — ፓፕሪካ ፣ ቲማቲም ፣ ቀይ ሽንኩርት ያለው።", oo: "Qurxummii goulash." }, tags: "Fish · Gluten-Free", img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80" },
+          { name: { en: "Fish Cutlet", am: "ዓሣ ኩትሌት", oo: "Cutlet Qurxummii" }, price: 500, hint: { en: "Crispy Breadcrumb · Golden", am: "ቆሎ · ወርቃማ", oo: "Dhumma · Warqee" }, desc: { en: "Crispy seasoned fish cutlets, golden and crunchy.", am: "ዓሣ ኩትሌት — ቆሎ ፣ ወርቃማ ቀርቧል።", oo: "Cutlet qurxummii — dhumma, warqee fi ciiccoo." }, details: { en: "Seasoned fish portions coated in a crispy breadcrumb crust and fried to golden perfection.", am: "ዓሣ ኩትሌት — ቆሎ ዳቦ ቀርቧል።", oo: "Qurxummii dhumma." }, tags: "Fish · Gluten", img: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&q=80" },
         ]
       },
       salads: {
@@ -1725,9 +2235,9 @@
         label: { en: "11 — Fresh", am: "11 — ሰላጣ", oo: "11 — Saalaaxaa" },
         title: { en: "Salads", am: "ሰላጣ", oo: "Saalaaxaa" },
         items: [
-          { name: { en: "Special Salad", am: "ስፔሻል ሰላጣ", oo: "Saalaaxaa Addaa" }, price: 550, hint: { en: "House Dressing · Signature", am: "ምልክት ሾርባ", oo: "Salsaa Aaddaa" }, desc: { en: "Chef's special salad with premium ingredients and house dressing.", am: "ሼፍ ስፔሻል ሰላጣ — ምልክት ሾርባ ያለው ቀርቧል።", oo: "Saalaaxaa addaa shoofii — qulqullina premium fi salsaa aaddaa." }, details: { en: "Our chef's signature salad — a generous bowl of premium seasonal vegetables, toppings, and a specially crafted house dressing.", am: "ሼፍ ሰላጣ — ምርጥ ወቅቱ አትክልት ፣ ምልክት ሾርባ ያለው።", oo: "Saalaaxaa shoofii — kuduraa premium, guutummaawwan fi salsaa addaa." }, tags: "Vegetarian · Fresh · Signature", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" },
-          { name: { en: "Mixed Salad", am: "ቅልቅል ሰላጣ", oo: "Saalaaxaa Walitti Cidaa" }, price: 350, hint: { en: "Light Dressing · Seasonal", am: "ቀላል ሾርባ · ወቅቱ", oo: "Salsaa Salphaa · Yeroo" }, desc: { en: "Fresh mixed seasonal vegetable salad.", am: "ቅልቅል ሰላጣ — ወቅቱ አትክልት ቀርቧል።", oo: "Saalaaxaa walitti cidaa — kuduraa yeroo haraa." }, details: { en: "A colourful, refreshing mix of fresh seasonal vegetables tossed in a light dressing.", am: "ቅልቅል ሰላጣ — ቀለማት ፣ ቀላል ሾርባ ያለው።", oo: "Saalaaxaa walitti cidaa — halluu hedduu, salsaa salphaa." }, tags: "Vegan · Fresh", img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=80" },
-          { name: { en: "Tuna Salad", am: "ቱና ሰላጣ", oo: "Saalaaxaa Tuna" }, price: 600, hint: { en: "Mediterranean · Protein-Rich", am: "ሜዲቴራኒያን · ፕሮቲን", oo: "Mediterranean · Protein" }, desc: { en: "Fresh salad loaded with flaked tuna and Mediterranean-style dressing.", am: "ቱና ሰላጣ — ሜዲቴራኒያን ሾርባ ያለው ቀርቧል።", oo: "Saalaaxaa tuna — Mediterranean fi protein." }, details: { en: "A hearty salad featuring generous flaked tuna over a bed of fresh vegetables with a Mediterranean-inspired dressing.", am: "ቱና ሰላጣ — ቱና ፍሬ ፣ ሜዲቴራኒያን ሾርባ ያለው።", oo: "Saalaaxaa tuna — tuna ciccitaa, kuduraa haraa fi salsaa Mediterranean." }, tags: "Fish · Fresh · Protein-Rich", img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80" },
+          { name: { en: "Special Salad", am: "ስፔሻል ሰላጣ", oo: "Saalaaxaa Addaa" }, price: 550, hint: { en: "House Dressing · Signature", am: "ምልክት ሾርባ", oo: "Salsaa Aaddaa" }, desc: { en: "Chef's special salad with premium ingredients and house dressing.", am: "ሼፍ ስፔሻል ሰላጣ — ምልክት ሾርባ ያለው ቀርቧል።", oo: "Saalaaxaa addaa shoofii." }, details: { en: "Our chef's signature salad — a generous bowl of premium seasonal vegetables and a specially crafted house dressing.", am: "ሼፍ ሰላጣ — ምርጥ ወቅቱ አትክልት ፣ ምልክት ሾርባ ያለው።", oo: "Saalaaxaa shoofii." }, tags: "Vegetarian · Fresh · Signature", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" },
+          { name: { en: "Mixed Salad", am: "ቅልቅል ሰላጣ", oo: "Saalaaxaa Walitti Cidaa" }, price: 350, hint: { en: "Light Dressing · Seasonal", am: "ቀላል ሾርባ · ወቅቱ", oo: "Salsaa Salphaa · Yeroo" }, desc: { en: "Fresh mixed seasonal vegetable salad.", am: "ቅልቅል ሰላጣ — ወቅቱ አትክልት ቀርቧል።", oo: "Saalaaxaa walitti cidaa — kuduraa yeroo haraa." }, details: { en: "A colourful, refreshing mix of fresh seasonal vegetables tossed in a light dressing.", am: "ቅልቅል ሰላጣ — ቀለማት ፣ ቀላል ሾርባ ያለው።", oo: "Saalaaxaa walitti cidaa." }, tags: "Vegan · Fresh", img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=80" },
+          { name: { en: "Tuna Salad", am: "ቱና ሰላጣ", oo: "Saalaaxaa Tuna" }, price: 600, hint: { en: "Mediterranean · Protein-Rich", am: "ሜዲቴራኒያን · ፕሮቲን", oo: "Mediterranean · Protein" }, desc: { en: "Fresh salad loaded with flaked tuna and Mediterranean-style dressing.", am: "ቱና ሰላጣ — ሜዲቴራኒያን ሾርባ ያለው ቀርቧል።", oo: "Saalaaxaa tuna — Mediterranean fi protein." }, details: { en: "A hearty salad featuring generous flaked tuna over a bed of fresh vegetables with a Mediterranean-inspired dressing.", am: "ቱና ሰላጣ — ቱና ፍሬ ፣ ሜዲቴራኒያን ሾርባ ያለው።", oo: "Saalaaxaa tuna." }, tags: "Fish · Fresh · Protein-Rich", img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80" },
         ]
       }
     };
@@ -1736,9 +2246,6 @@
     let currentLang = 'en';
     let currentPage = 'home';
     let currentCat = 'breakfast';
-
-    const LANGS = ['en', 'am', 'oo'];
-    const LANG_LABELS = { en: 'EN', am: 'አማ', oo: 'OO' };
 
     /* ═══════════════ NAVIGATION ═══════════════ */
     function navigate(page) {
@@ -1755,24 +2262,45 @@
       if (page === 'dev') renderDev();
     }
 
-    /* ═══════════════ THEME ═══════════════ */
+    /* ═══════════════ THEME with RIPPLE ═══════════════ */
     function toggleTheme() {
-      const t = document.documentElement.getAttribute('data-theme');
-      const next = t === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      const icon = document.getElementById('themeIcon');
-      if (next === 'light') {
-        icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-      } else {
-        icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
-      }
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+      const btn = document.getElementById('themeToggle');
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const maxR = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy)) * 2.2;
+      const rippleContainer = document.getElementById('theme-ripple');
+      const circle = document.createElement('div');
+      circle.classList.add('ripple-circle');
+      const bgColor = nextTheme === 'dark' ? '#1E1F28' : '#E8E6EA';
+      circle.style.cssText = `
+        width: ${maxR}px; height: ${maxR}px;
+        left: ${cx - maxR / 2}px; top: ${cy - maxR / 2}px;
+        background: ${bgColor}; transform: scale(0); opacity: 1;
+      `;
+      rippleContainer.appendChild(circle);
+      circle.getBoundingClientRect();
+      circle.style.transition = 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)';
+      circle.style.transform = 'scale(1)';
+      setTimeout(() => {
+        html.setAttribute('data-theme', nextTheme);
+        document.getElementById('themeLabel').textContent = nextTheme === 'dark' ? 'Dark' : 'Light';
+      }, 320);
+      setTimeout(() => {
+        circle.style.transition = 'opacity 0.2s';
+        circle.style.opacity = '0';
+        setTimeout(() => circle.remove(), 200);
+      }, 650);
     }
 
     /* ═══════════════ LANGUAGE ═══════════════ */
-    function cycleLang() {
-      const idx = LANGS.indexOf(currentLang);
-      currentLang = LANGS[(idx + 1) % LANGS.length];
-      document.getElementById('langLabel').textContent = LANG_LABELS[currentLang];
+    function setLang(lang, btn) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       applyTranslations();
       if (currentPage === 'menu') renderMenu();
       if (currentPage === 'gallery') renderGallery();
@@ -1783,8 +2311,6 @@
     function t(key) { return (T[currentLang] && T[currentLang][key]) || T.en[key] || key; }
     function tItem(obj) { return obj[currentLang] || obj.en || ''; }
 
-    /* FIX: use innerHTML so <em> tags and <br> in translation strings render correctly.
-       data-i18n-tip tooltips are plain text only, so textContent is kept for those. */
     function applyTranslations() {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         el.innerHTML = t(el.dataset.i18n);
@@ -1792,50 +2318,78 @@
       document.querySelectorAll('[data-i18n-tip]').forEach(el => {
         el.textContent = t(el.dataset.i18nTip);
       });
-      document.getElementById('langTip').textContent = { en: 'Language', am: 'ቋንቋ', oo: 'Afaan' }[currentLang];
     }
 
     /* ═══════════════ RENDER MENU ═══════════════ */
     function renderMenu() {
-      const tabs = document.getElementById('menuTabs');
       const cats = Object.keys(menuData);
-      tabs.innerHTML = cats.map(k => `
-        <button class="menu-tab ${k === currentCat ? 'active' : ''}" onclick="switchCat('${k}', this)">
-          ${menuData[k].icon} ${menuData[k].title[currentLang] || menuData[k].title.en}
+
+      // Render category pills
+      const scroll = document.getElementById('menuCatScroll');
+      scroll.innerHTML = cats.map(k => `
+        <button class="menu-cat-pill ${k === currentCat ? 'active' : ''}" onclick="switchCat('${k}', this)">
+          <span class="cat-emoji">${menuData[k].icon}</span>
+          ${tItem(menuData[k].title)}
         </button>
       `).join('');
+
+      // Scroll active pill into view
+      const activePill = scroll.querySelector('.menu-cat-pill.active');
+      if (activePill) {
+        setTimeout(() => activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }), 50);
+      }
+
       renderCat();
     }
 
-    /* FIX: accept the button element directly instead of relying on the unreliable global `event` */
     function switchCat(cat, btn) {
       currentCat = cat;
-      document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.menu-cat-pill').forEach(el => el.classList.remove('active'));
       btn.classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       renderCat();
     }
 
     function renderCat() {
-      const grid = document.getElementById('menuGrid');
+      const content = document.getElementById('menuContent');
       const d = menuData[currentCat];
-      grid.innerHTML = `
-        <div class="menu-cat" style="grid-column:1/-1">
-          <div class="cat-label">${tItem(d.label)}</div>
-          <div class="cat-name">${tItem(d.title)} ${d.icon}</div>
+      const itemCount = d.items.length;
+
+      content.innerHTML = `
+        <div class="menu-cat-header">
+          <div class="menu-cat-emoji-large">${d.icon}</div>
+          <div class="menu-cat-title-block">
+            <div class="menu-cat-eyebrow">${tItem(d.label)}</div>
+            <div class="menu-cat-title">${tItem(d.title)}</div>
+          </div>
+          <div class="menu-cat-count">${itemCount} ${itemCount === 1 ? 'item' : 'items'}</div>
         </div>
-        ${d.items.map((item, i) => `
-          <li class="menu-card" onclick="openModal('${currentCat}',${i})" style="list-style:none">
-            <img class="card-img" src="${item.img}" alt="${tItem(item.name)}" loading="lazy" onerror="this.style.background='var(--brown)'"/>
-            <div class="card-body">
-              <div class="card-name">${tItem(item.name)}</div>
-              <div class="card-hint">${tItem(item.hint)}</div>
+        <div class="menu-items-grid">
+          ${d.items.map((item, i) => `
+            <div class="menu-item-card" onclick="openModal('${currentCat}',${i})">
+              <div class="item-img-wrap">
+                <img src="${item.img}" alt="${tItem(item.name)}" loading="lazy"
+                  onerror="this.style.opacity='0'"/>
+              </div>
+              <div class="item-body">
+                <div class="item-name">${tItem(item.name)}</div>
+                <div class="item-hint">${tItem(item.hint)}</div>
+                <div class="item-tags-row">
+                  ${item.tags.split('·').slice(0, 2).map(tg => `<span class="item-badge">${tg.trim()}</span>`).join('')}
+                </div>
+              </div>
+              <div class="item-price-col">
+                <div>
+                  <div class="item-price">${item.price.toLocaleString()}</div>
+                  <div class="item-price-unit">birr</div>
+                </div>
+                <div class="item-arrow">
+                  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
             </div>
-            <div>
-              <div class="card-price">${item.price.toLocaleString()} birr</div>
-              <div class="card-arrow">View →</div>
-            </div>
-          </li>
-        `).join('')}
+          `).join('')}
+        </div>
       `;
     }
 
@@ -1877,14 +2431,13 @@
       const el = document.getElementById('paymentContent');
       el.innerHTML = `
         <p class="payment-intro">${t('pay_intro')}</p>
-
         <div class="payment-card">
           <div class="payment-type">Commercial Bank of Ethiopia</div>
           <div class="payment-name">CBE Transfer</div>
           <div class="account-row">
             <div class="account-info">
               <div class="account-label">Account Number</div>
-              <div class="account-number" id="cbe-num">1000 5588 7531 4439</div>
+              <div class="account-number" id="cbe-num">${PAYMENT_ACCOUNTS.cbe.accountNumber}</div>
             </div>
             <button class="copy-btn" onclick="copyNum('cbe-num',this)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -1894,19 +2447,18 @@
           <div class="account-row">
             <div class="account-info">
               <div class="account-label">Account Name</div>
-              <div class="account-number">Sample Bar &amp; Restaurant</div>
+              <div class="account-number">${PAYMENT_ACCOUNTS.cbe.accountName}</div>
             </div>
           </div>
           <p class="payment-note">${t('pay_note_cbe')}</p>
         </div>
-
         <div class="payment-card">
           <div class="payment-type">Bank of Abyssinia</div>
           <div class="payment-name">BOA Transfer</div>
           <div class="account-row">
             <div class="account-info">
               <div class="account-label">Account Number</div>
-              <div class="account-number" id="boa-num">0032 4471 8899 0012</div>
+              <div class="account-number" id="boa-num">${PAYMENT_ACCOUNTS.boa.accountNumber}</div>
             </div>
             <button class="copy-btn" onclick="copyNum('boa-num',this)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -1916,19 +2468,18 @@
           <div class="account-row">
             <div class="account-info">
               <div class="account-label">Account Name</div>
-              <div class="account-number">Sample Bar &amp; Restaurant</div>
+              <div class="account-number">${PAYMENT_ACCOUNTS.boa.accountName}</div>
             </div>
           </div>
           <p class="payment-note">${t('pay_note_boa')}</p>
         </div>
-
         <div class="payment-card">
           <div class="payment-type">Telebirr Mobile</div>
           <div class="payment-name">Telebirr</div>
           <div class="account-row">
             <div class="account-info">
               <div class="account-label">Phone Number</div>
-              <div class="account-number" id="tel-num">+251 933xxxxxxxxx</div>
+              <div class="account-number" id="tel-num">${PAYMENT_ACCOUNTS.telebirr.phoneNumber}</div>
             </div>
             <button class="copy-btn" onclick="copyNum('tel-num',this)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -1937,7 +2488,6 @@
           </div>
           <p class="payment-note">${t('pay_note_telebirr')}</p>
         </div>
-
         <div class="payment-card" style="text-align:center;padding:32px">
           <div style="font-size:2rem;margin-bottom:10px">💵</div>
           <div class="payment-type" style="text-align:center;margin-bottom:6px">Walk-In</div>
@@ -1957,7 +2507,8 @@
         setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig }, 2000);
       }).catch(() => {
         const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
         btn.classList.add('copied');
         btn.innerHTML = `✓ ${t('copied_btn')}`;
         showToast(t('copied_btn'));
@@ -1969,32 +2520,30 @@
     function renderDev() {
       document.getElementById('devContent').innerHTML = `
         <div class="dev-card">
-          <div class="dev-avatar">AK</div>
-          <div class="dev-name">AK Digital Marketing</div>
-          <div class="dev-role">${t('dev_eyebrow')} · Adama, Ethiopia</div>
+          <div class="dev-avatar">${DEV_INFO.initials}</div>
+          <div class="dev-name">${DEV_INFO.name}</div>
+          <div class="dev-role">${t('dev_eyebrow')} · ${RESTAURANT_INFO.location}, Ethiopia</div>
           <p class="dev-bio">${t('dev_bio')}</p>
           <div class="dev-links">
-            <a class="dev-link" href="mailto:info@yobar.et">✉ Contact</a>
-            <a class="dev-link" href="#">🌐 Website</a>
+            <a class="dev-link" href="mailto:${DEV_INFO.contactEmail}">✉ Contact</a>
+            ${DEV_INFO.websiteUrl !== '#' ? `<a class="dev-link" href="${DEV_INFO.websiteUrl}">🌐 Website</a>` : ''}
           </div>
         </div>
         <div class="dev-card">
           <div class="dev-tech-label">${t('dev_tech')}</div>
           <div class="dev-tags">
-            <span class="dev-tag">HTML5</span>
-            <span class="dev-tag">CSS3</span>
-            <span class="dev-tag">Vanilla JS</span>
-            <span class="dev-tag">Google Fonts</span>
+            <span class="dev-tag">HTML5</span><span class="dev-tag">CSS3</span>
+            <span class="dev-tag">Vanilla JS</span><span class="dev-tag">Google Fonts</span>
             <span class="dev-tag">Cormorant Garamond</span>
-           
             <span class="dev-tag">Intersection Observer</span>
             <span class="dev-tag">CSS Variables</span>
             <span class="dev-tag">i18n (3 Languages)</span>
-            <span class="dev-tag">Dark/Light Theme</span>
+            <span class="dev-tag">Dark / Light Theme</span>
+            <span class="dev-tag">Ripple Transition</span>
           </div>
         </div>
         <div style="text-align:center;padding:20px;color:var(--text-dim);font-size:.65rem;letter-spacing:2px;text-transform:uppercase">
-          © 2026 Sample Bar &amp; Restaurant · Built By AK Digital Marketing in Adama, Ethiopia
+          © ${RESTAURANT_INFO.copyright} ${RESTAURANT_INFO.name} · Built by ${DEV_INFO.name}
         </div>
       `;
     }
