@@ -4,25 +4,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Saveur — Premium Restaurant Menu</title>
+  <title>Sample Bar &amp; Restaurant — Digital Menu</title>
   <meta name="description"
-    content="A premium restaurant digital menu with elegant design, multi-language support and light/dark themes." />
+    content="Sample Bar &amp; Restaurant digital menu — Taste every thing. Snacks, Pizza, Juices, Hot Drinks, Salads &amp; Fish." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <style>
-    /* =========================================================
-   SAVEUR — Premium Restaurant Menu (single-file web app)
-   Architecture:
-     :root tokens  -> theme system (light/dark)
-     .app          -> root layout
-     .screen       -> view (home / details / payment / about)
-     .nav          -> bottom navigation
-     JS: i18n, theme, navigation, details sheet
-   ========================================================= */
-
     /* ---------- Design tokens ---------- */
     :root {
       --bg: #fbfaf7;
@@ -33,7 +23,6 @@
       --muted: #a8a195;
       --line: rgba(20, 15, 10, .08);
       --accent: #ff5a1f;
-      /* warm signature orange */
       --accent-soft: #fff1ea;
       --gold: #c9a14a;
       --shadow-sm: 0 2px 10px rgba(20, 15, 10, .05);
@@ -346,40 +335,36 @@
       transform: rotate(15deg)
     }
 
-    /* ---------- Categories — Premium Semicircle Arc ---------- */
     .cats-wrapper {
       margin-top: 32px;
       position: relative;
       overflow: hidden;
-      height: 220px;
-      /* Smooth dissolve into section below */
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+      height: 210px;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
     }
 
-    /* Cinema edge vignette */
     .cats-wrapper::before,
     .cats-wrapper::after {
       content: "";
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 80px;
+      width: 90px;
       z-index: 3;
       pointer-events: none;
     }
 
     .cats-wrapper::before {
       left: 0;
-      background: linear-gradient(90deg, var(--bg) 20%, transparent)
+      background: linear-gradient(90deg, var(--bg) 15%, transparent)
     }
 
     .cats-wrapper::after {
       right: 0;
-      background: linear-gradient(-90deg, var(--bg) 20%, transparent)
+      background: linear-gradient(-90deg, var(--bg) 15%, transparent)
     }
 
-    /* Center accent spotlight */
     .cats-spotlight {
       position: absolute;
       top: 0;
@@ -393,35 +378,24 @@
     }
 
     .cats {
-      display: flex;
-      gap: 0;
-      overflow-x: scroll;
-      scrollbar-width: none;
-      height: 220px;
-      align-items: flex-start;
-      padding-top: 12px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
       cursor: grab;
     }
 
-    .cats:active {
-      cursor: grabbing
-    }
-
-    .cats::-webkit-scrollbar {
-      display: none
-    }
-
-    .cats-pad {
-      flex: 0 0 0px;
-      pointer-events: none;
-      flex-shrink: 0
+    .cats.dragging {
+      cursor: grabbing;
     }
 
     .cat {
-      flex: 0 0 auto;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 116px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -429,8 +403,6 @@
       cursor: pointer;
       padding: 4px 10px;
       will-change: transform, opacity;
-      transform-origin: center center;
-      scroll-snap-align: center;
     }
 
     .cat-bubble {
@@ -870,7 +842,6 @@
       }
     }
 
-    /* Details body */
     .details-body {
       background: var(--surface);
       padding: 30px 24px 40px;
@@ -925,16 +896,6 @@
       font-size: 13px;
     }
 
-    .chip .star {
-      color: #f5a623
-    }
-
-    .chip .count {
-      color: var(--text-soft);
-      font-weight: 500;
-      margin-left: 2px
-    }
-
     .subhead {
       text-align: left;
       margin: 26px 0 12px;
@@ -975,7 +936,11 @@
       font-size: 26px
     }
 
-    /* Payment & About screens */
+    /* ============================================================
+       PAYMENT LIST — replaces the old pay-grid / pay-card grid
+       Each method: outer card → header row (icon badge + name/sub)
+                                 → account row (label + number + copy btn)
+       ============================================================ */
     .panel {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -998,88 +963,136 @@
       margin: 0
     }
 
-    .pay-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-top: 18px
+    /* Vertical list of payment method cards */
+    .pay-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
     }
 
-    .pay-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 18px;
+    /* Individual method card */
+    .pay-item {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
       border-radius: 20px;
-      background: linear-gradient(135deg, var(--surface-2), var(--surface));
-      border: 1px solid var(--line);
-      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s var(--ease);
     }
 
-    .pay-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md)
+    .pay-item:hover {
+      box-shadow: var(--shadow-md);
     }
 
-    .pay-card .emoji {
-      font-size: 32px
-    }
-
-    .pay-card .name {
-      font-weight: 700;
-      font-size: 15px
-    }
-
-    .pay-card .info {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-top: 2px
-    }
-
-    /* Copy account number */
-    .bank-info {
+    /* Top header row: icon badge + name & subtitle */
+    .pay-item-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap
+      gap: 14px;
+      padding: 16px 18px 14px;
+    }
+
+    .pay-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .pay-icon-badge svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .pay-item-title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .pay-item-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    /* Account / phone number row */
+    .pay-item-account {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 14px 14px;
+      padding: 14px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .pay-account-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .pay-account-num {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--text);
     }
 
     .copy-btn {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
+      gap: 6px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      font-size: 11px;
-      font-weight: 700;
+      background: var(--surface);
+      color: var(--text-soft);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
       cursor: pointer;
-      transition: background .2s var(--ease), transform .2s var(--ease);
+      transition: background .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+      flex-shrink: 0;
     }
 
     .copy-btn:hover {
-      background: var(--accent);
-      color: #fff;
-      transform: scale(1.04)
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.03);
     }
 
     .copy-btn.copied {
       background: #16a34a;
       border-color: #16a34a;
-      color: #fff
+      color: #fff;
     }
 
+    .copy-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* About */
     .about-hero {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       padding: 60px 30px;
       color: #fff;
-      background:
-        radial-gradient(ellipse at 30% 20%, rgba(255, 90, 31, .5), transparent 60%),
-        linear-gradient(135deg, #1a1410, #0c0a09);
+      background: radial-gradient(ellipse at 30% 20%, rgba(255, 90, 31, .5), transparent 60%), linear-gradient(135deg, #1a1410, #0c0a09);
       margin-bottom: 20px;
     }
 
@@ -1167,7 +1180,7 @@
       background: #f6f1e8
     }
 
-    /* Loading overlay */
+    /* Loader */
     .loader {
       position: fixed;
       inset: 0;
@@ -1230,7 +1243,7 @@
   <!-- Loading screen -->
   <div class="loader" id="loader" aria-hidden="true">
     <div class="mark"><img
-        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=160&q=80"
+        src="IMG_20260429_192935_666(1).png"
         alt="Saveur" /></div>
   </div>
 
@@ -1240,14 +1253,13 @@
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark"><img
-            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=88&q=80"
+            src="IMG_20260429_192935_666(1).png"
             alt="Saveur logo" /></div>
         <div class="brand-text">
-          <span class="name">Saveur</span>
-          <span class="loc" data-i18n="location">11/2 Diriyah, Riyadh</span>
+          <span class="name">AK Digital Marketing</span>
+          <span class="loc" data-i18n="location">Taste Everything</span>
         </div>
       </div>
-
       <div class="top-actions">
         <div class="lang" id="lang">
           <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
@@ -1258,24 +1270,21 @@
             <span id="langLabel">EN</span>
           </button>
           <div class="lang-menu" role="menu">
-            <button data-lang="en">🇬🇧 English</button>
+            <button data-lang="en">us English</button>
             <button data-lang="am">🇪🇹 አማርኛ (Amharic)</button>
             <button data-lang="om">🇪🇹 Afaan Oromoo</button>
           </div>
         </div>
-
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
       </div>
     </header>
 
     <!-- ============ HOME SCREEN ============ -->
     <section class="screen active" id="home">
-
       <div class="hero">
         <h1 data-i18n="heroTitle">Hungry? <span class="accent">Order &amp; Eat.</span></h1>
         <p data-i18n="heroSub">Hand-crafted dishes from our chef, served fresh every day.</p>
       </div>
-
       <div class="search">
         <div class="search-field">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
@@ -1292,17 +1301,14 @@
           </svg>
         </button>
       </div>
-
       <div class="cats-wrapper">
         <div class="cats-spotlight"></div>
         <div class="cats" id="cats" role="tablist"></div>
       </div>
-
       <div class="section-title">
         <h2 data-i18n="popular">Popular Today</h2>
         <a href="#" data-i18n="seeAll">See all</a>
       </div>
-
       <div class="grid" id="grid"></div>
     </section>
 
@@ -1312,75 +1318,145 @@
         <h1 data-i18n="payTitle">Payment <span class="accent">Information</span></h1>
         <p data-i18n="paySub">We accept all major payment methods, at the table or online.</p>
       </div>
-
       <div class="panel">
         <h3 data-i18n="payHow">How to pay</h3>
         <p data-i18n="payHowText">Show this menu to your server when you're ready. You can settle the bill with cash,
           card or your preferred mobile wallet. Service charge included.</p>
-        <div class="pay-grid">
-          <div class="pay-card">
-            <div class="emoji">💳</div>
-            <div>
-              <div class="name">Visa / Mastercard</div>
-              <div class="info" data-i18n="payCard">Contactless &amp; chip</div>
+
+        <!-- ── New vertical payment list ── -->
+        <div class="pay-list">
+
+          <!-- Cash -->
+          <div class="pay-item">
+            <div class="pay-item-header">
+              <div class="pay-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="13" rx="2" />
+                  <path d="M16 2H8l-2 5h12l-2-5z" />
+                  <circle cx="12" cy="14" r="2" />
+                </svg>
+              </div>
+              <div>
+                <div class="pay-item-title" data-i18n="payCash">Cash</div>
+                <div class="pay-item-sub">ETB</div>
+              </div>
             </div>
           </div>
-          <div class="pay-card">
-            <div class="emoji">📱</div>
-            <div>
-              <div class="name">Apple / Google Pay</div>
-              <div class="info" data-i18n="payMobile">Tap to pay</div>
+
+          <!-- Commercial Bank of Ethiopia -->
+          <div class="pay-item">
+            <div class="pay-item-header">
+              <div class="pay-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M16 10v11M12 10v11" />
+                </svg>
+              </div>
+              <div>
+                <div class="pay-item-title">Commercial Bank</div>
+                <div class="pay-item-sub">CBE — Ethiopia</div>
+              </div>
+            </div>
+            <div class="pay-item-account">
+              <div>
+                <div class="pay-account-label">Account Number</div>
+                <div class="pay-account-num">10001200000789</div>
+              </div>
+              <button class="copy-btn" data-copy="1000123456789" aria-label="Copy CBE account number">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                Copy
+              </button>
             </div>
           </div>
-          <div class="pay-card">
-            <div class="emoji">💵</div>
-            <div>
-              <div class="name" data-i18n="payCash">Cash</div>
-              <div class="info">SAR · USD · EUR</div>
+
+          <!-- Telebirr -->
+          <div class="pay-item">
+            <div class="pay-item-header">
+              <div class="pay-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <path d="M12 18h.01" />
+                  <path d="M9 7h6" />
+                </svg>
+              </div>
+              <div>
+                <div class="pay-item-title">Telebirr</div>
+                <div class="pay-item-sub">Ethio Telecom Mobile</div>
+              </div>
+            </div>
+            <div class="pay-item-account">
+              <div>
+                <div class="pay-account-label">Phone Number</div>
+                <div class="pay-account-num">09330000007</div>
+              </div>
+              <button class="copy-btn" data-copy="0911234567" aria-label="Copy Telebirr number">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                Copy
+              </button>
             </div>
           </div>
-          <div class="pay-card bank-card">
-            <div class="emoji">🏦</div>
-            <div style="flex:1">
-              <div class="name" data-i18n="payBank">Bank Transfer</div>
-              <div class="info bank-info">ET91 0004 0100 0000 0123 456 <button class="copy-btn" id="copyAccBtn"
-                  aria-label="Copy account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" width="14" height="14">
-                    <rect x="9" y="9" width="13" height="13" rx="2" />
-                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                  </svg><span id="copyLabel">Copy</span></button></div>
+
+          <!-- Awash Bank -->
+          <div class="pay-item">
+            <div class="pay-item-header">
+              <div class="pay-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 20h20M4 20V10m16 10V10M12 20V4M8 10V4M16 10V4M2 10h20" />
+                </svg>
+              </div>
+              <div>
+                <div class="pay-item-title">Awash Bank</div>
+                <div class="pay-item-sub">Awash International Bank</div>
+              </div>
+            </div>
+            <div class="pay-item-account">
+              <div>
+                <div class="pay-account-label">Account Number</div>
+                <div class="pay-account-num">0132456789001</div>
+              </div>
+              <button class="copy-btn" data-copy="0132456789001" aria-label="Copy Awash account number">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                Copy
+              </button>
             </div>
           </div>
-        </div>
+
+        </div><!-- /pay-list -->
       </div>
     </section>
 
     <!-- ============ ABOUT SCREEN ============ -->
     <section class="screen" id="about">
       <div class="about-hero">
-        <h2 data-i18n="aboutTitle">A taste of <em>tradition,</em><br />plated for today.</h2>
-        <p data-i18n="aboutSub">Saveur was founded in 2014 by chef Layla Haddad with a simple promise: honest
-          ingredients, slow craft, and the warmth of a family table.</p>
+        <h2 data-i18n="aboutTitle">Sample Bar &amp; <em>Restaurant</em></h2>
+        <p data-i18n="aboutSub">We believe good food should feel like everything. From hearty burgers and fresh juices
+          to wood-fired pizzas and fish delicacies — every bite tells a story.</p>
       </div>
-
       <div class="stats">
         <div class="stat">
-          <div class="n">12+</div>
-          <div class="l" data-i18n="aboutYears">Years</div>
-        </div>
-        <div class="stat">
-          <div class="n">48</div>
+          <div class="n">20+</div>
           <div class="l" data-i18n="aboutDishes">Dishes</div>
         </div>
         <div class="stat">
-          <div class="n">4.9</div>
+          <div class="n">6</div>
+          <div class="l" data-i18n="aboutCats">Categories</div>
+        </div>
+        <div class="stat">
+          <div class="n">4.8</div>
           <div class="l" data-i18n="aboutRating">Rating</div>
         </div>
       </div>
-
       <div class="panel" style="margin-top:18px">
         <h3 data-i18n="aboutVisit">Visit us</h3>
-        <p data-i18n="aboutHours">Mon–Sun · 11:00 – 23:00<br />11/2 Diriyah Avenue, Riyadh<br />+966 (0) 11 555 0142</p>
+        <p data-i18n="aboutHours">Mon–Sun · Open Daily<br />Addis Ababa, Ethiopia</p>
       </div>
     </section>
 
@@ -1401,20 +1477,15 @@
         <div class="big-price"><em>$</em><span id="dPrice">5.33</span></div>
         <div class="hero-visual" id="dVisual"><img id="dVisualImg" alt="" /></div>
       </div>
-
       <div class="details-body">
         <h3 id="dName2">Noodles Twistara</h3>
-        <p class="description" id="dDesc">Chewy noodles served in a rich, flavorful broth, topped with fresh vegetables,
-          meat or egg. A comforting bowl that is warm, hearty and satisfying in every bite.</p>
-
+        <p class="description" id="dDesc">Chewy noodles served in a rich, flavorful broth.</p>
         <div class="meta-row">
           <div class="chip"><span class="dot">🍴</span><span data-i18n="chefSpecial">Chef's Special</span></div>
           <div class="chip"><span class="dot">⏱</span><span>15–20 min</span></div>
         </div>
-
         <div class="subhead" data-i18n="ingredients">Ingredients</div>
         <ul class="ingredients" id="dIngredients"></ul>
-
         <div class="subhead" data-i18n="extras">Extras Provided</div>
         <ul class="ingredients">
           <li><span class="emoji">🧂</span><span data-i18n="exSalt">Sea Salt</span></li>
@@ -1451,185 +1522,162 @@
   </nav>
 
   <script>
-    /* =====================================================
-       SAVEUR — Application Logic
-       ===================================================== */
-
-    /* ---------- i18n dictionary ---------- */
     const I18N = {
       en: {
-        location: "11/2 Diriyah, Riyadh",
+        location: "Taste every thing",
         heroTitle: 'Hungry? <span class="accent">Order &amp; Eat.</span>',
-        heroSub: "Hand-crafted dishes from our chef, served fresh every day.",
+        heroSub: "Fresh food, cold drinks and good vibes — served every day at Yo Bar & Restaurant.",
         searchPh: "Search dishes…",
-        popular: "Popular Today",
-        seeAll: "See all",
+        popular: "Our Menu", seeAll: "See all",
         navHome: "Home", navPay: "Payment", navAbout: "About",
         payTitle: 'Payment <span class="accent">Information</span>',
         paySub: "We accept all major payment methods, at the table or online.",
         payHow: "How to pay",
         payHowText: "Show this menu to your server when you're ready. You can settle the bill with cash, card or your preferred mobile wallet. Service charge included.",
         payCard: "Contactless & chip", payMobile: "Tap to pay", payCash: "Cash", payBank: "Bank Transfer",
-        aboutTitle: 'A taste of <em>tradition,</em><br/>plated for today.',
-        aboutSub: "Saveur was founded in 2014 by chef Layla Haddad with a simple promise: honest ingredients, slow craft, and the warmth of a family table.",
-        aboutYears: "Years", aboutDishes: "Dishes", aboutRating: "Rating",
+        aboutTitle: 'Yo Bar &amp; <em>Restaurant</em>',
+        aboutSub: "We believe good food should feel like everything. From hearty burgers and fresh juices to wood-fired pizzas and fish delicacies — every bite tells a story.",
+        aboutDishes: "Dishes", aboutCats: "Categories", aboutRating: "Rating",
         aboutVisit: "Visit us",
-        aboutHours: "Mon–Sun · 11:00 – 23:00<br/>11/2 Diriyah Avenue, Riyadh<br/>+966 (0) 11 555 0142",
-        small: "Small", medium: "Medium", large: "Large",
+        aboutHours: "Mon–Sun · Open Daily<br/>Addis Ababa, Ethiopia",
         chefSpecial: "Chef's Special", ingredients: "Ingredients", extras: "Extras Provided",
         exSalt: "Sea Salt", exChili: "Chili Oil", exLemon: "Lemon", exHerbs: "Fresh Herbs",
-        cats: { all: "All", drinks: "Drinks", snack: "Snack", fruits: "Fruits", food: "Food", dessert: "Dessert" }
+        cats: { all: "All", snack: "Snack", pizza: "Pizza", juice: "Juice", hotdrinks: "Hot Drinks", salad: "Salad", fish: "Fish" }
       },
       am: {
-        location: "11/2 ዲሪያህ፣ ሪያድ",
+        location: "ሁሉንም ይሰማዎ",
         heroTitle: 'ተራብክ? <span class="accent">እዘዝ እና ብላ።</span>',
-        heroSub: "በሼፋችን የተዘጋጁ ትኩስ እና ጣዕም ያላቸው ምግቦች በየቀኑ።",
+        heroSub: "ትኩስ ምግብ፣ ቀዝቃዛ መጠጦች እና ደስ የሚሰኝ ሁኔታ — ዕለቱን ሙሉ ወደ ዮ ባር & ሬስቶራንት።",
         searchPh: "ምግቦችን ፈልግ…",
-        popular: "ዛሬ ተወዳጅ",
-        seeAll: "ሁሉንም ይመልከቱ",
+        popular: "ምናሌያችን", seeAll: "ሁሉንም ይመልከቱ",
         navHome: "መነሻ", navPay: "ክፍያ", navAbout: "ስለ እኛ",
         payTitle: 'የክፍያ <span class="accent">መረጃ</span>',
         paySub: "ሁሉንም ዋና ዋና የክፍያ መንገዶችን እንቀበላለን።",
         payHow: "እንዴት መክፈል እንዳለበት",
         payHowText: "ዝግጁ ሲሆኑ ይህን ሜኑ ለአስተናጋጁ ያሳዩ። በጥሬ ገንዘብ፣ በካርድ ወይም በሞባይል ቦርሳ መክፈል ይችላሉ።",
         payCard: "ኮንታክትለስ እና ቺፕ", payMobile: "ለመክፈል ይንኩ", payCash: "ጥሬ ገንዘብ", payBank: "የባንክ ዝውውር",
-        aboutTitle: 'የ<em>ባህል</em> ጣዕም፣<br/>ለዛሬ የቀረበ።',
-        aboutSub: "ሳቨር በ2014 በሼፍ ላይላ ሐዳድ ተመሰረተ — ቅን ምግቦች፣ ለዘገምተኛ ስራ ቀና ፍቅር።",
-        aboutYears: "ዓመታት", aboutDishes: "ምግቦች", aboutRating: "ደረጃ",
+        aboutTitle: 'ዮ ባር &amp; <em>ሬስቶራንት</em>',
+        aboutSub: "ጥሩ ምግብ ሁሉንም ነገር እንደሚሰማዎ እናምናለን። ከምርጥ በርገር እስከ ዓሣ ምግቦች — ሁሉም ትዕምርት አለው።",
+        aboutDishes: "ምግቦች", aboutCats: "ምድቦች", aboutRating: "ደረጃ",
         aboutVisit: "ይጎብኙን",
-        aboutHours: "ሰኞ–እሁድ · 11:00 – 23:00<br/>11/2 ዲሪያህ መንገድ፣ ሪያድ<br/>+966 (0) 11 555 0142",
-        small: "ትንሽ", medium: "መካከለኛ", large: "ትልቅ",
+        aboutHours: "ሰኞ–እሁድ · ዕለቱን ክፍት<br/>አዲስ አበባ፣ ኢትዮጵያ",
         chefSpecial: "የሼፍ ምርጫ", ingredients: "ግብዓቶች", extras: "የተጨማሪ ግብዓቶች",
         exSalt: "የባህር ጨው", exChili: "በርበሬ ዘይት", exLemon: "ሎሚ", exHerbs: "ትኩስ ቅጠላ ቅጠል",
-        cats: { all: "ሁሉም", drinks: "መጠጦች", snack: "መክሰስ", fruits: "ፍራፍሬ", food: "ምግብ", dessert: "ጣፋጭ" }
+        cats: { all: "ሁሉም", snack: "መክሰስ", pizza: "ፒዛ", juice: "ጁስ", hotdrinks: "ሞቅ ያሉ", salad: "ሰላጣ", fish: "ዓሣ" }
       },
       om: {
-        location: "11/2 Diriyah, Riyadh",
+        location: "Waan hunda ni hubatta",
         heroTitle: 'Beela qabda? <span class="accent">Ajaji fi Nyaadhu.</span>',
-        heroSub: "Nyaata harkaan hojjetame, guyyaa hunda haaraan dhihaata.",
+        heroSub: "Nyaata haaraa, dhugaatii qabbanaa'aa — guyyaa hunda Yo Bar & Restaurant.",
         searchPh: "Nyaata barbaadi…",
-        popular: "Har’a Beekamoo",
-        seeAll: "Hunda ilaali",
-        navHome: "Mana", navPay: "Kaffaltii", navAbout: "Waa’ee Keenya",
+        popular: "Menuu Keenya", seeAll: "Hunda ilaali",
+        navHome: "Mana", navPay: "Kaffaltii", navAbout: "Waa'ee Keenya",
         payTitle: 'Odeeffannoo <span class="accent">Kaffaltii</span>',
-        paySub: "Maloota kaffaltii hunda ni fudhanna — minjaala irratti yookaan toora interneetii irratti.",
+        paySub: "Maloota kaffaltii hunda ni fudhanna.",
         payHow: "Akkamitti kaffaluu",
-        payHowText: "Yeroo qophooftan, menu kana tajaajilaa keessaniif agarsiisaa. Maallaqa, kaardii ykn moobaayilaan kaffaluu dandeessu.",
+        payHowText: "Yeroo qophooftan, menu kana tajaajilaa keessaniif agarsiisaa.",
         payCard: "Tuqaa-malee fi chiipii", payMobile: "Kaffaluuf tuqi", payCash: "Maallaqa", payBank: "Daddabarsa Baankii",
-        aboutTitle: 'Dhandhama <em>aadaa,</em><br/>har’aaf qophaa’e.',
-        aboutSub: "Saveur bara 2014 keessa Shef Layla Haddad'tiin hundeeffame — qabeenya dhugaa, hojii suuta, fi ho’ina maatii.",
-        aboutYears: "Waggoota", aboutDishes: "Nyaatota", aboutRating: "Sadarkaa",
+        aboutTitle: 'Yo Bar &amp; <em>Restoraantii</em>',
+        aboutSub: "Nyaatni gaarii waan hunda akka siif hubatamu amanna. Burgarii hanga nyaata qurxummii — hundi isaa hiika qaba.",
+        aboutDishes: "Nyaatota", aboutCats: "Kutaalee", aboutRating: "Sadarkaa",
         aboutVisit: "Nu daawwadhaa",
-        aboutHours: "Wix–Dil · 11:00 – 23:00<br/>11/2 Karaa Diriyah, Riyadh<br/>+966 (0) 11 555 0142",
-        small: "Xiqqaa", medium: "Giddu-galeessa", large: "Guddaa",
+        aboutHours: "Wix–Dil · Guyyaa Banaa<br/>Finfinnee, Itoophiyaa",
         chefSpecial: "Filannoo Shefii", ingredients: "Wantoota", extras: "Dabalata Kennaman",
         exSalt: "Soogidda Galaanaa", exChili: "Zayitii Qaaraa", exLemon: "Loomii", exHerbs: "Biqiltoota Haaraa",
-        cats: { all: "Hunda", drinks: "Dhugaatii", snack: "Nyaata Salphaa", fruits: "Fuduraa", food: "Nyaata", dessert: "Mi’aawaa" }
+        cats: { all: "Hunda", snack: "Cuunfaa", pizza: "Piizzaa", juice: "Juusii", hotdrinks: "Ho'aa", salad: "Salaataa", fish: "Qurxummii" }
       }
     };
 
-    /* ---------- Data ---------- */
     const CATEGORIES = [
       { id: "all", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80" },
-      { id: "drinks", img: "https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=200&q=80" },
       { id: "snack", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" },
-      { id: "fruits", img: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=200&q=80" },
-      { id: "food", img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=200&q=80" },
-      { id: "dessert", img: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=200&q=80" },
+      { id: "pizza", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=200&q=80" },
+      { id: "juice", img: "https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=200&q=80" },
+      { id: "hotdrinks", img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=80" },
+      { id: "salad", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" },
+      { id: "fish", img: "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=200&q=80" },
     ];
 
     const IMG = (p) => `https://images.unsplash.com/${p}?auto=format&fit=crop&w=700&q=80`;
     const DISHES = [
-      {
-        id: 1, cat: "food", emoji: "🍜", img: IMG("photo-1569718212165-3a8278d5f624"), tag: "-25%", price: 5.33, descEN: "Hand-pulled noodles in a rich, spiced broth with seasonal vegetables.", ingredients: [["🍜", "Noodles"], ["🌶️", "Chili"], ["🥬", "Bok choy"], ["🥚", "Egg"]],
-        nameEN: "Noodles Twistara", subEN: "With Spicy Sauce",
-        nameAM: "ኑድል ትዊስታራ", subAM: "በቅመም ሾርባ",
-        nameOM: "Nuudilii Twistara", subOM: "Sosii Qaaraa Waliin"
-      },
-      {
-        id: 2, cat: "food", emoji: "🍕", img: IMG("photo-1565299624946-b28f40a0ae38"), tag: "-25%", price: 8.99, descEN: "Wood-fired sourdough crust, San Marzano tomato, fresh basil and burrata.", ingredients: [["🍅", "Tomato"], ["🧀", "Burrata"], ["🌿", "Basil"], ["🫒", "Olives"]],
-        nameEN: "Pizza Sicilia", subEN: "Stone Oven Baked",
-        nameAM: "ፒዛ ሲሲሊያ", subAM: "በድንጋይ የተጋገረ",
-        nameOM: "Pizzaa Siisiiliyaa", subOM: "Eelee Dhagaa Keessatti Bilcheeffame"
-      },
-      {
-        id: 3, cat: "snack", emoji: "🍔", img: IMG("photo-1568901346375-23c9450c58cd"), tag: "NEW", price: 7.49, descEN: "Aged-beef patty, aged cheddar, smoked onion jam and brioche bun.", ingredients: [["🥩", "Beef"], ["🧀", "Cheddar"], ["🥬", "Lettuce"], ["🍞", "Brioche"]],
-        nameEN: "Brioche Burger", subEN: "With Smoked Jam",
-        nameAM: "ብሪዮሽ በርገር", subAM: "ከጤስ መረቅ ጋር",
-        nameOM: "Burgar Birooshii", subOM: "Murtii Aaraa Waliin"
-      },
-      {
-        id: 4, cat: "food", emoji: "🍢", img: IMG("photo-1529193591184-b1d58069ecdd"), tag: "-15%", price: 6.20, descEN: "Marinated chicken skewers, citrus, peppers and warm flatbread.", ingredients: [["🍗", "Chicken"], ["🫑", "Pepper"], ["🧅", "Onion"], ["🌶️", "Spice"]],
-        nameEN: "Skewer Trio", subEN: "Charcoal Grilled",
-        nameAM: "ሶስት ሺሽ", subAM: "በከሰል የተጠበሰ",
-        nameOM: "Sadii Skiiweerii", subOM: "Cilee Irratti Waadame"
-      },
-      {
-        id: 5, cat: "drinks", emoji: "🍹", img: IMG("photo-1497534446932-c925b458314e"), tag: "FRESH", price: 4.10, descEN: "Cold-pressed pineapple, mint and a touch of cardamom syrup.", ingredients: [["🍍", "Pineapple"], ["🌿", "Mint"], ["🍋", "Lime"], ["🧊", "Ice"]],
-        nameEN: "Pineapple Frost", subEN: "Cold Pressed",
-        nameAM: "አናናስ ፍሮስት", subAM: "በቀዝቃዛ የተጨመቀ",
-        nameOM: "Painapilii Frost", subOM: "Qabbaneessaa Cuunfame"
-      },
-      {
-        id: 6, cat: "fruits", emoji: "🍓", img: IMG("photo-1490474418585-ba9bad8fd0ea"), tag: "BIO", price: 5.75, descEN: "Seasonal fruit bowl with greek yogurt, honey and toasted almonds.", ingredients: [["🍓", "Berries"], ["🥝", "Kiwi"], ["🍯", "Honey"], ["🌰", "Almonds"]],
-        nameEN: "Garden Bowl", subEN: "Yogurt & Honey",
-        nameAM: "የአትክልት ጎድጓዳ ሳህን", subAM: "እርጎ እና ማር",
-        nameOM: "Waciitii Iddoo", subOM: "Yoogartii fi Damma"
-      },
-      {
-        id: 7, cat: "dessert", emoji: "🍰", img: IMG("photo-1565958011703-44f9829ba187"), tag: "-10%", price: 6.50, descEN: "Vanilla bean cheesecake, salted caramel, biscuit crumble.", ingredients: [["🧀", "Cream"], ["🍦", "Vanilla"], ["🍪", "Biscuit"], ["🍯", "Caramel"]],
-        nameEN: "Caramel Cloud", subEN: "Vanilla Bean",
-        nameAM: "ካራሜል ክላውድ", subAM: "ቫኒላ ቢን",
-        nameOM: "Karaameel Duumessa", subOM: "Vaanilaa Firii"
-      },
-      {
-        id: 8, cat: "snack", emoji: "🌮", img: IMG("photo-1565299585323-38d6b0865b47"), tag: "HOT", price: 5.90, descEN: "Soft corn tortillas, slow-cooked beef, lime crema and pickled onions.", ingredients: [["🌽", "Corn"], ["🥩", "Beef"], ["🧅", "Onion"], ["🌶️", "Salsa"]],
-        nameEN: "Street Tacos", subEN: "Slow Cooked Beef",
-        nameAM: "ስትሪት ታኮ", subAM: "በዝግታ የተቀቀለ ስጋ",
-        nameOM: "Taakos Daandii", subOM: "Foon Suuta Bilcheeffame"
-      },
+      // ── SNACK ──
+      { id: 1, cat: "snack", emoji: "🍔", img: IMG("photo-1568901346375-23c9450c58cd"), tag: "SPECIAL", price: 530, currency: "ETB", descEN: "Our signature burger with fresh vegetables, special sauce and toasted bun.", ingredients: [["🥩", "Beef"], ["🧀", "Cheese"], ["🥬", "Lettuce"], ["🍅", "Tomato"]], nameEN: "Yo Special Burger", subEN: "Signature Burger", nameAM: "ዮ ስፔሻል በርገር", subAM: "ሳይኔቸር በርገር", nameOM: "Yo Special Burger", subOM: "Burgara Addaa" },
+      { id: 2, cat: "snack", emoji: "🍔", img: IMG("photo-1550547660-d9450f859349"), tag: "700", price: 700, currency: "ETB", descEN: "A deluxe Feshta-style burger loaded with premium toppings.", ingredients: [["🥩", "Beef"], ["🧀", "Cheese"], ["🥚", "Egg"], ["🌶️", "Sauce"]], nameEN: "Yo Feshta Burger", subEN: "Deluxe Burger", nameAM: "ዮ ፌሽታ በርገር", subAM: "ዴሉክስ በርገር", nameOM: "Yo Feshta Burger", subOM: "Burgara Guddaa" },
+      { id: 3, cat: "snack", emoji: "🍔", img: IMG("photo-1553979459-d2229ba7433b"), tag: "580", price: 580, currency: "ETB", descEN: "A big, satisfying burger with double patty and all the classic toppings.", ingredients: [["🥩", "Beef"], ["🧅", "Onion"], ["🥬", "Lettuce"], ["🍞", "Bun"]], nameEN: "Big Burger", subEN: "Double Patty", nameAM: "ቢግ በርገር", subAM: "ድርብ ፓቲ", nameOM: "Big Burger", subOM: "Kabaaja Guddaa" },
+      { id: 4, cat: "snack", emoji: "🌯", img: IMG("photo-1529193591184-b1d58069ecdd"), tag: "580", price: 580, currency: "ETB", descEN: "Tender chicken wrapped in warm flatbread with garlic sauce and pickles.", ingredients: [["🍗", "Chicken"], ["🧄", "Garlic"], ["🥒", "Pickle"], ["🫓", "Bread"]], nameEN: "Chicken Shewarema", subEN: "Chicken Wrap", nameAM: "ቺክን ሸዋረማ", subAM: "ቺክን ራፕ", nameOM: "Chicken Shewarema", subOM: "Chicken Wrap" },
+      { id: 5, cat: "snack", emoji: "🥪", img: IMG("photo-1528735602780-2552fd46c7af"), tag: "370", price: 370, currency: "ETB", descEN: "Fluffy bread filled with a seasoned fried egg and fresh vegetables.", ingredients: [["🥚", "Egg"], ["🍞", "Bread"], ["🥬", "Lettuce"], ["🍅", "Tomato"]], nameEN: "Egg Sandwich", subEN: "Classic Sandwich", nameAM: "እንቁላል ሳንድዊች", subAM: "ክላሲክ ሳንድዊች", nameOM: "Egg Sandwich", subOM: "Saandwichii Foodaa" },
+      { id: 6, cat: "snack", emoji: "🥪", img: IMG("photo-1567620905732-2d1ec7ab7445"), tag: "350", price: 350, currency: "ETB", descEN: "Fresh garden vegetables layered between soft bread slices.", ingredients: [["🥬", "Lettuce"], ["🍅", "Tomato"], ["🥒", "Cucumber"], ["🫒", "Olive"]], nameEN: "Vegetable Sandwich", subEN: "Garden Fresh", nameAM: "አትክልት ሳንድዊች", subAM: "ትኩስ አትክልት", nameOM: "Vegetable Sandwich", subOM: "Saandwichii Kuduraatii" },
+      { id: 7, cat: "snack", emoji: "🥪", img: IMG("photo-1481070414801-51fd732d7184"), tag: "HOT", price: 530, currency: "ETB", descEN: "Triple-decker sandwich with chicken, cheese, lettuce and our club sauce.", ingredients: [["🍗", "Chicken"], ["🧀", "Cheese"], ["🥬", "Lettuce"], ["🍳", "Egg"]], nameEN: "Club Sandwich", subEN: "Triple Layer", nameAM: "ክለብ ሳንድዊች", subAM: "ሶስት ሽፋን", nameOM: "Club Sandwich", subOM: "Saandwichii Sadii" },
+      { id: 8, cat: "snack", emoji: "🥪", img: IMG("photo-1606755962773-d324e0a13086"), tag: "560", price: 560, currency: "ETB", descEN: "Club sandwich with flaked tuna, fresh vegetables and creamy mayo.", ingredients: [["🐟", "Tuna"], ["🥬", "Lettuce"], ["🍅", "Tomato"], ["🧀", "Mayo"]], nameEN: "Tuna Club Sandwich", subEN: "Tuna & Mayo", nameAM: "ቱና ክለብ ሳንድዊች", subAM: "ቱና እና ማዮ", nameOM: "Tuna Club Sandwich", subOM: "Saandwichii Qurxummii" },
+      { id: 9, cat: "snack", emoji: "🍟", img: IMG("photo-1573080496219-bb080dd4f877"), tag: "350", price: 350, currency: "ETB", descEN: "Golden crispy chips seasoned with our house spice blend.", ingredients: [["🥔", "Potato"], ["🧂", "Salt"], ["🌶️", "Spice"], ["🛢️", "Oil"]], nameEN: "Chips", subEN: "Golden & Crispy", nameAM: "ቺፕስ", subAM: "ወርቃማ እና ሸካራ", nameOM: "Chips", subOM: "Kirispii" },
+
+      // ── PIZZA ──
+      { id: 10, cat: "pizza", emoji: "🍕", img: IMG("photo-1565299624946-b28f40a0ae38"), tag: "SPECIAL", price: 700, currency: "ETB", descEN: "Our house special pizza with a rich blend of premium toppings.", ingredients: [["🍅", "Tomato"], ["🧀", "Cheese"], ["🌿", "Herbs"], ["🫒", "Olives"]], nameEN: "Special Pizza", subEN: "Chef's Special", nameAM: "ስፔሻል ፒዛ", subAM: "የሼፍ ምርጫ", nameOM: "Special Pizza", subOM: "Piizzaa Addaa" },
+      { id: 11, cat: "pizza", emoji: "🍕", img: IMG("photo-1571407970349-bc81e7e96d47"), tag: "850", price: 850, currency: "ETB", descEN: "Loaded super special pizza with extra cheese and premium toppings.", ingredients: [["🧀", "Cheese"], ["🌶️", "Peppers"], ["🍗", "Chicken"], ["🍅", "Tomato"]], nameEN: "Super Special Pizza", subEN: "Extra Loaded", nameAM: "ሱፐር ስፔሻል ፒዛ", subAM: "ተጨማሪ ቅቤ", nameOM: "Super Special Pizza", subOM: "Piizzaa Haalaan Guutame" },
+      { id: 12, cat: "pizza", emoji: "🍕", img: IMG("photo-1628840042765-356cda07504e"), tag: "720", price: 720, currency: "ETB", descEN: "Tender chicken pieces with bell peppers and mozzarella on a crispy crust.", ingredients: [["🍗", "Chicken"], ["🫑", "Peppers"], ["🧀", "Mozzarella"], ["🍅", "Sauce"]], nameEN: "Chicken Pizza", subEN: "Crispy Crust", nameAM: "ቺክን ፒዛ", subAM: "ሸካራ ቅርፊት", nameOM: "Chicken Pizza", subOM: "Piizzaa Lubni" },
+      { id: 13, cat: "pizza", emoji: "🍕", img: IMG("photo-1513104890138-7c749659a591"), tag: "750", price: 750, currency: "ETB", descEN: "Tuna pizza with fresh herbs, onions and a zesty tomato base.", ingredients: [["🐟", "Tuna"], ["🧅", "Onion"], ["🌿", "Herbs"], ["🍅", "Tomato"]], nameEN: "Tuna Special Pizza", subEN: "Sea Flavour", nameAM: "ቱና ስፔሻል ፒዛ", subAM: "የባህር ጣዕም", nameOM: "Tuna Special Pizza", subOM: "Piizzaa Qurxummii" },
+      { id: 14, cat: "pizza", emoji: "🍕", img: IMG("photo-1574071318508-1cdbab80d002"), tag: "570", price: 570, currency: "ETB", descEN: "Classic Margherita with fresh tomato sauce, mozzarella and basil leaves.", ingredients: [["🍅", "Tomato"], ["🧀", "Mozzarella"], ["🌿", "Basil"], ["🫒", "Olive Oil"]], nameEN: "Margherita Pizza", subEN: "Classic Italian", nameAM: "ማርጌሪታ ፒዛ", subAM: "ክላሲክ ጣሊያናዊ", nameOM: "Margherita Pizza", subOM: "Piizzaa Aadaa" },
+      { id: 15, cat: "pizza", emoji: "🍕", img: IMG("photo-1565299585323-38d6b0865b47"), tag: "FASTING", price: 580, currency: "ETB", descEN: "Fasting-friendly tuna pizza with veggies and no animal products.", ingredients: [["🐟", "Tuna"], ["🫑", "Pepper"], ["🌿", "Herbs"], ["🍅", "Tomato"]], nameEN: "Tuna Fasting Pizza", subEN: "Fasting Friendly", nameAM: "ቱና ፆም ፒዛ", subAM: "ለፆም ተስማሚ", nameOM: "Tuna Fasting Pizza", subOM: "Piizzaa Sooma" },
+      { id: 16, cat: "pizza", emoji: "🍕", img: IMG("photo-1565958011703-44f9829ba187"), tag: "450", price: 450, currency: "ETB", descEN: "A fresh veggie pizza packed with colourful seasonal vegetables.", ingredients: [["🥬", "Veggies"], ["🍅", "Tomato"], ["🧅", "Onion"], ["🫑", "Pepper"]], nameEN: "Vegetarian Pizza", subEN: "Garden Veggie", nameAM: "አትክልት ፒዛ", subAM: "አትክልት ፒዛ", nameOM: "Vegetarian Pizza", subOM: "Piizzaa Kuduraatii" },
+
+      // ── JUICE ──
+      { id: 17, cat: "juice", emoji: "🥤", img: IMG("photo-1497534446932-c925b458314e"), tag: "SPECIAL", price: 220, currency: "ETB", descEN: "Our signature blended juice with a secret mix of tropical fruits.", ingredients: [["🍍", "Pineapple"], ["🥭", "Mango"], ["🍊", "Orange"], ["🧊", "Ice"]], nameEN: "Yo Special Juice", subEN: "Signature Blend", nameAM: "ዮ ስፔሻል ጁስ", subAM: "ሳይኔቸር ሚክስ", nameOM: "Yo Special Juice", subOM: "Juusii Addaa" },
+      { id: 18, cat: "juice", emoji: "🥤", img: IMG("photo-1553361371-9b22f78e8b1d"), tag: "160", price: 160, currency: "ETB", descEN: "Creamy Telebea shake made with fresh local ingredients.", ingredients: [["🍌", "Banana"], ["🥛", "Milk"], ["🍯", "Honey"], ["🧊", "Ice"]], nameEN: "Telebea Shake", subEN: "Creamy Shake", nameAM: "ቴሌቤያ ሼክ", subAM: "ክሬሚ ሼክ", nameOM: "Telebea Shake", subOM: "Shaakii Laafaa" },
+      { id: 19, cat: "juice", emoji: "🥤", img: IMG("photo-1610970881699-44a5587cabec"), tag: "200", price: 200, currency: "ETB", descEN: "A vibrant blend of mixed seasonal fruits, chilled and refreshing.", ingredients: [["🍊", "Orange"], ["🍍", "Pineapple"], ["🍋", "Lemon"], ["🧊", "Ice"]], nameEN: "Mixed Juice", subEN: "Seasonal Fruits", nameAM: "ሚክስ ጁስ", subAM: "የወቅቱ ፍሬ", nameOM: "Mixed Juice", subOM: "Juusii Makamaa" },
+      { id: 20, cat: "juice", emoji: "🍫", img: IMG("photo-1579954115545-a95591f28bfc"), tag: "240", price: 240, currency: "ETB", descEN: "Rich chocolate shake blended with fresh milk and cocoa.", ingredients: [["🍫", "Chocolate"], ["🥛", "Milk"], ["🍯", "Honey"], ["🧊", "Ice"]], nameEN: "Chocolate Juice", subEN: "Rich Chocolate", nameAM: "ቸኮሌት ጁስ", subAM: "ሀብታም ቸኮሌት", nameOM: "Chocolate Juice", subOM: "Juusii Chokolaatii" },
+      { id: 21, cat: "juice", emoji: "💪", img: IMG("photo-1638176066666-ffb2f013c7dd"), tag: "200", price: 200, currency: "ETB", descEN: "High-protein shake with banana, milk, oats and honey.", ingredients: [["🍌", "Banana"], ["🥛", "Milk"], ["🌾", "Oats"], ["🍯", "Honey"]], nameEN: "Protein Shake", subEN: "High Protein", nameAM: "ፕሮቲን ሼክ", subAM: "ከፍተኛ ፕሮቲን", nameOM: "Protein Shake", subOM: "Shaakii Pirootiin" },
+      { id: 22, cat: "juice", emoji: "🥑", img: IMG("photo-1523049673857-eb18f1d7b578"), tag: "200", price: 200, currency: "ETB", descEN: "Smooth creamy avocado juice — a local favourite.", ingredients: [["🥑", "Avocado"], ["🥛", "Milk"], ["🍯", "Honey"], ["🧊", "Ice"]], nameEN: "Avocado", subEN: "Creamy Avocado", nameAM: "አቮካዶ", subAM: "ክሬሚ አቮካዶ", nameOM: "Avokadoo", subOM: "Avokadoo Laafaa" },
+      { id: 23, cat: "juice", emoji: "🍑", img: IMG("photo-1553361371-9b22f78e8b1d"), tag: "200", price: 200, currency: "ETB", descEN: "Sweet and smooth fresh papaya juice.", ingredients: [["🍑", "Papaya"], ["🍯", "Honey"], ["🧊", "Ice"], ["🍋", "Lemon"]], nameEN: "Papaya", subEN: "Tropical Fruit", nameAM: "ፓፓያ", subAM: "ሞቃታማ ፍሬ", nameOM: "Paapaayyaa", subOM: "Fuduraa Tropical" },
+      { id: 24, cat: "juice", emoji: "🍍", img: IMG("photo-1589820296156-2454bb8a6ad1"), tag: "250", price: 250, currency: "ETB", descEN: "Cold-pressed fresh pineapple juice, tangy and refreshing.", ingredients: [["🍍", "Pineapple"], ["🍋", "Lemon"], ["🧊", "Ice"], ["🌿", "Mint"]], nameEN: "Pineapple", subEN: "Cold Pressed", nameAM: "አናናስ", subAM: "ቀዝቃዛ ጭምቅ", nameOM: "Annaanaasii", subOM: "Cuunfaa Qabbana" },
+      { id: 25, cat: "juice", emoji: "🍪", img: IMG("photo-1572490122747-3e9197aa5a2e"), tag: "320", price: 320, currency: "ETB", descEN: "Creamy Oreo milkshake with crushed Oreo cookies and milk.", ingredients: [["🍪", "Oreo"], ["🥛", "Milk"], ["🍦", "Ice Cream"], ["🧊", "Ice"]], nameEN: "Oreo Shake", subEN: "Cookie Shake", nameAM: "ኦሬዮ ሼክ", subAM: "ኩኪ ሼክ", nameOM: "Oreo Shake", subOM: "Shaakii Bisikiitii" },
+      { id: 26, cat: "juice", emoji: "🍓", img: IMG("photo-1490474418585-ba9bad8fd0ea"), tag: "300", price: 300, currency: "ETB", descEN: "Fresh strawberry juice blended with milk for a fruity treat.", ingredients: [["🍓", "Strawberry"], ["🥛", "Milk"], ["🍯", "Honey"], ["🧊", "Ice"]], nameEN: "Strawberry", subEN: "Fresh Berries", nameAM: "ስትሮቤሪ", subAM: "ትኩስ ቤሪ", nameOM: "Stirooberii", subOM: "Beeri Haaraa" },
+      { id: 27, cat: "juice", emoji: "🍈", img: IMG("photo-1610970881699-44a5587cabec"), tag: "200", price: 200, currency: "ETB", descEN: "Refreshing chilled Ananas juice — light and tropical.", ingredients: [["🍈", "Ananas"], ["🍋", "Lemon"], ["🧊", "Ice"], ["🌿", "Mint"]], nameEN: "Ananas", subEN: "Tropical Chill", nameAM: "አናናስ ጁስ", subAM: "ቀዝቃዛ ሞቃታማ", nameOM: "Ananaasii", subOM: "Qabbana Tropical" },
+
+      // ── HOT DRINKS ──
+      { id: 28, cat: "hotdrinks", emoji: "☕", img: IMG("photo-1509042239860-f550ce710b93"), tag: "100", price: 100, currency: "ETB", descEN: "Ethiopian-style Makiyato — a rich espresso with a splash of steamed milk.", ingredients: [["☕", "Espresso"], ["🥛", "Milk"], ["🍫", "Cocoa"], ["🧊", "None"]], nameEN: "Makiyato", subEN: "Ethiopian Coffee", nameAM: "ማኪያቶ", subAM: "ኢትዮጵያዊ ቡና", nameOM: "Maakiyaatoo", subOM: "Bunaa Itoophiyaa" },
+      { id: 29, cat: "hotdrinks", emoji: "☕", img: IMG("photo-1447933601403-0c6688de566e"), tag: "80", price: 80, currency: "ETB", descEN: "Classic brewed Ethiopian coffee, served black or with milk.", ingredients: [["☕", "Coffee"], ["💧", "Water"], ["🥛", "Milk Opt."], ["🍬", "Sugar"]], nameEN: "Coffee", subEN: "Classic Brew", nameAM: "ቡና", subAM: "ክላሲክ ቡና", nameOM: "Bunaa", subOM: "Bunaa Aadaa" },
+      { id: 30, cat: "hotdrinks", emoji: "🍵", img: IMG("photo-1597481499666-be65ee4cc6b0"), tag: "150", price: 150, currency: "ETB", descEN: "A special aromatic tea blend with herbs and spices.", ingredients: [["🍵", "Tea"], ["🌿", "Herbs"], ["🍯", "Honey"], ["🫚", "Spice"]], nameEN: "Special Tea", subEN: "Aromatic Blend", nameAM: "ስፔሻል ሻይ", subAM: "አሮማቲክ ሻይ", nameOM: "Shaayii Addaa", subOM: "Shaayii Urgaa" },
+      { id: 31, cat: "hotdrinks", emoji: "☕", img: IMG("photo-1572442388796-11668a67e53d"), tag: "110", price: 110, currency: "ETB", descEN: "Italian-style cappuccino with steamed milk foam.", ingredients: [["☕", "Espresso"], ["🥛", "Milk"], ["💨", "Foam"], ["🍬", "Sugar"]], nameEN: "Cappuccino", subEN: "Italian Style", nameAM: "ካፑቺኖ", subAM: "ጣሊያናዊ", nameOM: "Kaappuchiinoo", subOM: "Caffee Xaaliyaanii" },
+      { id: 32, cat: "hotdrinks", emoji: "☕", img: IMG("photo-1485808191679-5f86510bd652"), tag: "100", price: 100, currency: "ETB", descEN: "Smooth espresso latte with velvety steamed milk.", ingredients: [["☕", "Espresso"], ["🥛", "Milk"], ["💨", "Steam"], ["🍬", "Sugar"]], nameEN: "Latte", subEN: "Velvet Latte", nameAM: "ላቴ", subAM: "ለስላሳ ላቴ", nameOM: "Laattee", subOM: "Laattee Laafaa" },
+      { id: 33, cat: "hotdrinks", emoji: "🍵", img: IMG("photo-1556679343-c7306c1976bc"), tag: "60", price: 60, currency: "ETB", descEN: "Traditional Keshir tea, warm and soothing.", ingredients: [["🍵", "Tea"], ["🌿", "Keshir"], ["💧", "Water"], ["🍬", "Sugar"]], nameEN: "Keshir", subEN: "Traditional Tea", nameAM: "ቀሺር", subAM: "ባህላዊ ሻይ", nameOM: "Keeshir", subOM: "Shaayii Aadaa" },
+      { id: 34, cat: "hotdrinks", emoji: "🍵", img: IMG("photo-1597481499666-be65ee4cc6b0"), tag: "50", price: 50, currency: "ETB", descEN: "Simple hot tea — light and refreshing.", ingredients: [["🍵", "Tea"], ["💧", "Water"], ["🍬", "Sugar"], ["🍋", "Lemon Opt."]], nameEN: "Tea", subEN: "Plain Hot Tea", nameAM: "ሻይ", subAM: "ቀላል ሻይ", nameOM: "Shaayii", subOM: "Shaayii Ho'aa" },
+      { id: 35, cat: "hotdrinks", emoji: "🍋", img: IMG("photo-1556679343-c7306c1976bc"), tag: "80", price: 80, currency: "ETB", descEN: "Hot tea with a fresh slice of lemon — zesty and warming.", ingredients: [["🍵", "Tea"], ["🍋", "Lemon"], ["🍬", "Sugar"], ["💧", "Water"]], nameEN: "Tea with Lemon", subEN: "Zesty Tea", nameAM: "ሻይ ከሎሚ ጋር", subAM: "ዚስቲ ሻይ", nameOM: "Shaayii fi Loomii", subOM: "Shaayii Qaaroomiinaa" },
+      { id: 36, cat: "hotdrinks", emoji: "🌰", img: IMG("photo-1509042239860-f550ce710b93"), tag: "100", price: 100, currency: "ETB", descEN: "Hot nut-infused tea with a rich earthy aroma.", ingredients: [["🌰", "Nuts"], ["🍵", "Tea"], ["🍯", "Honey"], ["💧", "Water"]], nameEN: "Nut Tea", subEN: "Earthy Brew", nameAM: "ነት ሻይ", subAM: "ለዝ ሻይ", nameOM: "Shaayii Diidoo", subOM: "Shaayii Qorichaa" },
+      { id: 37, cat: "hotdrinks", emoji: "🧊", img: IMG("photo-1485808191679-5f86510bd652"), tag: "200", price: 200, currency: "ETB", descEN: "Cold brewed Ethiopian coffee over ice — smooth and refreshing.", ingredients: [["☕", "Coffee"], ["🧊", "Ice"], ["🥛", "Milk"], ["🍬", "Sugar"]], nameEN: "Ice Coffee", subEN: "Cold Brew", nameAM: "አይስ ቡና", subAM: "ቀዝቃዛ ቡና", nameOM: "Bunaa Cilee", subOM: "Bunaa Qabbana" },
+      { id: 38, cat: "hotdrinks", emoji: "🍫", img: IMG("photo-1572490122747-3e9197aa5a2e"), tag: "200", price: 200, currency: "ETB", descEN: "Warm rich hot chocolate made with real cocoa and steamed milk.", ingredients: [["🍫", "Cocoa"], ["🥛", "Milk"], ["🍬", "Sugar"], ["💧", "Water"]], nameEN: "Hot Chocolate", subEN: "Rich Cocoa", nameAM: "ሙቅ ቸኮሌት", subAM: "ሀብታም ካካዎ", nameOM: "Chokolaatii Ho'aa", subOM: "Kokkoo Ho'aa" },
+      { id: 39, cat: "hotdrinks", emoji: "🍮", img: IMG("photo-1485808191679-5f86510bd652"), tag: "200", price: 200, currency: "ETB", descEN: "Sweet hot caramel drink — indulgent and warming.", ingredients: [["🍮", "Caramel"], ["🥛", "Milk"], ["☕", "Espresso"], ["🍬", "Sugar"]], nameEN: "Hot Caramel", subEN: "Sweet & Warm", nameAM: "ሙቅ ካራሜል", subAM: "ጣፋጭ እና ሞቅ", nameOM: "Karaameel Ho'aa", subOM: "Mi'aawaa Ho'aa" },
+      { id: 40, cat: "hotdrinks", emoji: "🫘", img: IMG("photo-1447933601403-0c6688de566e"), tag: "60", price: 60, currency: "ETB", descEN: "Traditional Ethiopian Jebena coffee, brewed the authentic way.", ingredients: [["☕", "Coffee"], ["💧", "Water"], ["🌿", "Rue"], ["🍬", "Sugar"]], nameEN: "Jebena Coffee", subEN: "Traditional Brew", nameAM: "የጀበና ቡና", subAM: "ባህላዊ ቡና", nameOM: "Bunaa Jeebenaa", subOM: "Bunaa Aadaa Itoophiyaa" },
+
+      // ── SALAD ──
+      { id: 41, cat: "salad", emoji: "🥗", img: IMG("photo-1512621776951-a57141f2eefd"), tag: "SPECIAL", price: 550, currency: "ETB", descEN: "Our signature salad with mixed greens, fresh veggies and house dressing.", ingredients: [["🥬", "Greens"], ["🍅", "Tomato"], ["🥒", "Cucumber"], ["🫒", "Olives"]], nameEN: "Special Salad", subEN: "House Dressing", nameAM: "ስፔሻል ሰላጣ", subAM: "ቤት ዱቄት", nameOM: "Salaataa Addaa", subOM: "Salaataa Mana" },
+      { id: 42, cat: "salad", emoji: "🥗", img: IMG("photo-1540420773420-3366772f4999"), tag: "350", price: 350, currency: "ETB", descEN: "A colourful medley of mixed garden vegetables with light dressing.", ingredients: [["🥬", "Lettuce"], ["🍅", "Tomato"], ["🥕", "Carrot"], ["🫑", "Pepper"]], nameEN: "Mixed Salad", subEN: "Garden Fresh", nameAM: "ሚክስ ሰላጣ", subAM: "ትኩስ አትክልት", nameOM: "Salaataa Makamaa", subOM: "Salaataa Kuduraatii" },
+      { id: 43, cat: "salad", emoji: "🥗", img: IMG("photo-1547592180-85f173990554"), tag: "600", price: 600, currency: "ETB", descEN: "Flaked tuna on crisp greens with lemon dressing and capers.", ingredients: [["🐟", "Tuna"], ["🥬", "Greens"], ["🍋", "Lemon"], ["🧂", "Capers"]], nameEN: "Tuna Salad", subEN: "Fresh & Light", nameAM: "ቱና ሰላጣ", subAM: "ትኩስ እና ቀለል", nameOM: "Salaataa Qurxummii", subOM: "Salaataa Laafaa" },
+
+      // ── FISH ──
+      { id: 44, cat: "fish", emoji: "🐟", img: IMG("photo-1559847844-5315695dadae"), tag: "500", price: 500, currency: "ETB", descEN: "Tender fish pieces in a rich tomato-based goulash sauce with herbs.", ingredients: [["🐟", "Fish"], ["🍅", "Tomato"], ["🌿", "Herbs"], ["🧅", "Onion"]], nameEN: "Fish Goulash", subEN: "Rich Tomato Sauce", nameAM: "ፊሽ ጉላሽ", subAM: "ሀብታም ቲማቲም", nameOM: "Fish Goulash", subOM: "Qurxummii Soosiitti" },
+      { id: 45, cat: "fish", emoji: "🐟", img: IMG("photo-1519708227418-c8fd9a32b7a2"), tag: "480", price: 480, currency: "ETB", descEN: "Traditional fish lebleb — a beloved Ethiopian fish specialty.", ingredients: [["🐟", "Fish"], ["🫑", "Pepper"], ["🧅", "Onion"], ["🌶️", "Spice"]], nameEN: "Fish Lebleb", subEN: "Ethiopian Special", nameAM: "ፊሽ ለብለብ", subAM: "ኢትዮጵያዊ ምርጥ", nameOM: "Fish Lebleb", subOM: "Qurxummii Itoophiyaa" },
+      { id: 46, cat: "fish", emoji: "🐟", img: IMG("photo-1580476262798-bddd9f4b7369"), tag: "500", price: 500, currency: "ETB", descEN: "Crispy breaded fish cutlet — golden on the outside, tender inside.", ingredients: [["🐟", "Fish"], ["🍞", "Breadcrumbs"], ["🥚", "Egg"], ["🧂", "Spice"]], nameEN: "Fish Cutlet", subEN: "Crispy Breaded", nameAM: "ፊሽ ካትሌት", subAM: "ሸካራ ዳቦ", nameOM: "Fish Cutlet", subOM: "Qurxummii Dhoqqee" },
     ];
 
-    /* ---------- State ---------- */
     const state = { lang: "en", theme: "light", category: "all", query: "" };
-
-    /* ---------- Helpers ---------- */
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-
     function t(key) { return I18N[state.lang][key] ?? I18N.en[key] ?? key }
     function tCat(id) { return I18N[state.lang].cats[id] ?? I18N.en.cats[id] ?? id }
 
-    /* ---------- i18n applier ---------- */
     function applyI18n() {
-      $$("[data-i18n]").forEach(el => {
-        const v = t(el.dataset.i18n);
-        if (v != null) el.innerHTML = v;
-      });
-      $$("[data-i18n-placeholder]").forEach(el => {
-        el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder));
-      });
+      $$("[data-i18n]").forEach(el => { const v = t(el.dataset.i18n); if (v != null) el.innerHTML = v; });
+      $$("[data-i18n-placeholder]").forEach(el => { el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder)); });
       $("#langLabel").textContent = state.lang.toUpperCase();
       renderCats();
       renderGrid();
     }
 
-    /* ---------- Theme ---------- */
-    function setTheme(theme) {
-      state.theme = theme;
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("saveur-theme", theme);
-    }
-    $("#themeToggle").addEventListener("click", () => {
-      setTheme(state.theme === "light" ? "dark" : "light");
-    });
+    function setTheme(th) { state.theme = th; document.documentElement.setAttribute("data-theme", th); localStorage.setItem("saveur-theme", th); }
+    $("#themeToggle").addEventListener("click", () => setTheme(state.theme === "light" ? "dark" : "light"));
 
-    /* ---------- Language menu ---------- */
     const langWrap = $("#lang");
-    $("#langBtn").addEventListener("click", e => {
-      e.stopPropagation();
-      langWrap.classList.toggle("open");
-    });
+    $("#langBtn").addEventListener("click", e => { e.stopPropagation(); langWrap.classList.toggle("open"); });
     document.addEventListener("click", () => langWrap.classList.remove("open"));
     $$(".lang-menu button").forEach(b => {
       b.addEventListener("click", () => {
@@ -1641,108 +1689,55 @@
       });
     });
 
-    /* ═══════════════════════════════════════════════════════════════
-       PREMIUM SEMICIRCLE ARC — Category Carousel
-       ─────────────────────────────────────────────────────────────
-       Why no lerp: the browser's native scroll momentum + snap IS
-       the easing. A JS lerp running on top creates a second delayed
-       animation that fights it — causing wobble. We read scrollLeft
-       raw every rAF frame and mirror it frame-perfect instead.
-       ═══════════════════════════════════════════════════════════════ */
     const ARC = (() => {
-      let rafId = null;
-
-      // Arc radius: tighter on mobile for a more pronounced arc feel
-      function R() { return window.innerWidth < 640 ? 320 : 460; }
-
-      // Read scrollLeft directly — no lerp, no lag, no wobble
-      function frame(el) {
-        const items = [...el.querySelectorAll('.cat')];
-        if (!items.length) return;
-        const cx = el.scrollLeft + el.offsetWidth * 0.5;
-        const r = R();
-
-        items.forEach(item => {
-          const dx = (item.offsetLeft + item.offsetWidth * 0.5) - cx;
-          const a = dx / r;           // angle in radians
-          const ca = Math.cos(a);      // 1 at center, falls toward edges
-
-          const arcY = r * (1 - ca);                              // bowl drop (px)
-          const scale = 0.80 + 0.26 * Math.pow(Math.max(0, ca), 2); // 1.06 → 0.80
-          const opacity = 0.42 + 0.58 * Math.pow(Math.max(0, ca), 2); // 1.00 → 0.42
-          const tilt = -6 * Math.sin(a);                        // gentle lean ±6°
-
-          item.style.transform = `translateY(${arcY.toFixed(1)}px) scale(${scale.toFixed(4)}) rotateZ(${tilt.toFixed(2)}deg)`;
-          item.style.opacity = opacity.toFixed(4);
-          item.style.zIndex = Math.round(scale * 10);
-        });
-
-        rafId = null;
-      }
-
-      // Schedule exactly one frame per scroll tick — no loop needed
-      function onScroll(el) {
-        if (!rafId) rafId = requestAnimationFrame(() => frame(el));
-      }
-
-      return {
-        init(el) {
-          frame(el);
-          el.addEventListener('scroll', () => onScroll(el), { passive: true });
-          window.addEventListener('resize', () => frame(el), { passive: true });
-        },
-        refresh(el) { frame(el); }
-      };
+      const SPACING = 116, MAX_DROP = 62, LERP = 0.13, MOMENTUM = 3.8;
+      let el = null, items = [], nItems = 0, onSnap = null, offset = 0, target = 0, animId = null, rafId = null;
+      let dragging = false, isHoriz = null, startX = 0, startY = 0, startOff = 0, velX = 0, prevX = 0, prevT = 0;
+      function layout() { if (!el || !nItems) { rafId = null; return; } const W = el.offsetWidth, cx = W / 2, hw = cx || 1; items.forEach((item, i) => { const icx = cx + i * SPACING - offset, dx = icx - cx, n = dx / hw, y = MAX_DROP * n * n, sc = Math.max(0.70, 1 - Math.abs(n) * 0.30), opa = Math.max(0.20, 1 - Math.abs(n) * 0.80), tilt = Math.max(-7, Math.min(7, -n * 7)); item.style.transform = `translate(${(icx - SPACING * 0.5).toFixed(1)}px,${y.toFixed(1)}px) scale(${sc.toFixed(3)}) rotateZ(${tilt.toFixed(2)}deg)`; item.style.opacity = opa.toFixed(3); item.style.zIndex = Math.round(sc * 10); }); rafId = null; }
+      function sched() { if (!rafId) rafId = requestAnimationFrame(layout); }
+      function tick() { const d = target - offset; if (!dragging && Math.abs(d) < 0.08) { offset = target; layout(); animId = null; return; } offset += d * LERP; sched(); animId = requestAnimationFrame(tick); }
+      function startAnim() { if (!animId) animId = requestAnimationFrame(tick); }
+      function maxOff() { return Math.max(0, (nItems - 1) * SPACING); }
+      function clamp(v) { return Math.max(0, Math.min(maxOff(), v)); }
+      function setTarget(t) { target = clamp(t); startAnim(); }
+      let snapTimer;
+      function snapNow() { const i = Math.max(0, Math.min(nItems - 1, Math.round(offset / SPACING))); setTarget(i * SPACING); if (onSnap) onSnap(i); }
+      function snapDeferred(ms) { clearTimeout(snapTimer); snapTimer = setTimeout(snapNow, ms); }
+      function onMouseDown(e) { if (e.button !== 0) return; dragging = true; isHoriz = null; startX = prevX = e.clientX; startY = e.clientY; startOff = offset; velX = 0; prevT = performance.now(); el.classList.add('dragging'); }
+      function onMouseMove(e) { if (!dragging) return; const dx = e.clientX - startX, dy = e.clientY - startY; if (isHoriz === null && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) isHoriz = Math.abs(dx) >= Math.abs(dy); if (!isHoriz) return; const now = performance.now(), dt = Math.max(1, now - prevT); velX = (e.clientX - prevX) / dt * 16; prevX = e.clientX; prevT = now; offset = target = startOff - dx; sched(); }
+      function onMouseUp() { if (!dragging) return; dragging = false; el.classList.remove('dragging'); if (!isHoriz) return; target = offset - velX * MOMENTUM; snapNow(); }
+      function onTouchStart(e) { const t = e.touches[0]; dragging = true; isHoriz = null; startX = prevX = t.clientX; startY = t.clientY; startOff = offset; velX = 0; prevT = performance.now(); }
+      function onTouchMove(e) { if (!dragging) return; const t = e.touches[0]; const dx = t.clientX - startX, dy = t.clientY - startY; if (isHoriz === null && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) isHoriz = Math.abs(dx) >= Math.abs(dy); if (!isHoriz) return; e.preventDefault(); const now = performance.now(), dt = Math.max(1, now - prevT); velX = (t.clientX - prevX) / dt * 16; prevX = t.clientX; prevT = now; offset = target = startOff - dx; sched(); }
+      function onTouchEnd() { if (!dragging) return; dragging = false; if (!isHoriz) return; target = offset - velX * MOMENTUM; snapNow(); }
+      function onWheel(e) { const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY * 0.45; if (Math.abs(d) < 0.5) return; e.preventDefault(); setTarget(target + d); snapDeferred(180); }
+      function init(container, snapCallback) { el = container; onSnap = snapCallback; items = [...el.querySelectorAll('.cat')]; nItems = items.length; el.addEventListener('mousedown', onMouseDown); window.addEventListener('mousemove', onMouseMove); window.addEventListener('mouseup', onMouseUp); el.addEventListener('touchstart', onTouchStart, { passive: true }); el.addEventListener('touchmove', onTouchMove, { passive: false }); el.addEventListener('touchend', onTouchEnd); el.addEventListener('wheel', onWheel, { passive: false }); window.addEventListener('resize', sched, { passive: true }); }
+      function refresh(container) { el = container; items = [...el.querySelectorAll('.cat')]; nItems = items.length; layout(); }
+      function setIndex(idx, immediate) { target = Math.max(0, Math.min(nItems - 1, idx)) * SPACING; if (immediate) { offset = target; layout(); } else startAnim(); }
+      return { init, refresh, setIndex };
     })();
 
     let _arcReady = false;
 
-    /* ---------- Categories ---------- */
     function renderCats() {
-      const c = $("#cats");
-      c.innerHTML = "";
-
-      // Inject centering pad so first and last items can reach the visual center
-      const PAD = Math.max(24, Math.round(c.offsetWidth / 2) - 58);
-      const mkPad = () => {
-        const d = document.createElement('div');
-        d.className = 'cats-pad';
-        d.style.flexBasis = PAD + 'px';
-        return d;
-      };
-      c.appendChild(mkPad());
-
-      CATEGORIES.forEach(cat => {
+      const c = $("#cats"); c.innerHTML = "";
+      let activeIdx = 0;
+      CATEGORIES.forEach((cat, i) => {
+        if (cat.id === state.category) activeIdx = i;
         const el = document.createElement("button");
         el.className = "cat" + (state.category === cat.id ? " active" : "");
         el.innerHTML = `<div class="cat-bubble"><img src="${cat.img}" alt="${tCat(cat.id)}" draggable="false"/></div><span>${tCat(cat.id)}</span>`;
-        el.addEventListener("click", () => {
-          state.category = cat.id;
-          renderCats();
-          renderGrid();
-        });
+        el.addEventListener("click", () => { state.category = cat.id; renderCats(); renderGrid(); });
         c.appendChild(el);
       });
-
-      c.appendChild(mkPad());
-
-      // After layout settles: center active item then (re)init arc
+      const aidx = activeIdx;
       requestAnimationFrame(() => {
-        const active = c.querySelector('.cat.active');
-        if (active) {
-          // Instant scroll to active item's center — no animation so arc starts correct
-          c.scrollLeft = active.offsetLeft - c.offsetWidth / 2 + active.offsetWidth / 2;
-        }
-        if (!_arcReady) {
-          ARC.init(c);
-          _arcReady = true;
-        } else {
-          ARC.refresh(c);
-        }
+        const first = !_arcReady;
+        if (first) { ARC.init(c, (idx) => { const cat = CATEGORIES[idx]; if (cat && cat.id !== state.category) { state.category = cat.id; c.querySelectorAll('.cat').forEach((el, j) => el.classList.toggle('active', j === idx)); renderGrid(); } }); _arcReady = true; }
+        else { ARC.refresh(c); }
+        ARC.setIndex(aidx, first);
       });
     }
 
-    /* ---------- Grid ---------- */
     function localized(d, field) {
       const map = { name: `name${state.lang.toUpperCase()}`, sub: `sub${state.lang.toUpperCase()}` };
       return d[map[field]] ?? d[field + "EN"];
@@ -1755,33 +1750,18 @@
         if (q && !localized(d, "name").toLowerCase().includes(q)) return false;
         return true;
       });
-      if (!list.length) {
-        g.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:40px 0">No dishes found.</p>`;
-        return;
-      }
+      if (!list.length) { g.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--text-soft);padding:40px 0">No dishes found.</p>`; return; }
       list.forEach(d => {
         const el = document.createElement("article");
         el.className = "card";
-        el.innerHTML = `
-      <span class="tag">${d.tag}</span>
-      <div class="card-img"><img src="${d.img}" alt="${localized(d, "name")}" loading="lazy" /></div>
-      <h3>${localized(d, "name")}</h3>
-      <p class="desc">${localized(d, "sub")}</p>
-      <div class="card-foot">
-        <div class="price"><em>$</em>${d.price.toFixed(2)}</div>
-        <div class="view" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </div>
-      </div>`;
+        el.innerHTML = `<span class="tag">${d.tag}</span><div class="card-img"><img src="${d.img}" alt="${localized(d, "name")}" loading="lazy" /></div><h3>${localized(d, "name")}</h3><p class="desc">${localized(d, "sub")}</p><div class="card-foot"><div class="price"><em>$</em>${d.price.toFixed(2)}</div><div class="view" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div></div>`;
         el.addEventListener("click", () => openDetails(d));
         g.appendChild(el);
       });
     }
 
-    /* ---------- Search ---------- */
     $("#searchInput").addEventListener("input", e => { state.query = e.target.value; renderGrid(); });
 
-    /* ---------- Bottom nav / screens ---------- */
     $$("#nav button").forEach(b => {
       b.addEventListener("click", () => {
         $$("#nav button").forEach(x => x.classList.toggle("active", x === b));
@@ -1791,67 +1771,51 @@
       });
     });
 
-    /* ---------- Details overlay ---------- */
     const details = $("#details");
     function openDetails(d) {
       $("#dName").textContent = localized(d, "name");
       $("#dName2").textContent = localized(d, "name");
       $("#dTag").textContent = localized(d, "sub");
       $("#dPrice").textContent = d.price.toFixed(2);
-      { const v = $("#dVisualImg"); v.src = d.img; v.alt = localized(d, "name"); }
-      $("#dDesc").textContent = d.descEN; // descriptions kept in EN for brevity
+      const v = $("#dVisualImg"); v.src = d.img; v.alt = localized(d, "name");
+      $("#dDesc").textContent = d.descEN;
       const ing = $("#dIngredients"); ing.innerHTML = "";
-      d.ingredients.forEach(([e, n]) => {
-        const li = document.createElement("li");
-        li.innerHTML = `<span class="emoji">${e}</span><span>${n}</span>`;
-        ing.appendChild(li);
-      });
+      d.ingredients.forEach(([e, n]) => { const li = document.createElement("li"); li.innerHTML = `<span class="emoji">${e}</span><span>${n}</span>`; ing.appendChild(li); });
       details.classList.add("open");
       details.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
-    function closeDetails() {
-      details.classList.remove("open");
-      details.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
+    function closeDetails() { details.classList.remove("open"); details.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; }
     $("#closeDetails").addEventListener("click", closeDetails);
     details.addEventListener("click", e => { if (e.target === details) closeDetails(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetails(); });
 
-    /* ---------- Copy account number ---------- */
+    /* Copy buttons — delegate on document */
     document.addEventListener("click", e => {
-      const btn = e.target.closest("#copyAccBtn");
+      const btn = e.target.closest(".copy-btn[data-copy]");
       if (!btn) return;
-      const accNum = "ET91 0004 0100 0000 0123 456";
-      navigator.clipboard.writeText(accNum).then(() => {
+      const val = btn.dataset.copy;
+      const textNode = [...btn.childNodes].find(n => n.nodeType === 3);
+      const done = () => {
         btn.classList.add("copied");
-        const label = btn.querySelector("#copyLabel");
-        label.textContent = "Copied!";
-        setTimeout(() => { btn.classList.remove("copied"); label.textContent = "Copy"; }, 2000);
-      }).catch(() => {
-        // fallback
+        if (textNode) textNode.textContent = " Copied!";
+        setTimeout(() => { btn.classList.remove("copied"); if (textNode) textNode.textContent = " Copy"; }, 2000);
+      };
+      navigator.clipboard.writeText(val).then(done).catch(() => {
         const ta = document.createElement("textarea");
-        ta.value = accNum; ta.style.position = "fixed"; ta.style.opacity = "0";
-        document.body.appendChild(ta); ta.select();
-        document.execCommand("copy"); document.body.removeChild(ta);
-        btn.classList.add("copied");
-        const label = btn.querySelector("#copyLabel");
-        label.textContent = "Copied!";
-        setTimeout(() => { btn.classList.remove("copied"); label.textContent = "Copy"; }, 2000);
+        ta.value = val; ta.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+        done();
       });
     });
 
-    /* ---------- Boot ---------- */
     (function init() {
       state.theme = localStorage.getItem("saveur-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       state.lang = localStorage.getItem("saveur-lang") || "en";
       setTheme(state.theme);
       $$(".lang-menu button").forEach(x => x.classList.toggle("active", x.dataset.lang === state.lang));
       applyI18n();
-      window.addEventListener("load", () => {
-        setTimeout(() => $("#loader").classList.add("hidden"), 500);
-      });
+      window.addEventListener("load", () => setTimeout(() => $("#loader").classList.add("hidden"), 500));
     })();
   </script>
 </body>
